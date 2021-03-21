@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>DBMS初探 | Willis's Note</title><link rel="stylesheet" type="text/css" href="/willis-blog/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/willis-blog/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/willis-blog/favicon.ico"><link rel="apple-touch-icon" href="/willis-blog/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/willis-blog/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">DBMS初探</h1><a id="logo" href="/willis-blog/.">Willis's Note</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/willis-blog/."><i class="fa fa-home"> 首页</i></a><a href="/willis-blog/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/willis-blog/about/"><i class="fa fa-user"> 关于</i></a><a href="/willis-blog/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">DBMS初探</h1><div class="post-meta">2019-05-21<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><h2 id="DBMS初探"><a href="#DBMS初探" class="headerlink" title="DBMS初探"></a>DBMS初探</h2><h2 id="数据库相关的存储结构"><a href="#数据库相关的存储结构" class="headerlink" title="数据库相关的存储结构"></a>数据库相关的存储结构</h2><table>
+<thead>
+<tr>
+<th align="right">部件</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">查询编辑器</td>
+<td align="left">对查询进行分析和优化，得到查询计划或DBMS，用来传给执行引擎</td>
+</tr>
+<tr>
+<td align="right">执行引擎</td>
+<td align="left">向<strong>资源管理器</strong> 发出一系列小的数据单元（记录或关系的元组）的请求</td>
+</tr>
+<tr>
+<td align="right">资源管理器</td>
+<td align="left">掌握着存放关系的数据文件、文件中的数据格式和记录大小，以及支持对于数据文件中的元素进行快速查找的索引文件。<strong>执行引擎对资源管理器的请求就是对索引、文件、记录管理器的请求</strong></td>
+</tr>
+<tr>
+<td align="right">缓冲区管理器</td>
+<td align="left">查询请求会进一步发送到缓冲区管理器，<strong>从持久存储数据的辅助存储器（一般是磁盘）中将数据的适当部分取到主存的缓冲区</strong>。缓冲区和磁盘间的传输单位是也或”磁盘块“</td>
+</tr>
+<tr>
+<td align="right">存储管理器</td>
+<td align="left">控制数据在磁盘上的放置和在磁盘与主存之间的移动</td>
+</tr>
+</tbody></table>
+<h3 id="查询处理器"><a href="#查询处理器" class="headerlink" title="查询处理器"></a>查询处理器</h3><p>1、<strong>查询编辑器</strong><br>[查询编辑器]将查询翻译成一种内部形式，称作查询计划。</p>
+<p>查询编辑器由一下三部分组成</p>
+<ul>
+<li><strong>查询分析器</strong>，他有本文形式的查询出发，建立一个树结构</li>
+<li><strong>查询预处理器</strong>，他对查询进行语义检查（eg. 检查查询中所提到的关系是否都确实存在），并进行某些树结构转换，将分析书转换为表示最初的查询计划的代数操作树。</li>
+<li><strong>查询优化器</strong>，他将最初的查询计划转换为对于时间数据的最有效的操作序列.</li>
+</ul>
+<p>2、<strong>执行引擎</strong><br>[执行引擎]负责执行选中的查询计划中的每一步。与DBMS中大多数的其他成分都有交互（直接交互或者通过缓冲区交互）。</p>
+<ul>
+<li>通过缓冲区。对数据的的操作，必须将数据库的数据取到缓冲区。</li>
+<li>和调度器的交互，为了避免访问被加了锁的数据</li>
+<li>和日志管理器进行交互，用一确保对于数据库的所有修改都正确的记录了日志。</li>
+</ul>
+<h3 id="辅助存储器"><a href="#辅助存储器" class="headerlink" title="辅助存储器"></a>辅助存储器</h3><p><strong>一般都是磁盘</strong></p>
+<p>1、<strong>存储器的层次</strong><br>一般有四种，响应速度由高到低依次是</p>
+<table>
+<thead>
+<tr>
+<th align="left">存储器</th>
+<th align="left">作用</th>
+<th align="left">相应时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">高速缓存（Cache）</td>
+<td align="left">当处理器需要【数据】和【指令】时，数据和指令就会从【内存】移动到告诉缓存</td>
+<td align="left">处理器访问Cache只需要几ns</td>
+</tr>
+<tr>
+<td align="left">主存（Main Memory）</td>
+<td align="left">主存是计算机的活动中心。发生在计算机的每一件事情，不论是指令执行还是数据操作，都是作用于驻留在内存的信息上（<em>尽管实际上通常会将所使用的数据移动到Cache中</em>）</td>
+<td align="left">内存到处理器或Cache的速度在10~100ns</td>
+</tr>
+<tr>
+<td align="left">辅助存储器</td>
+<td align="left">一般是磁盘</td>
+<td align="left">磁盘和主存传送一个字节时间大约为10ms</td>
+</tr>
+<tr>
+<td align="left">第三季存储器</td>
+<td align="left">例如CD，DVD</td>
+<td align="left">几秒到几分钟</td>
+</tr>
+</tbody></table>
+<p>2、<strong>辅助存储器-磁盘</strong></p>
+<ul>
+<li><p>磁头组合<br>  磁头组合承载着磁头，磁头急近的悬浮在盘面上（磁盘的上下两个面），但是不能接触到盘面，不然盘片会被损毁。</p>
+</li>
+<li><p>磁盘组合，又一个或多个同心圆盘组合，围绕一个中心主轴转动</p>
+</li>
+<li><p>磁道<br>  一个磁盘有个下两个面，每个面有很多磁道。所有盘面半径相同的磁道构成了柱面。</p>
+</li>
+<li><p>扇区 每个磁道被【间隙(gap)】分成多个扇区，可以理解为扇区就是一段圆弧。</p>
+</li>
+</ul>
+<p>2.1、<strong>磁盘控制器</strong><br>磁盘控制器是一个小的处理器，负责的任务<br>1）控制磁头的机械马达（叫机器手臂是不是更好？），将磁头定位到一个半径的位置。这样就能读取到一个柱面的任何数据（因为每个盘片的上下两个面都有磁头，所以是一个柱面上的数据都能读取到）<br>2）从磁头所在的柱面的扇区中选择一个扇区。除此之外，还能识别合适旋转主轴到达了磁头需要读取的那个点。<br>3）将从扇区读取的数据传送到主存<br>4）如果可以，将一条或更多磁道缓存于【磁盘控制器的内存】中，避免磁盘额外访问<br>3.</p>
+</div><div class="tags"></div><div class="post-nav"><a class="pre" href="/willis-blog/2019/07/30/%E5%90%8C%E6%AD%A5%E5%BC%82%E6%AD%A5Vs%E9%98%BB%E5%A1%9E%E9%9D%9E%E9%98%BB%E5%A1%9E/">同步异步Vs阻塞非阻塞</a><a class="next" href="/willis-blog/2019/03/05/Class-Struct/">类文件</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="https://willis-song.gitee.io/willis-blog"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/willis-blog/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/willis-blog/tags/InnoDb/" style="font-size: 15px;">InnoDb</a> <a href="/willis-blog/tags/Dubbo/" style="font-size: 15px;">Dubbo</a> <a href="/willis-blog/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 15px;">微服务</a> <a href="/willis-blog/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/willis-blog/tags/Swarm/" style="font-size: 15px;">Swarm</a> <a href="/willis-blog/tags/jvm/" style="font-size: 15px;">jvm</a> <a href="/willis-blog/tags/java/" style="font-size: 15px;">java</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/03/07/Docker-Swarm%E5%B0%8F%E8%AE%A1/">Docker swarm小计</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/dubbo%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">dubbo线程模型</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/Dubbo-Service%20Consumer/">2021-02-24-Dubbo-Service Consumer</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/12/06/%E5%A4%9A%E7%BA%BF%E7%A8%8B-SynchronousQueue%E7%AC%94%E8%AE%B0/">多线程-SynchronousQueue笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/23/%E4%B8%80%E8%B5%B7%E8%81%8A%E8%81%8A%E5%BC%95%E7%94%A8/">一起聊聊引用</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/16/shell%E7%AC%94%E8%AE%B0/">Shell命令之语法笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/12/SLF4j%E7%9A%84%E8%AE%BE%E8%AE%A1/">SLF4j的设计</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/11/%E4%BD%BF%E7%94%A8es%E7%9A%84%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/">es笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/09/ThreadLocal%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">Thread Local实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/09/Docker%E5%88%9D%E6%8E%A2/">Docker初探</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.baidu.com/" title="百度" target="_blank">百度</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/willis-blog/." rel="nofollow">Willis's Note.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/willis-blog/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/willis-blog/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/willis-blog/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/willis-blog/js/smartresize.js?v=1.0.0"></script></div></body></html>

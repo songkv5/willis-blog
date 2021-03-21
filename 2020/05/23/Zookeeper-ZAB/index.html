@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>ZAB 协议 | Willis's Note</title><link rel="stylesheet" type="text/css" href="/willis-blog/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/willis-blog/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/willis-blog/favicon.ico"><link rel="apple-touch-icon" href="/willis-blog/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/willis-blog/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">ZAB 协议</h1><a id="logo" href="/willis-blog/.">Willis's Note</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/willis-blog/."><i class="fa fa-home"> 首页</i></a><a href="/willis-blog/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/willis-blog/about/"><i class="fa fa-user"> 关于</i></a><a href="/willis-blog/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">ZAB 协议</h1><div class="post-meta">2020-05-23<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><h1 id="Zookeeper与ZAB协议"><a href="#Zookeeper与ZAB协议" class="headerlink" title="Zookeeper与ZAB协议"></a>Zookeeper与ZAB协议</h1><h2 id="一、Zookeeper"><a href="#一、Zookeeper" class="headerlink" title="一、Zookeeper"></a>一、Zookeeper</h2><h3 id="1、定位"><a href="#1、定位" class="headerlink" title="1、定位"></a>1、定位</h3><blockquote>
+<p>Zookeeper是一个开放源代码的分布式协调服务，雅虎创建，是google chubby的开源实现。Zookeeper的设计目标是将那些复杂且容易出错的分布式一致性服务封装起来，构成一个可靠的原语集，兵役一些列简单易用的接口提供给用户使用。<br>Zookeeper是一个典型的分布式数据一致性的解决方案，分布式应用程序可以基于它实现诸如数据发布订阅，负载均衡、命名服务、分布式协调/通知、集群管理、Master选举、分布式锁和分布式队列等功能。</p>
+</blockquote>
+<h3 id="2、一致性"><a href="#2、一致性" class="headerlink" title="2、一致性"></a>2、一致性</h3><ul>
+<li><p>顺序一致性</p>
+<blockquote>
+<p>从同一个客户端发起的事务请求，最终将会严格按照其他发起顺序被应用到Zookeeper中</p>
+</blockquote>
+</li>
+<li><p>原子性</p>
+<blockquote>
+<p>所有事物请求的处理结果在整个集群中所有机器上的应用情况是一致的，也就是说，要么整个集群所有机器都成功应用了某一个事物，要么都没有应用。</p>
+</blockquote>
+</li>
+<li><p>单一视图（Single System Image）</p>
+<blockquote>
+<p>无论客户端连接的是哪个Zookeeper服务器，其看到的服务器数据模型都是一致的</p>
+</blockquote>
+</li>
+<li><p>可靠性</p>
+<blockquote>
+<p>一旦服务端成功的应用了一个事务，并完成对客户端的响应，那么钙食物所引起的服务端状态变更将会一致保留下来，除非有另一个事务又对其进行了变更。</p>
+</blockquote>
+</li>
+<li><p>实时性</p>
+<blockquote>
+<p>一旦一个事务被成功应用，那么客户端能够立刻从服务端上读取到这个事务变更后的最新数据状态。但是，Zookeeper仅仅保证在【一定的时间内】，客户端最终一定能够从服务端上读取到最新的数据状态</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="3、zk的集群模式"><a href="#3、zk的集群模式" class="headerlink" title="3、zk的集群模式"></a>3、zk的集群模式</h3><p><img src="/willis-blog/images/2020-05-23/zk-group.png" alt="zk集群"></p>
+<h4 id="3-1、集群角色"><a href="#3-1、集群角色" class="headerlink" title="3.1、集群角色"></a>3.1、集群角色</h4><p>在zk中，没有沿用传统的Master/Slave概念，而是引入了Leader、Flollower和Observer三种角色。集群中的所有机器通过一个Leader选举过程来选定一台被称为leader的机器，支持读与写；follower和observer都能提供读服务，唯一区别在于observer机器不参与leader选举，也不参与过半策略。</p>
+<h4 id="3-2、会话"><a href="#3-2、会话" class="headerlink" title="3.2、会话"></a>3.2、会话</h4><p>即session。在zk中，通过tcp长链接维持会话，客户端通过心跳检测与服务端保持有效的会话。</p>
+<h4 id="3-3、结点"><a href="#3-3、结点" class="headerlink" title="3.3、结点"></a>3.3、结点</h4><ol>
+<li>构成集群的机器，成为机器结点</li>
+<li>数据模型中的数据单元，成为数据结点（Znode）。<blockquote>
+<p>zk将所有数据存储在内存中，数据模型是一棵树（Znode Tree），由斜杠/进行分割的路径，就是一个Znode，例如/foo/path1。每个znode都会保存自己的数据内容，同时还会保存一些里属性信息。<br>在zk中，znode可以分为持久结点和临时结点。持久结点一旦创建，除非主动移除znode，否则将一直存在于zk上；临时结点的生命周期和客户端会话（session）绑定，会话失效意味着临时结点会被移除。</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="3-4、ACL（Acess-control-lists）权限控制，zk定义的权限如下"><a href="#3-4、ACL（Acess-control-lists）权限控制，zk定义的权限如下" class="headerlink" title="3.4、ACL（Acess control lists）权限控制，zk定义的权限如下"></a>3.4、ACL（Acess control lists）权限控制，zk定义的权限如下</h4><ul>
+<li>CREATE：创建子节点</li>
+<li>READ：获取节点数据和子节点列表</li>
+<li>WRITE：更新节点数据</li>
+<li>DELETE：删除子节点</li>
+<li>ADMIN：设置结点ACL</li>
+</ul>
+<h2 id="二、ZAB"><a href="#二、ZAB" class="headerlink" title="二、ZAB"></a>二、ZAB</h2><h3 id="1、ZAB协议"><a href="#1、ZAB协议" class="headerlink" title="1、ZAB协议"></a>1、ZAB协议</h3><blockquote>
+<p>很多人可能认为Zookeeper就是paxos算法的一个实现，但事实上，zookeeper并没有完全采用Paxos算法，而是使用了一种称为zookeeper atomic broadcast（zab，zookeeper原子消息广播协议）的协议作为数据一致性的核心算法。<br><strong>zab协议是为分布式协调服务zookeeper专门设计的一种支持崩溃恢复的原子广播协议</strong></p>
+</blockquote>
+<blockquote>
+<p>基于zab协议，zk实现了一种主备模式的系统架构来保持集群中个副本之间的数据一致性。zk使用一个【单一的主进程】来接收并处理客户端的所有事务请求，并采用zab的原子广播协议，将服务器数据的状态变更以事务proposal的形式广播到所有的副本进程。</p>
+</blockquote>
+<p><strong>zab要保证的问题：</strong>一个全局的变更序列被顺序调用。zab协议需要保证如果一个状态变更已经被处理了，那么所有其以来的状态变更都应该已经被提前处理掉了。</p>
+<p><strong>核心</strong>：zab定义了对于那些会改变zk服务器数据状态的事务请求的处理方式，如下：</p>
+<blockquote>
+<p>所有事务请求必须有一个全局唯一的服务器来协调处理，这样的服务器成为leader服务器，而余下的其他服务器则成为follower服务器。leader服务器负责将一个客户端事务请求转换成一个事务proposal（提议），并将该proposal分发给集群中所有的follower服务器。之后leader服务器需要等待所有follower服务器的反馈，一旦超过半数的follower服务器进行了正确的反馈后，那么leader就会再次向所有的follower服务器分发commit消息，要求其将前一个proposal进行提交</p>
+</blockquote>
+<h4 id="1-1、zab的两种工作模式"><a href="#1-1、zab的两种工作模式" class="headerlink" title="1.1、zab的两种工作模式"></a>1.1、zab的两种工作模式</h4><ul>
+<li>1、崩溃恢复模式</li>
+</ul>
+<blockquote>
+<p>当整个服务框架在【启动过程】中，或者是当【Leader服务器出现网络中断】、崩溃退出与重启等异常情况时，zab协议就会进入恢复模式并选举产生新的Leader服务器。</p>
+</blockquote>
+<blockquote>
+<p>当选举产生了新的Leader服务器，同时集群中已经有过半的机器与该leader服务器完成了状态同步之后，zab协议就会退出恢复模式。其中，所谓的状态同步是指数据同步，用来保证集群中存在过半的机器能够和leader服务器的数据保持一致。</p>
+</blockquote>
+<blockquote>
+<p>一个机器要成为新的leader，必须获得过半进程的支持，同时由于每个进程都有可能会奔溃，因此在zab协议运行的过程中，前后会出现多个leader，并且每个进程也有可能会多次成为leader。<br>eg. 一个由3台机器组成的zab服务，通常由一个leader、2个follower服务器组成，某一个时刻，假如其中一个follower服务器挂了，整个zab集群是不会中断服务的，这时因为leader服务器依然能够获得过半机器（包括leader自己）的支持</p>
+</blockquote>
+<p><strong>基本特性</strong></p>
+<p>1)zab协议需要确保那些已经在leader服务器上提交的事务最终被所有服务器都提交</p>
+<blockquote>
+<p>假如一个事务在leader服务器提交了，而且已经收到了过半follower的ack，但是在发送commit之前，leader挂了，如图<br><img src="/willis-blog/images/2020-05-23/zab-2.png" alt="ZAB崩溃恢复案例"></p>
+</blockquote>
+<p><strong>说明：</strong></p>
+<blockquote>
+<p>px:proposalx</p>
+</blockquote>
+<blockquote>
+<p>cx: commit of proposalx</p>
+</blockquote>
+<blockquote>
+<p>如图这种案例，zab协议需要确保事务proposal2最终能在所有的服务器上都被提交成功，否则出现不一致。</p>
+</blockquote>
+<p>2)zab协议需要丢弃那些只在leader服务器被提出的事务。</p>
+<blockquote>
+<p>同样上图，p3只在leader上被提出，其他follower都没有收到这个事务proposal。当leader再次回复过来加入到集群中的时候，zab协议需要确保丢弃proposal3这个事务。</p>
+</blockquote>
+<ul>
+<li>2、消息广播模式<br>zab协议的消息广播过程使用的是一个<strong>原子广播协议</strong>，类似二阶段提交过程。</li>
+</ul>
+<blockquote>
+<p>针对客户端的事务请求，leader 服务器会为其生成对应的事务proposal，并将其发送给集群中其余所有的机器，然后再分别收集各自的选票，最后进行事务提交。如图<br><img src="/willis-blog/images/2020-05-23/zab-1.png" alt="ZAB广播协议"></p>
+</blockquote>
+<blockquote>
+<p>ZAB将二阶段提交中的中断逻辑移除，意味着我们可以在过半的follower服务器已经反馈Ack之后就开始提交事务proposal了，而不需要等待集群中所有的follower服务器都反馈响应。</p>
+</blockquote>
+<blockquote>
+<p>消息广播协议是基于具有fifo特性的tcp协议来进行网络通信的，因此能够很容易的保证消息广播过程中消息接收与发送的顺序性。</p>
+</blockquote>
+<blockquote>
+<p>整个消息广播过程中，leader服务器会为每个事物请求生成对应的proposal来进行广播，并且在广播事物proposal之前，leader服务器会首先为这个事务proposal分配一个全局单调递增的唯一ID，我们称之为事务ID（ZXID）。为了保证每个消息的严格的因果关系，必须将每一个事务proposal按照其ZXID的先后顺序来进行排序处理</p>
+</blockquote>
+<h3 id="2、主备服务器的数据同步"><a href="#2、主备服务器的数据同步" class="headerlink" title="2、主备服务器的数据同步"></a>2、主备服务器的数据同步</h3><p>所有正常运行的服务器，要么成为leader，要么成为follower并和leader保持同步。</p>
+<p><strong>新的follower如何加入到集群？</strong></p>
+<blockquote>
+<p>Leader服务器会为每一个follower服务器准备一个队列，并将那些没有被个follower服务器同步的事务以proposal消息的形式诸葛发送给follower服务器，并在每一个propsal消息后面紧接着在发送一个commit消息，以表示该事务已经被提交。等到follower服务器将所有其尚未同步的事务proposal都从leader服务器上同步过来并成功应用到本地数据库中，leader服务器就会将该follower服务器加入到真正可用follower列表中。</p>
+</blockquote>
+<h4 id="2-1、ZXID的组成"><a href="#2-1、ZXID的组成" class="headerlink" title="2.1、ZXID的组成"></a>2.1、ZXID的组成</h4><p><img src="/willis-blog/images/2020-05-23/zab-zxid-1.png" alt="zxid结构"></p>
+<blockquote>
+<p>每当选举产生一个新的leader服务器，就会从这个leader服务器上取出其本地日志中最大事务proposal的xid，并从该zxid中解析出对应的epoch值（高32位），进行+1操作，之后以此编号作为新的epoch（所以新的epoch一定是有史以来值最大的）。</p>
+</blockquote>
+<blockquote>
+<p>zab协议通过epoch编号来区分leader周期变化的策略，可以有效避免不同的leader错误使用相同的zxid编号提出不一样的事务proposal的异常情况。</p>
+</blockquote>
+<blockquote>
+<p>基于类似的策略，当一个包含了上一个leader周期中尚未提交过的事务的proposal的服务器启动时，它肯定是无法成为leader。因为当前集群中包含一个Quorum集合，该集合中的机器一定包含了更高epoch的事务proposal，因此这台机器的事务proposal肯定不是最高，也就无法成为leader。</p>
+</blockquote>
+<blockquote>
+<p><strong>说明：</strong></p>
+<blockquote>
+<p>Quorum: 过半原则。Quorum集合代表超过集合一半数量的子集。</p>
+</blockquote>
+</blockquote>
+<h3 id="3、zab协议的系统模型"><a href="#3、zab协议的系统模型" class="headerlink" title="3、zab协议的系统模型"></a>3、zab协议的系统模型</h3><p><em>在由一个进程组∏ = {P1, P2, …, Pn}组成的分布式系统中，每一个进程都有各自的存储设备，个进程通过相互通信来实现消息的传递。当集群中过半的处于UP状态的进程组成一个进程自己之后，就可以进行正常的消息广播了，将这样一个进程子集成为Quorum（简称Q），满足如下协议</em></p>
+<blockquote>
+<p>∧ 任意的Q, Q ⊆ ∏；<br>∧ 任意的Q1和Q2，Q1∩Q2 ≠ ∅</p>
+</blockquote>
+<h3 id="4、主进程周期"><a href="#4、主进程周期" class="headerlink" title="4、主进程周期"></a>4、主进程周期</h3><p>为了保证主进程每次广播出来的事务消息一致，必须却道zab协议只有在充分完成泵快恢复阶段之后，新的主进程才可以开始生成新的事务消息广播。为了实现这个目的，假设每个进程都实现了类似于ready（e）这样的一个函数，zab协议能够非常明确的告诉主进程和副本进程是否可以开始进行事务消息的广播。在调用ready之后，zab协议还需要为当前主进程设置一个实例值，用来唯一标志一个主进程周期，这个值就是上面提到的epoch值。zab协议保证在不同的主进程周期中是全局唯一的。参见<a href="#2.1%E3%80%81ZXID%E7%9A%84%E7%BB%84%E6%88%90">ZXID组成</a></p>
+<h3 id="5、事务组成"><a href="#5、事务组成" class="headerlink" title="5、事务组成"></a>5、事务组成</h3><p>主进程每次进行事务广播都包含了两部分内容：</p>
+<ol>
+<li>事务内容</li>
+<li>事务标识<blockquote>
+<p>事务标识又包含主进程周期epoch和当前主进程周期内的事务计数器counter</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>在实际运行过程中，如果一个事务标识z优先于两一个事务标识z’，有两种可能：</strong></p>
+<ol>
+<li>z的主进程周期前与z’的主进程周期：epoch(z) &lt; epoch(z’)</li>
+<li>主进程周期一致，但是事务z的事务计数器小于z’的事务计数器：epoch(z) &lt; epoch(z’) &amp;&amp; counter(z) &lt; counter(z’)</li>
+</ol>
+<h3 id="6、-消息广播与崩溃恢复的三阶段描述"><a href="#6、-消息广播与崩溃恢复的三阶段描述" class="headerlink" title="6、 消息广播与崩溃恢复的三阶段描述"></a>6、 消息广播与崩溃恢复的三阶段描述</h3><p>消息广播与崩溃恢复两个过程可以细分成3个阶段</p>
+<ol>
+<li>发现（Discovery）</li>
+<li>同步（Synchronization）</li>
+<li>广播（Broadcast）<br>组成zab协议的每一个分布式进程，会循环执行这个三个阶段，将这样一个循环成为一个<strong>准进程周期</strong>。</li>
+</ol>
+<h4 id="6-1、发现"><a href="#6-1、发现" class="headerlink" title="6.1、发现"></a>6.1、发现</h4><p>发现过程如图所示<br><img src="/willis-blog/images/2020-05-23/zab-discovery-1.png" alt="发现阶段执行过程"><br><strong>初始化事务集合</strong><br>准leader会从过半回复ack的服务器中选取一个Follower F，使它作为【初始化事务集合Ie’】。关于F的选取，对于Quorum中其他任意一个Follower F’，F需要满足一下两个条件中的一个</p>
+<blockquote>
+<ol>
+<li>Epoch(F’·p) &lt; Epoch(F·p)。即F的leader周期值最大</li>
+<li>Epoch(F’·p) = Epoch(F·p) &amp;&amp; F’·zxid ≤ F·zxid。即leader周期相同，但是事务计数器值大于等于F’的</li>
+</ol>
+</blockquote>
+<h4 id="6-2、同步"><a href="#6-2、同步" class="headerlink" title="6.2、同步"></a>6.2、同步</h4><p>同步的过程如图所示<br><img src="/willis-blog/images/2020-05-23/zab-sync-1.png" alt="同步阶段执行过程"></p>
+<h4 id="6-3-广播"><a href="#6-3-广播" class="headerlink" title="6.3 广播"></a>6.3 广播</h4><p>完成同步阶段之后，zab协议就可以正式开始接受客户端新的事务请求，并进行消息广播流程<br><img src="/willis-blog/images/2020-05-23/zab-broadcast-1.png" alt="广播阶段执行过程"></p>
+<blockquote>
+<p>正常情况下，zab协议会一致运行于阶段三来反复的进行消息广播流程。如果出现leader崩溃或其他原因导致leader确实，此时zab协议会再次进入阶段一</p>
+</blockquote>
+<h4 id="6-4-名词说明"><a href="#6-4-名词说明" class="headerlink" title="6.4 名词说明"></a>6.4 名词说明</h4><table>
+<thead>
+<tr>
+<th align="right">名词</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">F·p</td>
+<td align="left">Follower f 处理的最后一个事务proposal</td>
+</tr>
+<tr>
+<td align="right">F·zxid</td>
+<td align="left">Follower f 处理过的历史事务Proposal中最后一个事务Proposal的事务标识ZXID</td>
+</tr>
+<tr>
+<td align="right">hf</td>
+<td align="left">每个follower已经处理过的事务序列。（一个follower会处理很多proposal）</td>
+</tr>
+<tr>
+<td align="right">Ie</td>
+<td align="left">初始化历史记录。每个主进程周期阶段一都会进行有初始化序列，阶段一完成时，hf就会标记为Ie</td>
+</tr>
+</tbody></table>
+<h2 id="三、zk客户端"><a href="#三、zk客户端" class="headerlink" title="三、zk客户端"></a>三、zk客户端</h2><h3 id="1、zkClient"><a href="#1、zkClient" class="headerlink" title="1、zkClient"></a>1、zkClient</h3><p>依赖如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.zookeeper<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>zookeeper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.6.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.sgroschupf<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>zkclient<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>zkclient有很多实现，即基于zookeeper的java api接口实现的封装。</p>
+</blockquote>
+<h3 id="2、curator"><a href="#2、curator" class="headerlink" title="2、curator"></a>2、curator</h3><blockquote>
+<p>curator的意思是：馆长。zookeeper意为动物园看守者。用馆长来命名很贴切。<br>依赖如下</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.curator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>curator-framework<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--下面这个包可选。这个包中提供了许多zk的使用参考--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.curator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>curator-recipes<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--下面这个包可选。这个包中提供了许多便于测试的工具类--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.curator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>curator-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="参考文献《从paxos到Zookeeper分布式一致性原理与实践》"><a href="#参考文献《从paxos到Zookeeper分布式一致性原理与实践》" class="headerlink" title="参考文献《从paxos到Zookeeper分布式一致性原理与实践》"></a>参考文献《从paxos到Zookeeper分布式一致性原理与实践》</h6></div><div class="tags"></div><div class="post-nav"><a class="pre" href="/willis-blog/2020/06/21/Zookeeper-%E6%8A%95%E7%A5%A8/">zookeeper 投票</a><a class="next" href="/willis-blog/2020/05/12/ReentrantLock%E5%8E%9F%E7%90%86/">ReentrantLock 原理</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="https://willis-song.gitee.io/willis-blog"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/willis-blog/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/willis-blog/tags/InnoDb/" style="font-size: 15px;">InnoDb</a> <a href="/willis-blog/tags/Dubbo/" style="font-size: 15px;">Dubbo</a> <a href="/willis-blog/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 15px;">微服务</a> <a href="/willis-blog/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/willis-blog/tags/Swarm/" style="font-size: 15px;">Swarm</a> <a href="/willis-blog/tags/jvm/" style="font-size: 15px;">jvm</a> <a href="/willis-blog/tags/java/" style="font-size: 15px;">java</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/03/07/Docker-Swarm%E5%B0%8F%E8%AE%A1/">Docker swarm小计</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/dubbo%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">dubbo线程模型</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/Dubbo-Service%20Consumer/">2021-02-24-Dubbo-Service Consumer</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/12/06/%E5%A4%9A%E7%BA%BF%E7%A8%8B-SynchronousQueue%E7%AC%94%E8%AE%B0/">多线程-SynchronousQueue笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/23/%E4%B8%80%E8%B5%B7%E8%81%8A%E8%81%8A%E5%BC%95%E7%94%A8/">一起聊聊引用</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/16/shell%E7%AC%94%E8%AE%B0/">Shell命令之语法笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/12/SLF4j%E7%9A%84%E8%AE%BE%E8%AE%A1/">SLF4j的设计</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/11/%E4%BD%BF%E7%94%A8es%E7%9A%84%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/">es笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/09/ThreadLocal%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">Thread Local实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/09/Docker%E5%88%9D%E6%8E%A2/">Docker初探</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.baidu.com/" title="百度" target="_blank">百度</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/willis-blog/." rel="nofollow">Willis's Note.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/willis-blog/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/willis-blog/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/willis-blog/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/willis-blog/js/smartresize.js?v=1.0.0"></script></div></body></html>

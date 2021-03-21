@@ -1,0 +1,709 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>类文件 | Willis's Note</title><link rel="stylesheet" type="text/css" href="/willis-blog/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/willis-blog/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/willis-blog/favicon.ico"><link rel="apple-touch-icon" href="/willis-blog/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/willis-blog/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">类文件</h1><a id="logo" href="/willis-blog/.">Willis's Note</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/willis-blog/."><i class="fa fa-home"> 首页</i></a><a href="/willis-blog/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/willis-blog/about/"><i class="fa fa-user"> 关于</i></a><a href="/willis-blog/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">类文件</h1><div class="post-meta">2019-03-05<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><h3 id="类文件结构"><a href="#类文件结构" class="headerlink" title="类文件结构"></a>类文件结构</h3><p>整体结构如下（按顺序）</p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">名称</th>
+<th align="left">数量</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">u4</td>
+<td align="left">magic</td>
+<td align="left">1</td>
+<td align="left">魔数</td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">minor_version</td>
+<td align="left">1</td>
+<td align="left">次版本号</td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">major_version</td>
+<td align="left">1</td>
+<td align="left">主版本号</td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">constant_pool_count</td>
+<td align="left">1</td>
+<td align="left">常量池常量数量</td>
+</tr>
+<tr>
+<td align="left">cp_info</td>
+<td align="left">constant_pool</td>
+<td align="left">constant_pool_count - 1</td>
+<td align="left">常量信息</td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">access_flag</td>
+<td align="left">1</td>
+<td align="left">访问标志</td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">this_class</td>
+<td align="left">1</td>
+<td align="left">类索引</td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">super_class</td>
+<td align="left">1</td>
+<td align="left">父类索引</td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">interface_count</td>
+<td align="left">1</td>
+<td align="left">实现的接口数量</td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">interfaces</td>
+<td align="left">interface_count</td>
+<td align="left">接口索引表</td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">field_count</td>
+<td align="left">1</td>
+<td align="left">字段表的字段数量</td>
+</tr>
+<tr>
+<td align="left">field_info</td>
+<td align="left">field</td>
+<td align="left">field_count</td>
+<td align="left">字段表项</td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">method_count</td>
+<td align="left">1</td>
+<td align="left">方法数量</td>
+</tr>
+<tr>
+<td align="left">method_info</td>
+<td align="left">methods</td>
+<td align="left">method_count</td>
+<td align="left">方法表的一个个方法项</td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">attribute_count</td>
+<td align="left">1</td>
+<td align="left">属性个数</td>
+</tr>
+<tr>
+<td align="left">attribute_info</td>
+<td align="left">attributes</td>
+<td align="left">attribute_count</td>
+<td align="left">属性项。参考<a href="#%E5%B1%9E%E6%80%A7%E8%A1%A8%E9%9B%86%E5%90%88">属性表</a></td>
+</tr>
+</tbody></table>
+<p>类文件结构，从前到后包括</p>
+<ol>
+<li>魔数CAFEBABE（4个字节）</li>
+<li>次版本号（2个字节）</li>
+<li>主版本号（2个字节）</li>
+<li>常量池入口（前两个字节代表常量池容量，后面紧跟着常量的内容）</li>
+</ol>
+<p><strong>常量表类型</strong>如下</p>
+<p><em>常量池中主要存放两大类常量：字面量和符号引用</em></p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">标志的值（每一项常量的第一个字节的值）</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">CONSTANT_Utf8_info</td>
+<td align="left">1</td>
+<td align="left">UTF8编码的字符串</td>
+</tr>
+<tr>
+<td align="left">CONSTANT_Integer_info</td>
+<td align="left">3</td>
+<td align="left">整形字面量</td>
+</tr>
+<tr>
+<td align="left">CONSTANT_Float_info</td>
+<td align="left">4</td>
+<td align="left">浮点型字面量</td>
+</tr>
+<tr>
+<td align="left">CONSTANT_Long_info</td>
+<td align="left">5</td>
+<td align="left">长整形字面量</td>
+</tr>
+<tr>
+<td align="left">CONSTANT_Double_info</td>
+<td align="left">6</td>
+<td align="left">双精度浮点型字面量</td>
+</tr>
+<tr>
+<td align="left">CONSTANT_Class_info</td>
+<td align="left">7</td>
+<td align="left">类或接口的符号引用</td>
+</tr>
+<tr>
+<td align="left">CONSTANT_String_info</td>
+<td align="left">8</td>
+<td align="left">字符串类型字面量</td>
+</tr>
+<tr>
+<td align="left">CONSTANT_Fieldref_info</td>
+<td align="left">9</td>
+<td align="left">字段的符号引用</td>
+</tr>
+<tr>
+<td align="left">CONSTANT_Methodref_info</td>
+<td align="left">10</td>
+<td align="left">类中方法的符号引用</td>
+</tr>
+<tr>
+<td align="left">CONSTANT_InterfaceMethodref_info</td>
+<td align="left">11</td>
+<td align="left">接口方法的符号引用</td>
+</tr>
+<tr>
+<td align="left">CONSTANT_NameAndType_info</td>
+<td align="left">12</td>
+<td align="left">字段或方法的部分符号引用</td>
+</tr>
+<tr>
+<td align="left">CONSTANT_MethodHandle_info</td>
+<td align="left">15</td>
+<td align="left">表示方法句柄</td>
+</tr>
+<tr>
+<td align="left">CONSTANT_MethodType_info</td>
+<td align="left">16</td>
+<td align="left">标识方法类型</td>
+</tr>
+<tr>
+<td align="left">CONSTANT_InvokeDynamic_info</td>
+<td align="left">18</td>
+<td align="left">表示一个动态方法调用点</td>
+</tr>
+</tbody></table>
+<p><u>在class文件中，常量池的每一项常量都是一个表，目前共有14中表结构，他们有一个共同点就是，第一个字节是标志位（tag），用来标识常量类型</u></p>
+<p><em>以上14中常量类型，都有自己特有的结构，例如 <strong>CONSTANT_Class_info</strong>的结构为</em></p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">名称</th>
+<th align="left">数量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">u1</td>
+<td align="left">tag</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">name_index</td>
+<td align="left">1</td>
+</tr>
+</tbody></table>
+<p>tag理解同上，都是标志一个常量类型。<br><strong><em>name_index</em></strong> 是索引值，指向另一个常量。如果name_index的值是4，就意味着它执行常量池中第4个常量，只要看第四个常量是什么即可。</p>
+<p><strong>常量结构如下</strong></p>
+<p><img src="/willis-blog/images/2019-03-05/constant-table-1.png"><br><img src="/willis-blog/images/2019-03-05/constant-table-2.png"></p>
+<p>5、访问标志（2个字节），紧跟常量池之后。包括了这个class是类还是接口，是否是public，是否为abstract，是否是final等</p>
+<p>其中，**<em>类的访问标志的值**</em>分别代表的意义如下</p>
+<table>
+<thead>
+<tr>
+<th align="left">标志</th>
+<th align="left">标志值</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ACC_PUBLIC</td>
+<td align="left">0x0001</td>
+<td align="left">是否public</td>
+</tr>
+<tr>
+<td align="left">ACC_FINAL</td>
+<td align="left">0x0010</td>
+<td align="left">是否final</td>
+</tr>
+<tr>
+<td align="left">ACC_SUPER</td>
+<td align="left">0x0020</td>
+<td align="left">–</td>
+</tr>
+<tr>
+<td align="left">ACC_INTERFACE</td>
+<td align="left">0x0200</td>
+<td align="left">标志着是一个接口</td>
+</tr>
+<tr>
+<td align="left">ACC_ABSTRTACT</td>
+<td align="left">0x0400</td>
+<td align="left">是否为abstract类型，接口和抽象类都为真</td>
+</tr>
+<tr>
+<td align="left">ACC_SYNTHETIC</td>
+<td align="left">0x1000</td>
+<td align="left">标志由非用户代码产生</td>
+</tr>
+<tr>
+<td align="left">ACC_ANNOTATION</td>
+<td align="left">0x2000</td>
+<td align="left">标志这是一个注解</td>
+</tr>
+<tr>
+<td align="left">ACC_NUME</td>
+<td align="left">0x4000</td>
+<td align="left">字段是否enum</td>
+</tr>
+</tbody></table>
+<p>6、类索引（2个字节）、父类索引（2个字节）、接口索引集合（一组2个字节的数据集合）。类索引用于确定这个类的全限定名，父类索引用于确定父类的全限定名。接口索引集合用来描述这个类实现了哪些接口</p>
+<p>7、字段表集合。用于描述接口或类中申明的变量。第一个U2类型的数据代表字段的数量。后面是字段表</p>
+<p><strong><em>字段表结构</em></strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">名称</th>
+<th align="left">数量</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">u2</td>
+<td align="left">access_flags</td>
+<td align="left">1</td>
+<td align="left">访问标志。用来标识访问属性，是否为public等</td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">name_index</td>
+<td align="left">1</td>
+<td align="left">名字索引，索引值，指向某个常量池的常量，该常量描述了代表字段的简单名称，如main()方法的简单名字就是main</td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">descriptor_index</td>
+<td align="left">1</td>
+<td align="left">索引值，指向常量池的某个常量，该常量是字段和方法的描述符。描述字段的数据类型、方法的参数列表，参考<a href="#%E6%8F%8F%E8%BF%B0%E7%AC%A6">描述符</a></td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">attributes_count</td>
+<td align="left">1</td>
+<td align="left">记录一些额外信息</td>
+</tr>
+<tr>
+<td align="left">attribute_info</td>
+<td align="left">attributes</td>
+<td align="left">attributes_count</td>
+<td align="left">-</td>
+</tr>
+</tbody></table>
+<p><strong>其中，顺序是有严格要求，如上表</strong></p>
+<p>其中，**<em>访问标志的值**</em>分别代表的意义如下</p>
+<table>
+<thead>
+<tr>
+<th align="left">标志</th>
+<th align="left">标志值</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ACC_PUBLIC</td>
+<td align="left">0x0001</td>
+<td align="left">字段是否public</td>
+</tr>
+<tr>
+<td align="left">ACC_PRIVATE</td>
+<td align="left">0x0002</td>
+<td align="left">字段是否private</td>
+</tr>
+<tr>
+<td align="left">ACC_PROTECTED</td>
+<td align="left">0x0004</td>
+<td align="left">字段是否protected</td>
+</tr>
+<tr>
+<td align="left">ACC_STATIC</td>
+<td align="left">0x0008</td>
+<td align="left">字段是否static</td>
+</tr>
+<tr>
+<td align="left">ACC_FINAL</td>
+<td align="left">0x0010</td>
+<td align="left">字段是否final</td>
+</tr>
+<tr>
+<td align="left">ACC_VOLATILE</td>
+<td align="left">0x0040</td>
+<td align="left">字段是否volatile</td>
+</tr>
+<tr>
+<td align="left">ACC_TRANSIENT</td>
+<td align="left">0x0080</td>
+<td align="left">字段是否transient</td>
+</tr>
+<tr>
+<td align="left">ACC_SYNTHETIC</td>
+<td align="left">0x1000</td>
+<td align="left">字段是否由编译器自动产生</td>
+</tr>
+<tr>
+<td align="left">ACC_NUME</td>
+<td align="left">0x4000</td>
+<td align="left">字段是否enum</td>
+</tr>
+</tbody></table>
+<p><strong><em>描述符</em></strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">标识字符</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">B</td>
+<td align="left">基本类型byte</td>
+</tr>
+<tr>
+<td align="left">C</td>
+<td align="left">基本类型char</td>
+</tr>
+<tr>
+<td align="left">D</td>
+<td align="left">基本类型double</td>
+</tr>
+<tr>
+<td align="left">F</td>
+<td align="left">基本类型float</td>
+</tr>
+<tr>
+<td align="left">I</td>
+<td align="left">基本类型int</td>
+</tr>
+<tr>
+<td align="left">J</td>
+<td align="left">基本类型long</td>
+</tr>
+<tr>
+<td align="left">S</td>
+<td align="left">基本类型short</td>
+</tr>
+<tr>
+<td align="left">Z</td>
+<td align="left">基本类型boolean</td>
+</tr>
+<tr>
+<td align="left">V</td>
+<td align="left">特殊类型void</td>
+</tr>
+<tr>
+<td align="left">L</td>
+<td align="left">对象类型。如Ljava/lang/Object</td>
+</tr>
+</tbody></table>
+<p><u>数组描述符：一位数组用前缀”[“描述，二维数组用“[[”前缀描述；</u></p>
+<p><u>方法描述符：先参数列表「括号括起来的参数列表」，后接返回值类型来描述。如java.lang.String toString()的描述符就是()Ljava/lang/String;</u></p>
+<p>8、方法表集合</p>
+<p>class文件中对方法的描述与对字段的描述几乎采用了完全一致的方式，方法表的结构同字段表一样。</p>
+<p><strong><em>方法表结构</em></strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">名称</th>
+<th align="left">数量</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">u2</td>
+<td align="left">access_flags</td>
+<td align="left">1</td>
+<td align="left">访问标志。用来标识访问属性，是否为public等</td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">name_index</td>
+<td align="left">1</td>
+<td align="left">名字索引，索引值，指向某个常量池的常量，该常量描述了代表方法的简单名称，如main()方法的简单名字就是main</td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">descriptor_index</td>
+<td align="left">1</td>
+<td align="left">索引值，指向常量池的某个常量，该常量是字段和方法的描述符。描述字段的数据类型、方法的参数列表，参考<a href="#%E6%8F%8F%E8%BF%B0%E7%AC%A6">描述符</a></td>
+</tr>
+<tr>
+<td align="left">u2</td>
+<td align="left">attributes_count</td>
+<td align="left">1</td>
+<td align="left">属性表数量，记录一些额外信息</td>
+</tr>
+<tr>
+<td align="left">attribute_info</td>
+<td align="left">attributes</td>
+<td align="left">attributes_count</td>
+<td align="left">属性表</td>
+</tr>
+</tbody></table>
+<p><strong>其中，顺序是有严格要求，如上表</strong></p>
+<p><strong><em>方法表的访问标志</em></strong>如下</p>
+<table>
+<thead>
+<tr>
+<th align="left">标志</th>
+<th align="left">标志值</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ACC_PUBLIC</td>
+<td align="left">0x0001</td>
+<td align="left">方法是否public</td>
+</tr>
+<tr>
+<td align="left">ACC_PRIVATE</td>
+<td align="left">0x0002</td>
+<td align="left">方法是否private</td>
+</tr>
+<tr>
+<td align="left">ACC_PROTECTED</td>
+<td align="left">0x0004</td>
+<td align="left">方法是否protected</td>
+</tr>
+<tr>
+<td align="left">ACC_STATIC</td>
+<td align="left">0x0008</td>
+<td align="left">方法是否static</td>
+</tr>
+<tr>
+<td align="left">ACC_FINAL</td>
+<td align="left">0x0010</td>
+<td align="left">方法是否final</td>
+</tr>
+<tr>
+<td align="left">ACC_SYNCHRONIZED</td>
+<td align="left">0x0020</td>
+<td align="left">方法是否synchronized</td>
+</tr>
+<tr>
+<td align="left">ACC_BRIDGE</td>
+<td align="left">0x0040</td>
+<td align="left">方法是否由编译器产生的桥接方法</td>
+</tr>
+<tr>
+<td align="left">ACC_VARARGS</td>
+<td align="left">0x0080</td>
+<td align="left">方法是否接受不定参数</td>
+</tr>
+<tr>
+<td align="left">ACC_NAVITE</td>
+<td align="left">0x0100</td>
+<td align="left">方法是否navite</td>
+</tr>
+<tr>
+<td align="left">ACC_ABSTRACT</td>
+<td align="left">0x0400</td>
+<td align="left">方法是否abstract</td>
+</tr>
+<tr>
+<td align="left">ACC_STRICTFP</td>
+<td align="left">0x0800</td>
+<td align="left">方法是否为strictfp</td>
+</tr>
+<tr>
+<td align="left">ACC_SYNTHETIC</td>
+<td align="left">0x1000</td>
+<td align="left">字段是否由编译器自动产生的</td>
+</tr>
+</tbody></table>
+<p>通过方法表，可以描述方法，方法的代码块在哪？其实，方法被编译成自己吗指令后，存放在方法属性表（attributes_count、attribute_info）中一个名字为“Code”的属性中，具体可以参考<a href="#%E5%B1%9E%E6%80%A7%E8%A1%A8%E9%9B%86%E5%90%88">属性表</a></p>
+<p>9、属性表集合<br>属性表集合多次出现，在方法表、字段表、class文件中都有携带自己的属性表。与class文件其他项不同，属性表不要求各个属性表有严格的顺序</p>
+<p><strong><em>虚拟机规范属性</em></strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">使用位置</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Code</td>
+<td align="left">方法表</td>
+<td align="left">java编译成的字节码指令</td>
+</tr>
+<tr>
+<td align="left">ConstantValue</td>
+<td align="left">字段表</td>
+<td align="left">final关键字定义的常量值</td>
+</tr>
+<tr>
+<td align="left">Deprecated</td>
+<td align="left">类、方法表、字段表</td>
+<td align="left">被声明为deprecated的方法和字段</td>
+</tr>
+<tr>
+<td align="left">Exceptions</td>
+<td align="left">方法表</td>
+<td align="left">方法抛出的异常</td>
+</tr>
+<tr>
+<td align="left">EnclosingMethod</td>
+<td align="left">类文件</td>
+<td align="left">仅当一个类为局部类或者匿名类时才能拥有这个属性，这个属性用于标志这个类所在的外围方法</td>
+</tr>
+<tr>
+<td align="left">InnerClass</td>
+<td align="left">类文件</td>
+<td align="left">内部类列表</td>
+</tr>
+<tr>
+<td align="left">lineNumberTable</td>
+<td align="left">Code属性</td>
+<td align="left">java源码的行号与字节码指令的对应关系</td>
+</tr>
+<tr>
+<td align="left">LocalVariableTable</td>
+<td align="left">Code属性</td>
+<td align="left">方法的局部变量描述</td>
+</tr>
+<tr>
+<td align="left">StackMapTable</td>
+<td align="left">Code属性</td>
+<td align="left">JDK1.6中新增的属性，供新的类型检查验证器检查和处理目标方法的局部变量和操作数栈所需要的类型是否匹配</td>
+</tr>
+<tr>
+<td align="left">Signatrue</td>
+<td align="left">类、方法表、字段表</td>
+<td align="left">–</td>
+</tr>
+<tr>
+<td align="left">SourceFile</td>
+<td align="left">类文件</td>
+<td align="left">记录源文件名称</td>
+</tr>
+<tr>
+<td align="left">SourceDebugExtention</td>
+<td align="left">类文件</td>
+<td align="left">JDK新增的属性，用于存储额外的调试信息</td>
+</tr>
+<tr>
+<td align="left">Synthetic</td>
+<td align="left">类、方法表、字段表</td>
+<td align="left">标识方法或字段为编译器自动生成的</td>
+</tr>
+<tr>
+<td align="left">LocalVariavleTypeTable</td>
+<td align="left">类</td>
+<td align="left">JDK1.5中新增的属性</td>
+</tr>
+<tr>
+<td align="left">RuntimeVisibleAnnotations</td>
+<td align="left">类、方法表、字段表</td>
+<td align="left">JDK1.5新增的属性，为动态注解提供支持，用于表明哪些注解是运行时（运行时进行反射调用）是可见的</td>
+</tr>
+<tr>
+<td align="left">RuntimeInvisibleAnnotations</td>
+<td align="left">类、方法表、字段表</td>
+<td align="left">和RuntimeVisibleAnnotation想法，用于表明哪些注解是运行时是不可见的</td>
+</tr>
+<tr>
+<td align="left">RuntimeVisibleParameterAnnotations</td>
+<td align="left">方法表</td>
+<td align="left">JDK1.5新增的属性，作用与RuntimeVisibleAnnotations相似，只不过作用对象为方法参数</td>
+</tr>
+<tr>
+<td align="left">RuntimeInVisibleParameterAnnotations</td>
+<td align="left">方法表</td>
+<td align="left">JDK1.5新增的属性，作用与RuntimeInVisibleAnnotations相似，只不过作用对象为方法参数</td>
+</tr>
+<tr>
+<td align="left">AnnotationDefault</td>
+<td align="left">方法表</td>
+<td align="left">JDK1.5新增的属性，用于记录注解元素的默认值</td>
+</tr>
+<tr>
+<td align="left">BootstrapMethod</td>
+<td align="left">类文件</td>
+<td align="left">JDK1.7新增属性，用于保存invokedynamic指令引用的引导方法限定符</td>
+</tr>
+</tbody></table>
+<p><strong><em>Code属性表</em></strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">属性名称</th>
+<th align="left">类型</th>
+<th align="left">数量</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">attribute_name_index</td>
+<td align="left">u2</td>
+<td align="left">1</td>
+<td align="left">指向Constant_Utf8_info型常量索引，固定为“Code”</td>
+</tr>
+<tr>
+<td align="left">attribute_length</td>
+<td align="left">u4</td>
+<td align="left">1</td>
+<td align="left">指示了属性值的长度</td>
+</tr>
+<tr>
+<td align="left">max_stack</td>
+<td align="left">u2</td>
+<td align="left">1</td>
+<td align="left">代表了操作数栈深度的最大值</td>
+</tr>
+<tr>
+<td align="left">max_locals</td>
+<td align="left">u4</td>
+<td align="left">1</td>
+<td align="left">代表了局部变量表所需要的存储空间</td>
+</tr>
+<tr>
+<td align="left">code_length</td>
+<td align="left">u4</td>
+<td align="left">1</td>
+<td align="left">字节码长度</td>
+</tr>
+<tr>
+<td align="left">code</td>
+<td align="left">u1</td>
+<td align="left">code_length</td>
+<td align="left">保存字节码指令，每个code就是一个字节码指令，共有code_length个</td>
+</tr>
+<tr>
+<td align="left">exception_table_length</td>
+<td align="left">u2</td>
+<td align="left">1</td>
+<td align="left">异常处理表</td>
+</tr>
+</tbody></table>
+<h4 id="符号引用"><a href="#符号引用" class="headerlink" title="符号引用"></a>符号引用</h4><ul>
+<li>1）类和接口的全限定名</li>
+<li>2）字段的名称和描述符</li>
+<li>3）方法的名称和描述符</li>
+</ul>
+<hr>
+<ol>
+<li>深入理解Java虚拟机》第二版</li>
+</ol>
+</div><div class="tags"></div><div class="post-nav"><a class="pre" href="/willis-blog/2019/05/21/DBMS%E5%88%9D%E6%8E%A2/">DBMS初探</a><a class="next" href="/willis-blog/2019/02/26/JVM-Tools/">jvm tool笔记</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="https://willis-song.gitee.io/willis-blog"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/willis-blog/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/willis-blog/tags/InnoDb/" style="font-size: 15px;">InnoDb</a> <a href="/willis-blog/tags/Dubbo/" style="font-size: 15px;">Dubbo</a> <a href="/willis-blog/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 15px;">微服务</a> <a href="/willis-blog/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/willis-blog/tags/Swarm/" style="font-size: 15px;">Swarm</a> <a href="/willis-blog/tags/jvm/" style="font-size: 15px;">jvm</a> <a href="/willis-blog/tags/java/" style="font-size: 15px;">java</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/03/07/Docker-Swarm%E5%B0%8F%E8%AE%A1/">Docker swarm小计</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/dubbo%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">dubbo线程模型</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/Dubbo-Service%20Consumer/">2021-02-24-Dubbo-Service Consumer</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/12/06/%E5%A4%9A%E7%BA%BF%E7%A8%8B-SynchronousQueue%E7%AC%94%E8%AE%B0/">多线程-SynchronousQueue笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/23/%E4%B8%80%E8%B5%B7%E8%81%8A%E8%81%8A%E5%BC%95%E7%94%A8/">一起聊聊引用</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/16/shell%E7%AC%94%E8%AE%B0/">Shell命令之语法笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/12/SLF4j%E7%9A%84%E8%AE%BE%E8%AE%A1/">SLF4j的设计</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/11/%E4%BD%BF%E7%94%A8es%E7%9A%84%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/">es笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/09/ThreadLocal%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">Thread Local实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/09/Docker%E5%88%9D%E6%8E%A2/">Docker初探</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.baidu.com/" title="百度" target="_blank">百度</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/willis-blog/." rel="nofollow">Willis's Note.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/willis-blog/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/willis-blog/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/willis-blog/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/willis-blog/js/smartresize.js?v=1.0.0"></script></div></body></html>

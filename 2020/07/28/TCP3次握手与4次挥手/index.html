@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>TCP3次握手与4次挥手 | Willis's Note</title><link rel="stylesheet" type="text/css" href="/willis-blog/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/willis-blog/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/willis-blog/favicon.ico"><link rel="apple-touch-icon" href="/willis-blog/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/willis-blog/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">TCP3次握手与4次挥手</h1><a id="logo" href="/willis-blog/.">Willis's Note</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/willis-blog/."><i class="fa fa-home"> 首页</i></a><a href="/willis-blog/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/willis-blog/about/"><i class="fa fa-user"> 关于</i></a><a href="/willis-blog/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">TCP3次握手与4次挥手</h1><div class="post-meta">2020-07-28<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h3><p>网络协议通常分不同层次进行开发，每一层分别负责不同的通信功能。一个协议族，如tcp/ip,是一组不同层次上的多协议组合。tcp/ip通常被认为是一组四层协议系统，每一层负责不同的功能。</p>
+<blockquote>
+<p><strong>链路层</strong>：通常包括操作系统中的设备驱动和计算机中对应的网卡接口。他们一起处理与电缆（或其他任何传输媒介）的物理接口细节</p>
+</blockquote>
+<blockquote>
+<p><strong>网络层</strong>：也称互联网层，处理分组在网络中的活动，例如分组的选路。tcp/ip协议族中，网络层协议包括，IP协议、ICMP协议（互联网控制报文协议），以及igmp协议（Internet组管理协议）</p>
+</blockquote>
+<blockquote>
+<p><strong>运输层</strong>：运输层主要为两台主机上的应用程序提供端到端的通信。tcp/ip协议族中，有两个不同的传输协议：TCP和UDP</p>
+</blockquote>
+<blockquote>
+<p><strong>应用层</strong>：应用层负责处理特定的应用程序细节。如telnet、ftp、smtp、snmp</p>
+</blockquote>
+<p>在OSI，把网络模型分为7层，与tcp分层模型可以映射起来，如图<br><img src="/willis-blog/images/2020-07-28/layer-2.png" alt="网络分层模型"></p>
+<p><strong>OSI</strong>：Open System Interconnect，即开放式系统互联。一般都叫OSI参考模型，是ISO（国际标准化组织）组织在1985年研究的网络互连模型。</p>
+<blockquote>
+<p>ARP的作用：在32位ip地址和采用不同网络技术的硬件地址之间提供动态映射。</p>
+</blockquote>
+<blockquote>
+<p>在介绍tcp三次我手之前，先了解一下tcp首部</p>
+</blockquote>
+<h3 id="UDP协议"><a href="#UDP协议" class="headerlink" title="UDP协议"></a>UDP协议</h3><p>UDP是一个简单的面向数据报的运输层协议。UDP分装如下<br><img src="/willis-blog/images/2020-07-28/ip-data-2.png" alt="UDP数据报"></p>
+<p>RFC768是UDP的正式规范。</p>
+<p>UDP不提供可靠性：它把应用程序传给IP层的数据发送出去，但是并不保证他们能到达目的地。</p>
+<p>UDP首部如图<br><img src="/willis-blog/images/2020-07-28/udp-header-1.png" alt="UDP首部"></p>
+<p>由图可知，UDP首部长度恒定为8字节。</p>
+<ul>
+<li><strong>UDP长度</strong>：UDP首部和UDP数据的字节长度之和，因此，这个字段最小值是8字节（数据长度为0时）</li>
+<li><strong>UDP校验和</strong>：UDP校验和覆盖了UDP的首部和数据（与TCP一样），但是UDP的校验和是可选的，TCP是必选的</li>
+</ul>
+<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><p>TCP是面向连接的、可靠的字节流服务。这意味着两个使用tcp的应用在彼此交换数据之前必须先建立一个连接。</p>
+<h3 id="TCP-首部"><a href="#TCP-首部" class="headerlink" title="TCP 首部"></a>TCP 首部</h3><p>TCP数据报被封装到IP数据报中，如图<br><img src="/willis-blog/images/2020-07-28/ip-data-1.png" alt="TCP数据报"><br><img src="/willis-blog/images/2020-07-28/ip-header-1.png" alt="IP首部"></p>
+<p>TCP首部结构如图<br><img src="/willis-blog/images/2020-07-28/tcp-header-1.png" alt="TCP首部"></p>
+<p><strong>序列号</strong></p>
+<blockquote>
+<p>用来标识从tcp发送端向tcp接收端发送的数据字节流，他表示在整个报文段中的第一个【数据】字节（即是数据字节的序号，数据可能包含多个字节，第一个字节的序号就是tcp首部的序号。建立连接时，序号就是isn+1）。tcp用序号为每个字节进行计数。当序号达到2³¹-1后又从0开始。初始值isn（initial sequence number）由发送端生成，每发送一次数据，就在序号基础上累计<strong>数据字节数</strong>的大小。<br>tcp为应用层提供双工服务。意味着数据能在两个方向上独立的进行传输。因此，连接的每一端必须保持【每个方向上的】传输数据序号。</p>
+</blockquote>
+<p><strong>确认序号</strong></p>
+<blockquote>
+<p>是发送方发送数据之后<strong>期望接收的来自接受者给的字节序号</strong>发送端收到这个确认应答以后，认为在这个序号以前的数据都已经被正常接收。<br>使用tcp滑动窗口协议时，接收方不必确认每一个收到的分组。在tcp中，ack是累积的，他们表示接收方已经正确收到了一直到确认序号减1的所有字节</p>
+</blockquote>
+<p><strong>标志位</strong></p>
+<ul>
+<li>URG：紧急指针有效</li>
+<li>ACK：确认序号有效</li>
+<li>PSH：接收方应该尽快将这个报文交给应用层</li>
+<li>RST：重建连接</li>
+<li>SYN：用来发起一个连接。这时发起端会初始化序号isn</li>
+<li>FIN：【发送端】完成发送任务。为1时，表示今后不再有数据发送，希望断开连接</li>
+</ul>
+<p><strong>窗口大小</strong></p>
+<blockquote>
+<p>窗口大小为tcp进行流量控制。窗口大小的单位是字节数，起始于【确认序号】。</p>
+</blockquote>
+<p><strong>校验和</strong></p>
+<blockquote>
+<p>端到端的校验和，目的是检测数据在传输过程中的任何变化。如果收到段的校验和有差错，tcp将丢弃这个报文和不确认收到次报文段（希望发送端超时并重发）</p>
+</blockquote>
+<h2 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h2><p><img src="/willis-blog/images/2020-07-28/tcp-sh-1.png" alt="TCP头"></p>
+<ul>
+<li>在发起连接之前，客户端与服务端都处于「CLOSED」状态。服务端（后称接收端）处于「LISTEN」状态</li>
+<li>客户端（后称发送端）发送第一个报文：TCP首部SYN标记位是1（SYN=1），序号为10001，初始化序号（isn）由客户端生成，<strong>无数据</strong>。发送端发送完成后处于「SYN_SENT」状态</li>
+<li>接收端接收到发送端发送的报文后，将会发送确认报文与SYN报文：TCP首保标记位SYN=1，ACK=1；ack=10002（在握手过程中，ack是发送端的序号+1），isn=500（由服务端自己生成），<strong>无数据</strong>。之后接收端处于「SYN_RCVD」状态</li>
+<li>客户端收到来自服务端的ack响应和SYN报文：发送应答报文：TCP首保标记位ACK=1；ack=501（接收端的isn+1），<strong>并可以携带数据</strong>。之后发送端处于「ESTABLISHED」状态。</li>
+<li>接收端收到客户端的应答报文后，更新状态为「ESTABLISHED」</li>
+</ul>
+<p>ESTABLISHED状态是双方能够进行双向数据传递状态。 </p>
+<blockquote>
+<p>第三次握手之所以能够携带数据，主要原因也是应为发送端的状态是ESTABLISHED，他可以单向向接收端发送数据，当接收端也变成ESTABLISHED之后，就可以向发送端发送数据了。</p>
+</blockquote>
+<h2 id="TCP的四次挥手"><a href="#TCP的四次挥手" class="headerlink" title="TCP的四次挥手"></a>TCP的四次挥手</h2><p><img src="/willis-blog/images/2020-07-28/tcp-sh-2.png" alt="TCP头"><br>断开之前，发送端与接收端都是ESTABLISHED。</p>
+<ul>
+<li>发送端发送终止连接报文：TCP首部标记位FIN=1,isn=19990。之后发送端处于FIN_WAIT_1（等待服务端第一次发送FIN应答信号）状态，代表自己不再向接收端发送数据，但是接收端还可以向发送端发送数据。</li>
+<li>接收端接收到终止报文后，发送确认报文：TCP首部标记位ACK=1，ack序号=19991(发送端自己取得)。发送端接收到这这条应答后，会将状态变为FIN_WAIT_2(等待接收端发送FIN信号)</li>
+<li>接收端发送FIN应答后不会马上发送终止信号，会等未传完的数据传输完成，发起FIN报文：TCP首部标记位FIN=1，isn=8888(接收端自己取得)。之后接收端状态变为LAST_ACK状态</li>
+<li>发送端收到接收端的FIN报文后，发送FIN响应报文：TCP首部标记位ACK=1，ack序号=8889。之后自己变为TIME_WAIT状态（等待2MSL后变为CLOSE），接收端接收到该ack应答后变为CLOSED状态</li>
+</ul>
+<h3 id="TIME-WAIT"><a href="#TIME-WAIT" class="headerlink" title="TIME_WAIT"></a>TIME_WAIT</h3><p>TIME_WAIT状态也称为「2MSL等待状态」。<br>每个具体TCP实现必须选择一个报文段最大生存时间MSL（Maximum Segment Lifetime）。它是任何报文段被丢弃前在网络内的最长时间。RFC793指出MSL为2分钟，然而实际中的常用值是30秒，1分钟或2分钟。</p>
+<p>对于一个具体实现给定的MSL值，处理的原则是：<strong>当TCP执行一个主动关闭，并发回最后一个ACK，该连接必须在TIME_WAIT状态停留2倍的MSL。这样可让再次发送最后的ACK以防止这个ACK丢失（另一端超时并重发最后的FIN）。在这2MSL的等待期间，定义这个连接的两端的IP地址和端口号不能再被使用，这个连接只能在2MSL结束后才能再被使用</strong></p>
+<h3 id="最大报文段长度（MSS）"><a href="#最大报文段长度（MSS）" class="headerlink" title="最大报文段长度（MSS）"></a>最大报文段长度（MSS）</h3><p>MSS（Maximum Segment Size）表示TCP传往另一端的最大块数据的长度。当一个连接建立时，连接的双方都要通告各自的MSS。</p>
+<ul>
+<li>一般BSD版本的TCP实现中，MSS都是512的整数倍，如1024、2048</li>
+<li>有时候，MSS是可协商的字段。在建立连接时，每一方都有用于通告它期望接收的MSS选项（参考tcp首部的选项段），这选项「只能」通过「SYN」报文进行传递。如果一方不接受来自另一方的MSS值，则MSS默认是536（允许20字节的ip首部和20字节的tcp首部组成576的ip数据包）</li>
+<li>「如果没有分段发生」，MSS越大越好，报文段越大允许每个报文段传送的数据就越多，相对IP首部和TCP首部有更高的利用率。在TCP发送一个SYN时，或者是因为一个本地应用进程想发起一个连接，或者是因为另一端的主机收到了一个连接请求，它能将MSS值设置为外出接口上的MTU长度减去固定的IP首部和TCP首部长度。对于一个以太网，MSS值可达1460字节。使用IEEE802.3的，他的MSS可达1452字节</li>
+</ul>
+<blockquote>
+<p><strong>MTU:</strong> 最大传输单元。每种网络对数据帧的长度都有一个限制，「链路层」的这个特征就是MTU。，以太网和IEEE802.3分装的网络，MTU分别可达1500字节和1492字节。<br><img src="/willis-blog/images/2020-07-28/MTU-1.png" alt="集中常见网络的MTU"></p>
+</blockquote>
+<hr>
+<p>参考：</p>
+<blockquote>
+<ol>
+<li>《TCP/IP详解卷1》</li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/qishui/p/5428938.html">https://www.cnblogs.com/qishui/p/5428938.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39521554/article/details/79894501">https://blog.csdn.net/qq_39521554/article/details/79894501</a></li>
+</ol>
+</blockquote>
+</div><div class="tags"></div><div class="post-nav"><a class="pre" href="/willis-blog/2020/08/06/Redis%E9%AB%98%E5%8F%AF%E7%94%A8%E4%B9%8B%E9%9B%86%E7%BE%A4&amp;%E5%93%A8%E5%85%B5/">Redis高可用之集群&amp;哨兵</a><a class="next" href="/willis-blog/2020/06/21/Zookeeper-%E6%8A%95%E7%A5%A8/">zookeeper 投票</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="https://willis-song.gitee.io/willis-blog"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/willis-blog/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/willis-blog/tags/InnoDb/" style="font-size: 15px;">InnoDb</a> <a href="/willis-blog/tags/Dubbo/" style="font-size: 15px;">Dubbo</a> <a href="/willis-blog/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 15px;">微服务</a> <a href="/willis-blog/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/willis-blog/tags/Swarm/" style="font-size: 15px;">Swarm</a> <a href="/willis-blog/tags/jvm/" style="font-size: 15px;">jvm</a> <a href="/willis-blog/tags/java/" style="font-size: 15px;">java</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/03/07/Docker-Swarm%E5%B0%8F%E8%AE%A1/">Docker swarm小计</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/dubbo%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">dubbo线程模型</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/Dubbo-Service%20Consumer/">2021-02-24-Dubbo-Service Consumer</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/12/06/%E5%A4%9A%E7%BA%BF%E7%A8%8B-SynchronousQueue%E7%AC%94%E8%AE%B0/">多线程-SynchronousQueue笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/23/%E4%B8%80%E8%B5%B7%E8%81%8A%E8%81%8A%E5%BC%95%E7%94%A8/">一起聊聊引用</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/16/shell%E7%AC%94%E8%AE%B0/">Shell命令之语法笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/12/SLF4j%E7%9A%84%E8%AE%BE%E8%AE%A1/">SLF4j的设计</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/11/%E4%BD%BF%E7%94%A8es%E7%9A%84%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/">es笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/09/ThreadLocal%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">Thread Local实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/09/Docker%E5%88%9D%E6%8E%A2/">Docker初探</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.baidu.com/" title="百度" target="_blank">百度</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/willis-blog/." rel="nofollow">Willis's Note.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/willis-blog/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/willis-blog/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/willis-blog/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/willis-blog/js/smartresize.js?v=1.0.0"></script></div></body></html>

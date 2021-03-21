@@ -1,0 +1,165 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>分布式-一致性协议 | Willis's Note</title><link rel="stylesheet" type="text/css" href="/willis-blog/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/willis-blog/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/willis-blog/favicon.ico"><link rel="apple-touch-icon" href="/willis-blog/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/willis-blog/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">分布式-一致性协议</h1><a id="logo" href="/willis-blog/.">Willis's Note</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/willis-blog/."><i class="fa fa-home"> 首页</i></a><a href="/willis-blog/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/willis-blog/about/"><i class="fa fa-user"> 关于</i></a><a href="/willis-blog/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">分布式-一致性协议</h1><div class="post-meta">2020-04-18<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><h1 id="分布式系统的一致性协议"><a href="#分布式系统的一致性协议" class="headerlink" title="分布式系统的一致性协议"></a>分布式系统的一致性协议</h1><ul>
+<li>在分布式系统中，每一个机器结点虽然都能明确的知道自己在进行事务操作过程中的结果是成功或失败，但却无法直接获得到其他分布式结点的操作结果。</li>
+<li>当一个事务操作需要跨越多个分布式结点的时候， 为了保持事务处理的ACID特性，就需要引入一个称为协调者（Cordinator）的组件来统一调度所有分布式结点的执行逻辑，这些被调度的分布式结点则被称为参与者（Participant）。</li>
+<li>协调者负责调度参与者的行为，并最终决定这些参与者是否要把事务真正的提交。</li>
+</ul>
+<h2 id="一、-2PC（Two-Phase-Commit）"><a href="#一、-2PC（Two-Phase-Commit）" class="headerlink" title="一、 2PC（Two-Phase Commit）"></a>一、 2PC（Two-Phase Commit）</h2><p>「二阶段提交」被认为是一种一致性协议，用来保证分布式系统数据的一致性。<br>目前，绝大部分的关系型数据库都是采用「二阶段提交」协议来完成分布式事务处理，利用该协议能够非常方便的完成所有分布式事务参与者的协调，统一决定事务的提交或回滚从而能够有效的保证分布式数据一致性。</p>
+<h3 id="阶段一：提交事务请求"><a href="#阶段一：提交事务请求" class="headerlink" title="阶段一：提交事务请求"></a>阶段一：提交事务请求</h3><p>也称为「投票阶段」</p>
+<p>1）事务询问</p>
+<blockquote>
+<p>协调者向所有的参与者发送事务内容，询问是否可以执行事务提交操作，并开始等待各参与者的响应。</p>
+</blockquote>
+<p>2）执行事务</p>
+<blockquote>
+<p>个参与者节点执行事务操作，并将「undo」和「redo」信息记入事务日志中</p>
+</blockquote>
+<p>3）各「参与者」向「协调者」反馈事务询问的响应</p>
+<blockquote>
+<p>各参与者成功执行了事务操作，那么久反馈给协调者Yes响应，表示事务可以执行；<br>如果参照语者没有成功执行事务，那么就反馈给协调者No响应，表示事务不可以执行</p>
+</blockquote>
+<h3 id="阶段二：执行事务提交"><a href="#阶段二：执行事务提交" class="headerlink" title="阶段二：执行事务提交"></a>阶段二：执行事务提交</h3><ul>
+<li>假如协调者从所有的参与者获得的反馈都是yes响应，那么就会执行事务提交</li>
+<li>事务提交有两种可能：提交和中断</li>
+</ul>
+<h4 id="执行事务提交"><a href="#执行事务提交" class="headerlink" title="执行事务提交"></a>执行事务提交</h4><p>1）发送提交请求</p>
+<blockquote>
+<p>协调者向所有参与者结点发出commit请求</p>
+</blockquote>
+<p>2）事务提交</p>
+<blockquote>
+<p>参与者接收到commit请求后，会正式执行事务提交操作，并在<strong>完成提交之后释放在整个事务执行期间占用的事务资源</strong></p>
+</blockquote>
+<p>3）反馈事务提交结果</p>
+<blockquote>
+<p>参与者在完成事务提交之后，向协调者发送ack消息</p>
+</blockquote>
+<p>4）完成事务 </p>
+<blockquote>
+<p>「协调者」接收到「所有参与者」反馈的ack消息后，完成事务</p>
+</blockquote>
+<p>执行事务提交的过程，如图<br><img src="/willis-blog/images/2020-04-18/2PC-commit.png" alt="2PC-事务提交"></p>
+<h4 id="中断事务"><a href="#中断事务" class="headerlink" title="中断事务"></a>中断事务</h4><ul>
+<li>假如任何一个参与者向协调者反馈了No响应，或者在等待超时之后，协调者尚无法接收到所有参与者的反馈响应，那么就会中断事务</li>
+</ul>
+<p>1）发送回滚请求</p>
+<blockquote>
+<p>协调者向所有参与者结点发出Rollback请求</p>
+</blockquote>
+<p>2）事务回滚</p>
+<blockquote>
+<p>参与者接收到rollback请求后，会利用其在第一阶段中记录的undo信息来执行事务回滚操作，并在完成回滚之后释放整个事务执行期间占用的资源。</p>
+</blockquote>
+<p>3）反馈事务回滚结果</p>
+<blockquote>
+<p>「参与者」在完成事务回滚之后，向「协调者」发送ack消息</p>
+</blockquote>
+<p>4）中断事务</p>
+<blockquote>
+<p>「协调者」接收到所有「参与者」反馈的ack消息后，完成事务中断</p>
+</blockquote>
+<p>中断事务的过程，如图<br><img src="/willis-blog/images/2020-04-18/2PC-rollback.png" alt="2PC事务中断"></p>
+<h3 id="2PC优缺点"><a href="#2PC优缺点" class="headerlink" title="2PC优缺点"></a>2PC优缺点</h3><p>优点：原理简单、实现方便<br>缺点：同步阻塞、单点问题、脑裂、太过保守</p>
+<p><strong>同步阻塞</strong></p>
+<blockquote>
+<p>【所有参与该事务操作】的逻辑都处于阻塞状态，也就是说，各个参与者在等待其他参与者响应的过程中，将无法进行其他任何操作。</p>
+</blockquote>
+<p><strong>单点问题</strong></p>
+<blockquote>
+<p>一旦协调者出现问题，那么整个二阶段提交流程将无法运转，更为严重的是，如果协调者是在阶段二中出现问题的话，那么其他参与者将会一直处于锁定事务资源的状态中，无法继续完成事务操作。</p>
+</blockquote>
+<p><strong>数据不一致</strong></p>
+<blockquote>
+<p>在二阶段提交协议的阶段二，即执行事务提交的时候，当协调者向所有参与者发送commit请求之后，发生了局部网络异常或者是协调者在尚未发送完commit请求之前自身发生了崩溃，导致最终只有部分参与者收到了commit请求。于是，这部分收到了commit请求的参与者就会进行事务的提交，而其他没有收到commit请求的参与者则无法进行事务提交，于是整个分布式系统便出现了数据不一致现象。<br>[脑裂](<a target="_blank" rel="noopener" href="https://www.cnblogs.com/nicerblog/p/11232531.html%EF%BC%89">https://www.cnblogs.com/nicerblog/p/11232531.html）</a></p>
+</blockquote>
+<p><strong>太过保守</strong></p>
+<blockquote>
+<p>如果在「协调者」指示参与者进行事务提交询问的过程中，参与者出现故障而导致协调者始终无法活的到所有参与者的响应信息，这时协调者只能依照其自身的「超时机制」来判断是否需要中断事务。二阶段提交协议没有涉及较为完善的容错机制，任意一个结点失败都会导致整个事务的失败</p>
+</blockquote>
+<h2 id="二、3PC（Three-Phase-Commit）"><a href="#二、3PC（Three-Phase-Commit）" class="headerlink" title="二、3PC（Three-Phase Commit）"></a>二、3PC（Three-Phase Commit）</h2><blockquote>
+<p>将二阶段提交协议的“提交事务请求”过程一分为二，形成了由【CanCommit】、【PreCommit】和【do Commit】三个阶段组成的事务处理协议<br><img src="/willis-blog/images/2020-04-18/3PC-1.png" alt="3PC"></p>
+</blockquote>
+<h3 id="阶段一：CanCommit"><a href="#阶段一：CanCommit" class="headerlink" title="阶段一：CanCommit"></a>阶段一：CanCommit</h3><p>1）事务询问</p>
+<blockquote>
+<p>协调者向所有的参与者发送一个包含事务内容的canCommit请求，询问是否可以执行事务提交请求，并开始等待各参与者的响应。</p>
+</blockquote>
+<p>2）各参与者向协调者反馈事务询问的响应</p>
+<blockquote>
+<p>参与者在接收到来自协调者的canCommit请求后，正常情况下，如果其自身认为可以顺利执行事务，那么会反馈Yes响应，并进入预备状态，否则反馈No响应</p>
+</blockquote>
+<h3 id="阶段二：PreCommit"><a href="#阶段二：PreCommit" class="headerlink" title="阶段二：PreCommit"></a>阶段二：PreCommit</h3><blockquote>
+<p>协调者根据各参与者的反馈情况来决定是否可以进行事务的PreCommit请求。<br><em>有两种可能：执行事务预提交；中断事务</em></p>
+</blockquote>
+<h4 id="执行事务预提交"><a href="#执行事务预提交" class="headerlink" title="执行事务预提交"></a>执行事务预提交</h4><ul>
+<li>协调者从所有参与者获得的反馈都是Yes<br>1）发送与提交请求<blockquote>
+<p>「协调者」向所有「参与者」结点发出「preCommit」请求，并进入Prepared阶段</p>
+</blockquote>
+</li>
+</ul>
+<p>2）事务预提交</p>
+<blockquote>
+<p>参与者接收到preCommit请求后，会执行事务操作，并将「Undo」和「Redo」信息记录到事务日志中</p>
+</blockquote>
+<p>3）各参与者向协调者反馈事务执行的响应</p>
+<blockquote>
+<p>如果「参与者」成功执行了事务操作，那么就会反馈给「协调者」Ack响应，同时等待最终指令：提交（commit）或终止（abort）</p>
+</blockquote>
+<h4 id="中断事务-1"><a href="#中断事务-1" class="headerlink" title="中断事务"></a>中断事务</h4><ul>
+<li>任何一个参与者向协调者反馈了No响应，或者在等待超时之后，协调者尚无法接收到所有参与者的反馈响应，那么就会中断事务</li>
+</ul>
+<p>1） 发送中断请求</p>
+<blockquote>
+<p>协调者向所有参与者结点发出abort请求。</p>
+</blockquote>
+<p>2）中断事务</p>
+<blockquote>
+<p>无论是收到来自协调者的abort请求，或者是在等待协调者请求过程中出现超时，参与者都会中断事务</p>
+</blockquote>
+<h3 id="阶段三：doCommit"><a href="#阶段三：doCommit" class="headerlink" title="阶段三：doCommit"></a>阶段三：doCommit</h3><blockquote>
+<p>该阶段进行真正的事务提交<br><em>有两种可能：执行提交；中断事务</em></p>
+</blockquote>
+<h4 id="执行提交"><a href="#执行提交" class="headerlink" title="执行提交"></a>执行提交</h4><p>1）发送提交请求</p>
+<blockquote>
+<p>「协调者」接收到了所有「参与者」的Ack响应，那么它将从“预提交”状态转换到“提交”状态，并向所有参与者发送「doCommit」请求</p>
+</blockquote>
+<p>2）事务提交</p>
+<blockquote>
+<p>参与者收到doCommit请求后，会正式执行事务提交操作，并在<strong>完成提交之后释放在整个事务执行期间占用的事务资源</strong></p>
+</blockquote>
+<p>3）反馈事务提交结果</p>
+<blockquote>
+<p>「参与者」在完成事务提交之后，向「协调者」发送Ack消息</p>
+</blockquote>
+<p>4）完成事务</p>
+<blockquote>
+<p>协调者接收到所有参与者反馈的Ack响应，完成事务</p>
+</blockquote>
+<h4 id="中断事务-2"><a href="#中断事务-2" class="headerlink" title="中断事务"></a>中断事务</h4><ul>
+<li>协调者处于正常工作状态，并且有任意一个参与者向协调者反馈了No响应，或者在等待超时之后，协调者尚无法接收到所有参与者的反馈响应，就会中断事务</li>
+</ul>
+<p>1）发送中断请求</p>
+<blockquote>
+<p>协调者向所有参与者结点发送abort请求</p>
+</blockquote>
+<p>2）事务回滚</p>
+<blockquote>
+<p>参与者收到abort请求后，利用阶段二中记录的undo信息执行回滚操作，并在完成回滚之后释放在整个事务执行期间占用的资源</p>
+</blockquote>
+<p>3）反馈事务回滚结果</p>
+<blockquote>
+<p>参与者在完成事务回滚之后，向协调者发送Ack消息</p>
+</blockquote>
+<p>4）中断事务</p>
+<blockquote>
+<p>协调者接收到所有参与者反馈的Ack消息后，中断事务</p>
+</blockquote>
+<p><strong>注意</strong>：一旦进入「阶段三」，可能会存在一下两种故障</p>
+<ul>
+<li>协调者出现问题</li>
+<li>协调者与参与者的网络出现故障<br>无论哪种情况，最终都会导致参与者无法及时接收到来自「协调者」的「doCommit」或者「abort」请求，针对这样异常的情况，<strong>参与者都会在等待超时之后，继续进行事务的提交</strong>。</li>
+</ul>
+<h3 id="3PC优缺点"><a href="#3PC优缺点" class="headerlink" title="3PC优缺点"></a>3PC优缺点</h3><ul>
+<li>优点：相较于2PC，3PC提交降低了参与者的阻塞范围，并且能够在出现单点故障后继续达成一致。</li>
+<li>缺点：如果参与者接收到preCommit消息后，出现网络分区，此时协调者所在结点和参与者无法进行正常的网络通信，在这种情况下，该参与者依然会进行事务的提交，这必然出现数据的不一致性。</li>
+</ul>
+<h2 id="Paxos"><a href="#Paxos" class="headerlink" title="Paxos"></a>Paxos</h2><p>未完待续</p>
+</div><div class="tags"></div><div class="post-nav"><a class="pre" href="/willis-blog/2020/05/10/Thread%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">Thread内存模型</a><a class="next" href="/willis-blog/2020/03/29/%E7%AE%A1%E9%81%93%E6%A8%A1%E5%BC%8F/">管道模式</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="https://willis-song.gitee.io/willis-blog"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/willis-blog/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/willis-blog/tags/InnoDb/" style="font-size: 15px;">InnoDb</a> <a href="/willis-blog/tags/Dubbo/" style="font-size: 15px;">Dubbo</a> <a href="/willis-blog/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 15px;">微服务</a> <a href="/willis-blog/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/willis-blog/tags/Swarm/" style="font-size: 15px;">Swarm</a> <a href="/willis-blog/tags/jvm/" style="font-size: 15px;">jvm</a> <a href="/willis-blog/tags/java/" style="font-size: 15px;">java</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/03/07/Docker-Swarm%E5%B0%8F%E8%AE%A1/">Docker swarm小计</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/dubbo%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">dubbo线程模型</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/Dubbo-Service%20Consumer/">2021-02-24-Dubbo-Service Consumer</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/12/06/%E5%A4%9A%E7%BA%BF%E7%A8%8B-SynchronousQueue%E7%AC%94%E8%AE%B0/">多线程-SynchronousQueue笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/23/%E4%B8%80%E8%B5%B7%E8%81%8A%E8%81%8A%E5%BC%95%E7%94%A8/">一起聊聊引用</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/16/shell%E7%AC%94%E8%AE%B0/">Shell命令之语法笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/12/SLF4j%E7%9A%84%E8%AE%BE%E8%AE%A1/">SLF4j的设计</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/11/%E4%BD%BF%E7%94%A8es%E7%9A%84%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/">es笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/09/ThreadLocal%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">Thread Local实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/09/Docker%E5%88%9D%E6%8E%A2/">Docker初探</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.baidu.com/" title="百度" target="_blank">百度</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/willis-blog/." rel="nofollow">Willis's Note.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/willis-blog/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/willis-blog/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/willis-blog/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/willis-blog/js/smartresize.js?v=1.0.0"></script></div></body></html>

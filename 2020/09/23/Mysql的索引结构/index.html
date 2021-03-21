@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>Mysql的存储引擎 | Willis's Note</title><link rel="stylesheet" type="text/css" href="/willis-blog/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/willis-blog/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/willis-blog/favicon.ico"><link rel="apple-touch-icon" href="/willis-blog/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/willis-blog/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Mysql的存储引擎</h1><a id="logo" href="/willis-blog/.">Willis's Note</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/willis-blog/."><i class="fa fa-home"> 首页</i></a><a href="/willis-blog/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/willis-blog/about/"><i class="fa fa-user"> 关于</i></a><a href="/willis-blog/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Mysql的存储引擎</h1><div class="post-meta">2020-09-23<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><h3 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h3><p>MyISAM &amp; InnoDB 都使用「B+Tree索引结构。但是底层索引存储不同，MyISAM 采用非聚簇索引，而InnoDB采用聚簇索引。</p>
+<p>MyISAM索引原理：采用非聚簇索引-MyISAM myi索引文件和myd数据文件分离，索引文件仅保存数据记录的指针地址。叶子节点data域存储指向数据记录的指针地址。如图<br><img src="/willis-blog/images/2020-09-23/myisam-1.png"></p>
+<ul>
+<li>Myisam数据文件<br>frm：表定义；<br>myi：myisam索引；<br>myd：myisam数据。参考：<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/create-table-files.html">https://dev.mysql.com/doc/refman/8.0/en/create-table-files.html</a></li>
+</ul>
+<h3 id="InnoDb"><a href="#InnoDb" class="headerlink" title="InnoDb"></a>InnoDb</h3><ul>
+<li>innodb特性</li>
+</ul>
+<ol>
+<li>事务支持（ACID）2. 扩展性优良 3. 读写不冲突 4. 缓存加速</li>
+<li>功能组件: redo/undo &amp; 异步IO &amp; MVCC &amp; 行级别锁 &amp; Page Cache（LRU）</li>
+</ol>
+<ul>
+<li>Innodb架构<br>参考<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/innodb-architecture.html">https://dev.mysql.com/doc/refman/8.0/en/innodb-architecture.html</a></li>
+</ul>
+<p>InnoDB以「表空间Tablespace(idb文件)」结构进行组织，每个Tablespace 包含多个Segment段，每个段(分为2种段：叶子节点Segment&amp;非叶子节点Segment), 一个Segment段包含多个Extent，一个Extent占用1M空间包含64个Page（每个Page 16k，在mysql中，相当于文件系统中的4个块），InnoDB B-Tree 一个逻辑节点就分配一个物理Page,一个节点一次IO操作。一个Page里包含很多有序数据Row行数据，Row行数据中包含Filed属性数据等信息。</p>
+<p><img src="/willis-blog/images/2020-09-23/innoDb-1.png"></p>
+<h2 id="二、索引的数据结构"><a href="#二、索引的数据结构" class="headerlink" title="二、索引的数据结构"></a>二、索引的数据结构</h2><h3 id="B树"><a href="#B树" class="headerlink" title="B树"></a>B树</h3><p>B树也称B-Tree,它是一颗「多路平衡查找树」。</p>
+<h4 id="B树的相关特性"><a href="#B树的相关特性" class="headerlink" title="B树的相关特性"></a>B树的相关特性</h4><ul>
+<li>阶数：阶数表示了一个结点「最多」有多少个孩子结点，一般用字母m表示阶数。<blockquote>
+<p>当m取2时，就是我们常见的二叉搜索树。</p>
+</blockquote>
+</li>
+<li>度数（D）：度数规定的是一个节点有几个孩子结点。<blockquote>
+<p>B树种结点度数的范围: m/2 &lt;= D &lt;=m</p>
+</blockquote>
+</li>
+<li>高度：B树的层数</li>
+<li>「叶节点」的指针为空</li>
+<li>「叶节点」具有相同的深度。叶子结点都在同一层</li>
+<li>结点中数据的key是从左到右递增的。<blockquote>
+<p>每个关键字左子树的所有结点都「小于」它，右子树所有结点都「大于」它。这点区别于B+树，「B+树关键字的右子树上的结点都大于等于它，因为B+树所有数据都在叶子节点上」</p>
+</blockquote>
+</li>
+<li>每个结点最多有m-1个关键字</li>
+<li>根节点最少有1个关键字</li>
+<li>非根节点最少有「m/2-1」个关键字。也就是非根结点至少有m/2个孩子（叶子结点除外）</li>
+</ul>
+<p><strong>B树的结构如图</strong><br><img src="/willis-blog/images/2020-09-23/B-tree-1.png"></p>
+<h4 id="B树的检索算法"><a href="#B树的检索算法" class="headerlink" title="B树的检索算法"></a>B树的检索算法</h4><p>根据关键字「Key」，首先从根节点进行二分查找，如果找到则返回对应节点的data，否则对相应区间的指针指向的节点递归进行查找，直到找到节点或找到null指针，前者查找成功，后者查找失败</p>
+<h4 id="B树的插入流程"><a href="#B树的插入流程" class="headerlink" title="B树的插入流程"></a>B树的插入流程</h4><ul>
+<li>根据要插入的key的值，找到叶子结点并插入。</li>
+<li>判断当前结点key的个数是否小于d，若满足则结束，否则进行第3步。</li>
+<li>以结点中间的key为中心分裂成左右两部分，然后将这个中间的key插入到父结点中，这个key的左子树指向分裂后的左半部分，这个key的右子树指向分裂后的右半部分，然后将当前结点指向父结点，继续进行第3步。（页分裂）<br>参考<a target="_blank" rel="noopener" href="https://blog.nowcoder.net/n/15c92020835d4efcb4b18d61ddfd3399#2.1%20%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86">InnoDB行格式、数据页结构以及索引底层原理分析</a></li>
+</ul>
+<h3 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h3><p>B+树是B-树的变种</p>
+<h4 id="B-树的相关特性"><a href="#B-树的相关特性" class="headerlink" title="B+树的相关特性"></a>B+树的相关特性</h4><ul>
+<li>非叶子节点不存储data，只存储key，可以增大度</li>
+<li>叶子节点不存储指针</li>
+<li>顺序访问指针，提高区间访问的性能</li>
+<li>B+树也规定叶子节点的深度必须一致</li>
+</ul>
+<h4 id="B-树的索引性能"><a href="#B-树的索引性能" class="headerlink" title="B+树的索引性能"></a>B+树的索引性能</h4><ul>
+<li>B-/+Tree索引的性能优势： 一般使用磁盘I/O次数评价索引优劣。</li>
+<li>mysql巧妙运用操作系统存储结构，「一个节点分配到一个存储页（16K）中」-&gt;尽量减少IO次数&amp; 磁盘预读(缓存预读-&gt;加速预读马上要用到的数据).</li>
+<li>B+Tree 单个节点能放多个子节点，相同IO次数，检索出更多信息。</li>
+<li>B+Tree的度d一般会超过100，因此h非常小(一般为3到5之间)</li>
+</ul>
+<p>B+Tree更适合外存索引，原因和内节点出度d有关。从上面分析可以看到，d越大索引的性能越好，而出度的上限取决于节点内key和data的大小：<br>B+Tree内节点（非叶子节点）去掉了data域，因此可以拥有更大的出度，拥有更好的性能。只利用索引快速定位数据索引范围，先定位索引再通过索引高效快速定位数据。</p>
+<h4 id="B-树的结构"><a href="#B-树的结构" class="headerlink" title="B+树的结构"></a>B+树的结构</h4><p><img src="/willis-blog/images/2020-09-23/B+tree-1.png"><br>目前关于B+树的描述有两个不同的版本，有的版本中，结点的关键字与指针数相同（如下图），有的版本指针数比关键字数多一个（如上图）</p>
+<p><img src="/willis-blog/images/2020-09-23/B+tree-2.png"></p>
+<p>B+树的其他要求</p>
+<ul>
+<li>结点组成：内部结点（也称索引结点）和叶子结点。</li>
+<li>根结点的关键字个数最少可以只有1个。非根节点的关键字最少有2个。</li>
+<li>B+树与B树最大的不同是内部结点不保存数据，只用于索引，所有数据（或者说记录）都保存在叶子结点中。</li>
+<li>内部结点中的key都按照从小到大的顺序排列，对于内部结点中的一个key，左树中的所有key都小于它，右子树中的key都大于等于它。叶子结点中的记录也按照key的大小排列。</li>
+<li>每个叶子结点都存有相邻叶子结点的指针，叶子结点本身依关键字的大小自小而大顺序链接。</li>
+</ul>
+<p><img src="/willis-blog/images/2020-09-23/B+tree-3.png"></p>
+<h2 id="Mysql的页分裂与页合并"><a href="#Mysql的页分裂与页合并" class="headerlink" title="Mysql的页分裂与页合并"></a>Mysql的页分裂与页合并</h2><p>我们可能经常碰到面试官问这样一个问题：为什么mysql建议使用自增主键？<br>其中最重要的原因就是这样可以避免「页分裂」。那什么是页分裂呢？</p>
+<h3 id="Mysql中，存取是以页为单位进行的"><a href="#Mysql中，存取是以页为单位进行的" class="headerlink" title="Mysql中，存取是以页为单位进行的"></a>Mysql中，存取是以页为单位进行的</h3><p>Mysql底层存取数据都是以页为单位进行的，一个数据页大小是16K（这个大小可配置），如果一个页存满了，mysql就需要申请一个新的数据页来存储数据。<br>在mysql的索引结构中，一个结点大小一般也是一个数据页的大小，保证一个结点一次磁盘io即可。<br>在页被加载到内存中之后，才会通过扫描页来获取行/记录。</p>
+<h3 id="索引是有序的"><a href="#索引是有序的" class="headerlink" title="索引是有序的"></a>索引是有序的</h3><p>Mysql的底层数据结构是一颗B+树，Mysql中的数据都是按顺序保存在B+树上。一个表中，有多少个索引就会有多少棵B+树。</p>
+<p>假设两种情况：</p>
+<ul>
+<li>主键自增。这时，如果当前数据页满了或者空间不够存储下一个数据，那么直接申请一个新的数据页继续写入即可。</li>
+<li>主键非自增。当插入新的数据时，因为索引插入顺序可能不是按照自增顺序插入，那么在插入数据的时候为了保证有序（比如此时数据需要插入到某个结点的中间），就有可能让当前结点分裂开来，分裂结点的一部分数据挪到新的节点上，造成页分裂。这种移动大量数据的过程是非常耗时且低效的。</li>
+</ul>
+<h3 id="何时发生页分裂"><a href="#何时发生页分裂" class="headerlink" title="何时发生页分裂"></a>何时发生页分裂</h3><ul>
+<li>插入到结点中间时，需要进行分裂以保证有序</li>
+<li>插入到某结点P1末尾，此时页将满，顺延将会保存到下一页（下一个结点P2），如果下一页空间也不够，就要创建新页，将P1结点一部分数据复制到新页，然后将新插入的结点插到新页最后</li>
+</ul>
+<h3 id="页合并：页分裂的反过程"><a href="#页合并：页分裂的反过程" class="headerlink" title="页合并：页分裂的反过程"></a>页合并：页分裂的反过程</h3><p>当删了一行记录时，实际上记录并没有被物理删除，记录被标记（flaged）为删除并且它的空间变得允许被其他记录声明使用，所以此时虽然空间可用，但是索引结构并没有进行调整，就行索引中多了很多空位，类似“碎片”（这里可类比于jvm中的内存碎片）。「当页中删除的记录达到MERGE_THRESHOLD（默认值：页体积的50%）」，InnoDB会开始寻找最靠近的页（前或后）看看是否可以将两个页合并以优化空间使用。</p>
+<blockquote>
+<p>除此之外，可以通过「OPTIMIZE指令」重新整理表。这个可能是个耗时的过程，但这个操作是能将分布在不同区的页理顺的唯一办法。此法可在业务访问量低的时间段进行，比如半夜。</p>
+</blockquote>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>想要跟好的使用Mysql，提高平时应用Mysql的性能，理解Mysql的底层数据结构是很重要的因素。本文围绕着索引的数据结构和页分裂展开了分析，当然懂这些也不一定能把性能提高到我们想要的目标，很多情况下还会受到磁盘、网络等因素。如何设计更高效的表、索引结构，了解索引原理是前提，其次，还要看业务需求，数据量。毕竟是磁盘io，速度再快也远比不上内存存取，特殊时候也需要考虑缓存、分表等手段~</p>
+</div><div class="tags"><a href="/willis-blog/tags/Mysql/"><i class="fa fa-tag"></i>Mysql</a><a href="/willis-blog/tags/InnoDb/"><i class="fa fa-tag"></i>InnoDb</a></div><div class="post-nav"><a class="pre" href="/willis-blog/2020/10/28/Dubbo-Service%E7%9A%84%E6%9A%B4%E9%9C%B2/">Dubbo Provider</a><a class="next" href="/willis-blog/2020/09/13/Mysql%E7%9A%84%E9%94%81%E5%92%8CMVCC/">Mysql的锁和MVCC</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="https://willis-song.gitee.io/willis-blog"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/willis-blog/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/willis-blog/tags/InnoDb/" style="font-size: 15px;">InnoDb</a> <a href="/willis-blog/tags/Dubbo/" style="font-size: 15px;">Dubbo</a> <a href="/willis-blog/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 15px;">微服务</a> <a href="/willis-blog/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/willis-blog/tags/Swarm/" style="font-size: 15px;">Swarm</a> <a href="/willis-blog/tags/jvm/" style="font-size: 15px;">jvm</a> <a href="/willis-blog/tags/java/" style="font-size: 15px;">java</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/03/07/Docker-Swarm%E5%B0%8F%E8%AE%A1/">Docker swarm小计</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/dubbo%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">dubbo线程模型</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/Dubbo-Service%20Consumer/">2021-02-24-Dubbo-Service Consumer</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/12/06/%E5%A4%9A%E7%BA%BF%E7%A8%8B-SynchronousQueue%E7%AC%94%E8%AE%B0/">多线程-SynchronousQueue笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/23/%E4%B8%80%E8%B5%B7%E8%81%8A%E8%81%8A%E5%BC%95%E7%94%A8/">一起聊聊引用</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/16/shell%E7%AC%94%E8%AE%B0/">Shell命令之语法笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/12/SLF4j%E7%9A%84%E8%AE%BE%E8%AE%A1/">SLF4j的设计</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/11/%E4%BD%BF%E7%94%A8es%E7%9A%84%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/">es笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/09/ThreadLocal%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">Thread Local实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/09/Docker%E5%88%9D%E6%8E%A2/">Docker初探</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.baidu.com/" title="百度" target="_blank">百度</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/willis-blog/." rel="nofollow">Willis's Note.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/willis-blog/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/willis-blog/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/willis-blog/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/willis-blog/js/smartresize.js?v=1.0.0"></script></div></body></html>

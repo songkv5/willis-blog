@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>红黑树 | Willis's Note</title><link rel="stylesheet" type="text/css" href="/willis-blog/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/willis-blog/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/willis-blog/favicon.ico"><link rel="apple-touch-icon" href="/willis-blog/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/willis-blog/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">红黑树</h1><a id="logo" href="/willis-blog/.">Willis's Note</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/willis-blog/."><i class="fa fa-home"> 首页</i></a><a href="/willis-blog/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/willis-blog/about/"><i class="fa fa-user"> 关于</i></a><a href="/willis-blog/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">红黑树</h1><div class="post-meta">2020-03-28<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><p>红黑树是基于二叉查找树。</p>
+<h3 id="二、相关概念"><a href="#二、相关概念" class="headerlink" title="二、相关概念"></a>二、相关概念</h3><h4 id="1、满二叉树"><a href="#1、满二叉树" class="headerlink" title="1、满二叉树"></a>1、满二叉树</h4><p><strong>定义</strong>：除最后一层无任何子节点外，每一层上的所有结点都有两个子结点的二叉树。</p>
+<h4 id="2、完全二叉树"><a href="#2、完全二叉树" class="headerlink" title="2、完全二叉树"></a>2、完全二叉树</h4><p><strong>定义</strong>：若设二叉树的深度为h，除第 h 层外，其它各层 (1～h-1) 的结点数都达到最大个数，第 h 层所有的结点都连续集中在最左边，这就是完全二叉树。</p>
+<h4 id="3、二叉查找树-（别名：二叉搜索树-有序二叉树-排序二叉树）"><a href="#3、二叉查找树-（别名：二叉搜索树-有序二叉树-排序二叉树）" class="headerlink" title="3、二叉查找树 （别名：二叉搜索树/有序二叉树/排序二叉树）"></a>3、二叉查找树 （别名：二叉搜索树/有序二叉树/排序二叉树）</h4><p><strong>性质</strong></p>
+<ol>
+<li>若任意节点的左子树不空，则左子树上所有节点的值均小于它的根节点的值；</li>
+<li>若任意节点的右子树不空，则右子树上所有节点的值均大于或等于它的根节点的值；</li>
+<li>任意节点的左、右子树也分别为二叉查找树。</li>
+</ol>
+<p>查找、插入的时间复杂度：O(log₂n)，其中，n为节点数。<br>高度：log₂n。二叉树的查找难度取决于高度</p>
+<h4 id="4、平衡二叉树（AVL树、平衡二叉查找树）"><a href="#4、平衡二叉树（AVL树、平衡二叉查找树）" class="headerlink" title="4、平衡二叉树（AVL树、平衡二叉查找树）"></a>4、平衡二叉树（AVL树、平衡二叉查找树）</h4><p>平衡二叉树及基于二叉查找树实现的。<br><strong>作者</strong>：Adelse-Velskil 和 Landis</p>
+<p><strong>性质</strong><br>1）可以是空树<br>2）假如不是空树，任何一个结点的<strong>左子树</strong>与<strong>右子树</strong>都是平衡二叉树，并且高度之差的绝对值不超过 1。</p>
+<p><strong>平衡因子</strong>：某节点的左子树与右子树的高度(深度)差即为该节点的平衡因子（BF,Balance Factor），平衡二叉树中不存在平衡因子大于 1 的节点。</p>
+<p><strong>维持平衡的方法</strong>：旋转（左旋与右旋）</p>
+<h3 id="三、红黑树"><a href="#三、红黑树" class="headerlink" title="三、红黑树"></a>三、红黑树</h3><p>红黑树是基于二叉查找树实现、要区别于平衡二叉树。</p>
+<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p><strong>特性</strong></p>
+<ol>
+<li>每个节点不是红色就是黑色的</li>
+<li><strong>根节点</strong>总是<strong>黑色</strong>的</li>
+<li>每个叶子节点都是黑色的空节点（NIL节点）。</li>
+<li>如果节点是红色的，则它的子节点必须是黑色的（反之不一定）。即每个根节点到叶子节点的路径上不会有两个连续的红色节点，但是黑色节点是可以连续的。</li>
+<li>从根节点到叶节点或空子节点的每条路径，必须包含相同数目的黑色节点（即相同的黑色高度）。</li>
+</ol>
+<h4 id="保证平衡的方法"><a href="#保证平衡的方法" class="headerlink" title="保证平衡的方法"></a>保证平衡的方法</h4><ol>
+<li>变色</li>
+<li>旋转（左旋与右旋）</li>
+</ol>
+<p><img src="/willis-blog/images/2020-03-28/bt-left-rotate.gif"><br><img src="/willis-blog/images/2020-03-28/bt-right-rotate.gif"></p>
+<p><strong>红黑树插入的节点都是红色的，因为这样代价最小：如果插入黑色，一定会破坏规则5，但是如果插入红色节点，只有50%的概率破坏规则4。</strong></p>
+<h4 id="平衡插入"><a href="#平衡插入" class="headerlink" title="平衡插入"></a>平衡插入</h4><ol>
+<li>查找并插入</li>
+<li>调整结构，保证满足红黑树状态</li>
+</ol>
+<ul>
+<li>对节点进行重新着色</li>
+<li>对树进行相关的旋转操作</li>
+</ul>
+<h5 id="结构调整思路"><a href="#结构调整思路" class="headerlink" title="结构调整思路"></a>结构调整思路</h5><ol>
+<li><strong>父亲节点和叔叔节点都是红色</strong>，调整如图<br><img src="/willis-blog/images/2020-03-28/color-change-1.png"></li>
+</ol>
+<blockquote>
+<p>N为插入节点，如果父亲节点（P）和父亲的兄弟节点（叔叔节点U）都是红色，则爷爷节点一定是黑色（规则4）。<br>由于红色节点的孩子不能使红色，此时要把父亲节点和叔叔节点染成黑色，爷爷节点G染成红色。这样子树两边路径上的黑色节点数是一致的，也可以满足规则5。</p>
+<p>但是，爷爷节点G染成红色后，G的父亲节点如果是红色，又违反了规则4…<br>这个问题，只要把爷爷节点G当做新的节点，在进行调整，循环往复，<strong>直到父节点不是红的</strong>，就可以了。<br><strong>即父亲叔叔都是红：先把叔和父变黑，再把爷变红；后面继续【以爷爷为基准节点】作调整。基准点选择：当前操作的相关节点的顶级节点</strong></p>
+</blockquote>
+<ol start="2">
+<li><strong>父节点为红色，叔叔节点为黑色</strong>，调整如图</li>
+</ol>
+<p><img src="/willis-blog/images/2020-03-28/rotate-1.png"></p>
+<p>N为插入节点，这时父亲节点 P 是红色，爷爷节点 G 一定是黑色。</p>
+<p><em>红色节点的孩子不能是红色，但是直接把父亲节点 P 涂成黑色也不行，这条路径多了个黑色节点。怎么办呢？</em></p>
+<blockquote>
+<p>答：将爷爷节点G向右旋转。<br>此时，P 变成了这个子树的根节点，G 变成了 P 的右子树。<br>右旋后 G 跑到了右子树上，这时把 P 变成黑的，多了一个黑节点，再把 G 变成红的，就平衡了！</p>
+</blockquote>
+<blockquote>
+<p>上图中N是P的左子节点，如果是右子节点，则需要多进行一次左旋（如下图），然后再按照上面的操作进行一遍。</p>
+</blockquote>
+<p><img src="/willis-blog/images/2020-03-28/rotate-2.png"></p>
+<blockquote>
+<p><strong>即父红叔黑，插左子：右旋爷爷节点，再腹黑爷红</strong><br><strong>父红叔黑，插右子：先左旋父亲，再按照插左子进行处理</strong></p>
+</blockquote>
+<h4 id="红黑树的平衡删除"><a href="#红黑树的平衡删除" class="headerlink" title="红黑树的平衡删除"></a>红黑树的平衡删除</h4><ol>
+<li>二叉查找树的删除</li>
+<li>接口调整</li>
+</ol>
+<h5 id="二叉查找树的删除"><a href="#二叉查找树的删除" class="headerlink" title="二叉查找树的删除"></a>二叉查找树的删除</h5><ol>
+<li>要删除的节点正好是叶子节点，直接删除就 OK 了；</li>
+<li>只有左孩子或者右孩子，直接把这个孩子上移放到要删除的位置就好了；</li>
+<li>有两个孩子，就需要选一个合适的孩子节点作为新的根节点，该节点称为 继承节点。</li>
+</ol>
+<h4 id="删除后的结构调整"><a href="#删除后的结构调整" class="headerlink" title="删除后的结构调整"></a>删除后的结构调整</h4><p>如果当前待删除节点是红色的，它被删除之后对当前树的特性不会造成任何破坏影响。<br>而如果被删除的节点是黑色的，这就需要进行进一步的调整来保证后续的树结构满足要求。</p>
+<p><span style="color: #FF0000;font-weight: bold;">因此，我们只需要考虑删除的节点是黑色节点的情况。</span></p>
+<p>#未完待续</p>
+<hr>
+<p>参考文章：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/entry/58371f13a22b9d006882902d#%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E5%B9%B3%E8%A1%A1%E6%8F%92%E5%85%A5">面试旧敌之红黑树（直白介绍深入理解）</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31805309">什么是红黑树</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/eson_15/article/details/51144079">【数据结构和算法05】 红-黑树</a><br><a target="_blank" rel="noopener" href="https://developer.51cto.com/art/201909/603373.htm">https://developer.51cto.com/art/201909/603373.htm</a></p>
+</blockquote>
+</div><div class="tags"></div><div class="post-nav"><a class="pre" href="/willis-blog/2020/03/29/%E7%AE%A1%E9%81%93%E6%A8%A1%E5%BC%8F/">管道模式</a><a class="next" href="/willis-blog/2020/02/25/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98%E6%AF%94%E8%BE%83/">分布式缓存比较</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="https://willis-song.gitee.io/willis-blog"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/willis-blog/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/willis-blog/tags/InnoDb/" style="font-size: 15px;">InnoDb</a> <a href="/willis-blog/tags/Dubbo/" style="font-size: 15px;">Dubbo</a> <a href="/willis-blog/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 15px;">微服务</a> <a href="/willis-blog/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/willis-blog/tags/Swarm/" style="font-size: 15px;">Swarm</a> <a href="/willis-blog/tags/jvm/" style="font-size: 15px;">jvm</a> <a href="/willis-blog/tags/java/" style="font-size: 15px;">java</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/03/07/Docker-Swarm%E5%B0%8F%E8%AE%A1/">Docker swarm小计</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/dubbo%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">dubbo线程模型</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/Dubbo-Service%20Consumer/">2021-02-24-Dubbo-Service Consumer</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/12/06/%E5%A4%9A%E7%BA%BF%E7%A8%8B-SynchronousQueue%E7%AC%94%E8%AE%B0/">多线程-SynchronousQueue笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/23/%E4%B8%80%E8%B5%B7%E8%81%8A%E8%81%8A%E5%BC%95%E7%94%A8/">一起聊聊引用</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/16/shell%E7%AC%94%E8%AE%B0/">Shell命令之语法笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/12/SLF4j%E7%9A%84%E8%AE%BE%E8%AE%A1/">SLF4j的设计</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/11/%E4%BD%BF%E7%94%A8es%E7%9A%84%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/">es笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/09/ThreadLocal%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">Thread Local实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/09/Docker%E5%88%9D%E6%8E%A2/">Docker初探</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.baidu.com/" title="百度" target="_blank">百度</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/willis-blog/." rel="nofollow">Willis's Note.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/willis-blog/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/willis-blog/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/willis-blog/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/willis-blog/js/smartresize.js?v=1.0.0"></script></div></body></html>

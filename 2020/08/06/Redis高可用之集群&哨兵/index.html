@@ -1,0 +1,142 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>Redis高可用之集群&amp;哨兵 | Willis's Note</title><link rel="stylesheet" type="text/css" href="/willis-blog/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/willis-blog/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/willis-blog/favicon.ico"><link rel="apple-touch-icon" href="/willis-blog/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/willis-blog/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Redis高可用之集群&amp;哨兵</h1><a id="logo" href="/willis-blog/.">Willis's Note</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/willis-blog/."><i class="fa fa-home"> 首页</i></a><a href="/willis-blog/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/willis-blog/about/"><i class="fa fa-user"> 关于</i></a><a href="/willis-blog/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Redis高可用之集群&amp;哨兵</h1><div class="post-meta">2020-08-06<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>Redis 集群是一个提供在多个Redis间节点间共享数据的程序集。</li>
+<li>Redis 集群并不支持处理多个keys的命令,因为这需要在不同的节点间移动数据,从而达不到像Redis那样的性能,在高负载的情况下可能会导致不可预料的错误.<blockquote>
+<p>redis集群涉及到<strong>「hash槽」</strong>slot的概念，不同的key会根据变量槽来分片，可能会落在不同的节点上。如mget命令，传多个key时有可能会报错</p>
+</blockquote>
+</li>
+<li>Redis集群通过分区来提供一定程度的可用性</li>
+</ul>
+<hr>
+<ul>
+<li>Redis 集群有16384（2^14）个「哈希槽」,每个key通过CRC16校验后对16384取模来决定放置哪个槽.<strong>集群的每个节点负责一部分hash槽</strong><blockquote>
+<p>假如三个节点A、B、C组成的集群。A的hash槽是[0-5460]，B的hash槽是[5461-10922]，C的hash槽是[10923-16383]</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h3><p>为了使在部分节点失败或者大部分节点无法通信的情况下集群仍然可用，所以集群使用了主从复制模型。每个节点都会有N-1个复制品。</p>
+<blockquote>
+<p>在我们例子中具有A，B，C三个节点的集群,在没有复制模型的情况下,如果节点B失败了，那么整个「集群」就会以为缺少5461-10922这个范围的槽而「不可用」。<br>然而如果在集群创建的时候（或者过一段时间）我们为每个节点添加一个「从节点」A1，B1，C1,那么整个集群便有三个master节点和三个slave节点组成，这样在节点B失败后，集群便会选举B1为新的主节点继续服务，整个集群便不会因为槽找不到而不可用了.<strong>不过当B和B1 都失败后，集群是不可用的.</strong></p>
+</blockquote>
+<p>每次当slave和master之间的连接断开时， slave都会尝试自动重连，并且无论这期间master发生了什么，slave都将尝试让自身成为master的精确副本。</p>
+<p><strong>主从复制的特性</strong></p>
+<ul>
+<li>使用「异步复制」，slave和master之间异步地确认处理的数据量</li>
+<li>一个master可以拥有多个slave</li>
+<li>slave可以接受其他slave的连接[slaveof slave]。除了多个slave可以连接到同一个master之外，slave之间也可以像层叠状的结构（cascading-like structure）连接到其他slave。自Redis 4.0起，所有的sub-slave将会从master收到完全一样的复制流。</li>
+<li>Redis复制在master侧是非阻塞的。这意味着master在一个或多个slave进行初次同步或者是部分重同步时，可以继续处理查询请求。</li>
+<li>复制在slave侧「大部分」也是非阻塞的。当slave进行初始化同步时，它可以使用旧数据集处理查询请求，假设在 redis.conf 中配置了让Redis这样做的话。否则，可以配置如果复制流断开，Redis slave会返回一个error给客户端。但是，在初次同步之后，旧数据集必须被删除，同时加载新的数据集。 slave在这个短暂的时间窗口内（如果数据集很大，会持续较长时间），会阻塞到来的连接请求。自 Redis4.0开始，可以配置Redis 使删除旧数据集的操作在另一个不同的线程中进行，但是，「加载新数据集」的操作依然需要在主线程中进行并且会阻塞slave 。</li>
+<li>复制既可以被用在可伸缩性，以便只读查询可以有多个 slave 进行（例如 O(N) 复杂度的慢操作可以被下放到 slave ，又可用于数据安全。</li>
+<li>可以使用复制来「避免master将全部数据集写入磁盘」造成的开销。一种典型的技术是配置你的master Redis.conf以避免对磁盘进行持久化，然后连接一个「slave ，其配置为不定期保存或是启用 AOF」。但是, 这个设置必须小心处理，因为重新启动的master程序将从一个空数据集开始：如果一个slave试图与它同步，那么这个slave也会被清空。 </li>
+</ul>
+<p><strong>主从复制需要注意的事情</strong><br>在使用 Redis 复制功能时的设置中，强烈建议在 master 和在 slave中启用持久化。如果不可能启用时，应该将事例配置成「禁止自动重启」。<br>原因：因为slave结点从master结点同步数，当master关闭持久化，一旦master崩溃，自动重启后他的数据集是空的，slave结点又从主节点同步数据，此时slave结点就会把空的数据集复制过去，以前的数据副本就丢失了</p>
+<p><strong>复制的过程</strong><br>replication ID：这是一个较大的伪随机字符串，标记了一个给定的数据集。每个master都有一个replication ID。<br>offset：偏移量。master 将自己产生的复制流发送给 slave 时，发送多少个字节的数据，自身的偏移量就会增加多少。<br>每一对给定的&lt;replication ID, offset&gt;都会标记一个数据集的确切版本。</p>
+<blockquote>
+<p>当 slave 连接到 master 时，它们使用 PSYNC 命令来发送它们记录的旧的 master replication ID 和它们至今为止处理的偏移量。通过这种方式， master 能够仅发送 slave 所需的增量部分.如果 master 的缓冲区中没有足够的命令积压缓冲记录，或者如果 slave 引用了不再知道的历史记录（replication ID），则会转而进行一个全量重同步。<br>比如，master上的replication ID是qserw31312123,offset已经自增到了1000。如果slave发送同步请求时发送了qserw31312123：500，此时master只需要发送给这个slave 501 ~ 1000偏移量的数据集</p>
+</blockquote>
+<p><strong>全量同步的过程，如下</strong><br>全量同步的过程，数据集分两部分：</p>
+<ul>
+<li>master 开启一个后台保存进程，以便于生产一个 RDB 文件，保存当前redis的数据集</li>
+<li>master开通一个缓冲区，保存从客户端新接受的写命令。<br>当后台完成保存时，master将rdb传输给slave，slave收到文件后，保存到磁盘，然后加载到内存。然后，master将所有缓冲的指令以指令流的形式发送给slave，完成另一部分指令的同步</li>
+</ul>
+<h3 id="主从配置"><a href="#主从配置" class="headerlink" title="主从配置"></a>主从配置</h3><ul>
+<li><p>master配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">port 8000</span><br><span class="line">cluster-enabled no</span><br><span class="line">appendonly yes</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>slave-1配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">port 8001</span><br><span class="line">cluster-enabled no</span><br><span class="line">appendonly yes</span><br><span class="line">slaveof 127.0.0.1 8000</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>也可以在启动redis服务器的时候通过「–配置属性 属性值」的方式设置主从，例如：redis-server redis.conf –slaveof 127.0.0.1 8000</p>
+</blockquote>
+</li>
+<li><p>slave-[2/3/…]配置参考slave-1，换个端口即可</p>
+</li>
+</ul>
+<p><strong>主从工作机制</strong></p>
+<ul>
+<li>当一个master实例和一个slave实例连接正常时，master会发送一连串的「命令流」来保持对slave的更新，以便于将自身数据集的改变复制给slave，包括客户端的写入、key的过期或被逐出等等。</li>
+<li>当master和slave之间的连接断开之后，因为网络问题、或者是主从意识到连接超时，slave重新连接上master并会尝试进行部分重同步：这意味着它会尝试只获取在断开连接期间内丢失的命令流。</li>
+<li>当无法进行部分重同步时，slave会请求进行全量重同步。这会涉及到一个更复杂的过程，例如master需要创建所有数据的「快照」，将之发送给slave，之后在数据集更改时持续发送命令流到slave。</li>
+</ul>
+<h2 id="集群搭建"><a href="#集群搭建" class="headerlink" title="集群搭建"></a>集群搭建</h2><h3 id="redis配置文件"><a href="#redis配置文件" class="headerlink" title="redis配置文件"></a>redis配置文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> redis服务端口</span></span><br><span class="line">port 7000</span><br><span class="line"><span class="meta">#</span><span class="bash"> 打开redis实例的集群模式。使用这个配置回合slaveof配置冲突（因为两种配置可以配置副本，如果同时配置，redis无法自己判断取舍）</span></span><br><span class="line">cluster-enabled yes/...]</span><br><span class="line"><span class="meta">#</span><span class="bash"> 节点配置文件的路径，默认是nodes.conf，无需人为修改，由redis集群启动时创建，并在有需要时自动更新</span></span><br><span class="line">cluster-config-file nodes.conf</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="bash">cluster-node-timeout 5000</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 持久化选项</span></span><br><span class="line">appendonly yes</span><br></pre></td></tr></table></figure>
+
+<h3 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 集群操作相关命令帮助</span></span><br><span class="line">redis-cli --cluster help</span><br><span class="line"><span class="meta">#</span><span class="bash"> 集群创建命令。保证host1:port1~hostN:portN的redis事例启动后，执行以下命令。其中--cluster-replicas slavecount指的是每个主节点有slavecount个副本。如create后面跟1~6个redis服务，slavecount=1，那么前三个将成为master服务器，后面三个架构分别分配成slave</span></span><br><span class="line">redis-cli --cluster create host1:port1 ... hostN:portN --cluster-replicas slavecount</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看当前集群结点</span></span><br><span class="line">redis-cli -h host -p port cluster nodes</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">将集群的<span class="built_in">hash</span>槽从节点一迁移到结点2</span></span><br><span class="line">redis-cli --cluster reshard host:port --cluster-from node1 --cluster-to node2</span><br></pre></td></tr></table></figure>
+
+<h1 id="Redis哨兵"><a href="#Redis哨兵" class="headerlink" title="Redis哨兵"></a>Redis哨兵</h1><p>Redis的Sentinel系统用于管理多个Redis服务器（instance）。</p>
+<h2 id="哨兵的任务"><a href="#哨兵的任务" class="headerlink" title="哨兵的任务"></a>哨兵的任务</h2><ul>
+<li>监控：Sentinel 会不断地检查你的主服务器和从服务器是否运作正常。</li>
+<li>提醒：当被监控的某个Redis服务器出现问题时， Sentinel可以通过API向管理员或者其他应用程序发送通知。</li>
+<li>自动故障迁移（Automatic failover）： 当一个「主服务器」不能正常工作时， Sentinel 会开始一次自动故障迁移操作， 它会将「失效主服务器」的「其中一个从服务器」<strong>升级为新的主服务器</strong>， 并让失效主服务器的其他从服务器改为复制新的主服务器； 当客户端试图连接失效的主服务器时， 集群也会向客户端返回新主服务器的地址， 使得集群可以使用新主服务器代替失效服务器。</li>
+</ul>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>redis源码中有sentinel.conf文件，含有详细注释，拿过来，添加以下配置。<br><strong>配置格式：</strong>sentinel 「选项名」 「主服务器名」 「选项值」</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sentinel monitor mymaster 127.0.0.1 6379 2</span><br><span class="line">sentinel down-after-milliseconds mymaster 60000</span><br><span class="line">sentinel failover-timeout mymaster 180000</span><br><span class="line">sentinel parallel-syncs mymaster 1</span><br></pre></td></tr></table></figure>
+<p><strong>配置说明</strong></p>
+<ul>
+<li><p>第一行：mymaster是要监控的主服务器的名字（任意起，下面可以用这个名字引用）。127.0.0.1和6379分别是主服务器的地址和端口号。数字「2」代表判断这个主服务器失效至少「2」个sentinel同意（只要同意的sentinel数量不达标，自动故障迁移就不会执行）。<strong>需要注意的是，无论配置中写的是多少个sentinel同意才能判断一个服务器失效，一个sentinel都需要获得系统中多数（majority）sentinel的支持，才能发起一次故障迁移，并预留一个给定的配置纪元「epoch」</strong>。一个配置纪元就是一个新的主服务器的配置版本号。（很像zk中的选举）</p>
+</li>
+<li><p>第二行：down-after-milliseconds选项指定了Sentinel认为服务器已经断线所需的毫秒数。如果服务器「在给定的毫秒数之内」，没有返回Sentinel发送的PING命令的回复，或者返回一个错误，那么Sentinel将这个服务器标记为「主观下线」（subjectively down，简称 「SDOWN」 ）。</p>
+<blockquote>
+<p>只有一个 Sentinel 将服务器标记为「主观下线」并不一定会引起服务器的自动故障迁移： 只有在「足够数量」的Sentinel都将一个服务器标记为主观下线之后，服务器才会被标记为「客观下线」（objectivelydown， 简称「ODOWN」 ），这时自动故障迁移才会执行。</p>
+</blockquote>
+</li>
+</ul>
+<p>服务器对 PING 命令的有效回复可以是以下三种回复的其中一种</p>
+<blockquote>
+<p>返回 +PONG 。<br>返回 -LOADING 错误。<br>返回 -MASTERDOWN 错误。</p>
+</blockquote>
+<p>如果服务器返回除以上三种回复之外的其他回复， 又或者在指定时间内没有回复 PING 命令， 那么 Sentinel 认为服务器返回的回复无效（non-valid）。<br><strong>客观下线条件只适用于主服务器</strong></p>
+<ul>
+<li>第四行：parallel-syncs 选项指定了在执行故障转移时， 最多可以有多少个从服务器同时对新的主服务器进行同步， 这个数字越小，完成故障转移所需的时间就越长。</li>
+</ul>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server sentinel.conf --sentinel</span><br></pre></td></tr></table></figure>
+
+<h3 id="哨兵的定期工作"><a href="#哨兵的定期工作" class="headerlink" title="哨兵的定期工作"></a>哨兵的定期工作</h3><ul>
+<li>每个Sentinel以每秒钟一次的频率向它所知的主服务器、从服务器以及其他Sentinel实例发送一个PING命令。</li>
+<li>如果一个实例（instance）距离最后一次有效回复 PING 命令的时间超过「down-after-milliseconds」选项所指定的值，那么这个实例会被Sentinel标记为主观下线。 一个有效回复可以是：+PONG 、-LOADING或者-MASTERDOWN 。</li>
+<li>如果一个主服务器被标记为主观下线，那么正在监视这个主服务器的所有Sentinel要以每秒一次的频率确认主服务器的确进入了主观下线状态。</li>
+<li>如果一个主服务器被标记为主观下线，并且有足够数量的Sentinel（至少要达到配置文件指定的数量）在指定的时间范围内同意这一判断，那么这个主服务器被标记为客观下线。</li>
+<li>在一般情况下， 每个 Sentinel 会以每10秒一次的频率向它已知的所有主服务器和从服务器发送INFO命令。 当一个主服务器被 Sentinel 标记为客观下线时， Sentinel向下线主服务器的所有从服务器发送INFO命令的频率会从10秒一次改为每秒一次。</li>
+<li>当没有足够数量的 Sentinel 同意主服务器已经下线，主服务器的客观下线状态就会被移除。 当主服务器重新向Sentinel的PING命令返回有效回复时，主服务器的主观下线状态就会被移除。</li>
+</ul>
+<h3 id="sentinel的自动发现与互联"><a href="#sentinel的自动发现与互联" class="headerlink" title="sentinel的自动发现与互联"></a>sentinel的自动发现与互联</h3><p>一个Sentinel可以与其他多个Sentinel进行连接，各个Sentinel之间可以互相检查对方的可用性，并进行信息交换。<br>无须为运行的每个Sentinel分别设置其他Sentinel的地址，因为Sentinel可以通过「发布」与「订阅」功能来自动发现正在监视「相同主服务器的其他Sentinel」，这一功能是通过向频道「sentinel:hello」发送信息来实现的。同时，sentinel也不必手动列出所有从服务器，sentinel只需要询问他监控的主服务器即可知道有哪些从服务器。</p>
+<ul>
+<li>每个Sentinel会以每两秒一次的频率，通过发布与订阅功能， 向被它监视的所有主服务器和从服务器的「sentinel:hello」频道发送一条信息，信息中包含了Sentinel的IP地址、端口号和运行ID（runid）。</li>
+<li>每个Sentinel都订阅了被它监视的所有主服务器和从服务器的sentinel:hello频道， 查找之前未出现过的sentinel（looking for unknown sentinels）。 当一个Sentinel发现一个新的Sentinel时，它会将新的Sentinel添加到一个列表中， 这个列表保存了Sentinel已知的，监视同一个主服务器的所有其他Sentinel</li>
+<li>Sentinel 发送的信息中还包括完整的主服务器当前配置（configuration）。 如果一个Sentinel包含的主服务器配置比另一个Sentinel发送的配置要旧,那么这个Sentinel会立即升级到新配置上</li>
+<li>在将一个新Sentinel添加到监视主服务器的列表上面之前，Sentinel会先检查列表中是否已经包含了和要添加的Sentinel拥有相同运行ID或者相同地址（包括IP地址和端口号）的Sentinel，如果是的话，Sentinel 会先移除列表中已有的那些拥有相同运行ID或者相同地址的Sentinel， 然后再添加新Sentinel。</li>
+</ul>
+<h3 id="sentinel客户端"><a href="#sentinel客户端" class="headerlink" title="sentinel客户端"></a>sentinel客户端</h3><p>默认情况下，sentinel端口是26379（redis的端口是6379）<br>可以使用redis-cli进行连接，连接方式与连接redis一样。连接之后，可以通过sentinel命令与sentinel进行通信，sentinel可以接受的命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ping命令，返回pong</span></span><br><span class="line">ping</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 列出所有被监视的主服务器，以及这些主服务器的当前状态</span></span><br><span class="line">sentinel master</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 列出给定主服务器的所有从服务器，以及这些从服务器的当前状态。</span></span><br><span class="line">sentinel slaves + masterName</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 返回给定名字的主服务器的 IP 地址和端口号。 如果这个主服务器正在执行故障转移操作， 或者针对这个主服务器的故障转移操作已经完成， 那么这个命令返回新的主服务器的 IP 地址和端口号。</span></span><br><span class="line">sentinel get-master-addr-by-name + mastername</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重置所有名字和给定模式 pattern 相匹配的主服务器</span></span><br><span class="line">sentinel reset + masternamepattern</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 当主服务器失效时， 在不询问其他Sentinel 意见的情况下，强制开始一次自动故障迁移</span> </span><br><span class="line">sentinel failover + mastername</span><br></pre></td></tr></table></figure>
+
+<h3 id="sentinel的发布与订阅"><a href="#sentinel的发布与订阅" class="headerlink" title="sentinel的发布与订阅"></a>sentinel的发布与订阅</h3><p>客户端可以将 Sentinel 看作是一个只提供了订阅功能的Redis服务器。<br>使用psubscribe命令可以订阅制定频道，获取相应频道的时间提醒。命令格式如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psubscribe pattern [pattern...]</span><br></pre></td></tr></table></figure>
+<p>使用psubscribe * 可以订阅所有频道，下面是一段本地订阅的消息内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">localhost:28000&gt; psubscribe +slave</span><br><span class="line">Reading messages... (press Ctrl-C to quit)</span><br><span class="line">1) &quot;psubscribe&quot;</span><br><span class="line">2) &quot;+slave&quot;</span><br><span class="line">3) (integer) 1</span><br><span class="line">1) &quot;pmessage&quot;</span><br><span class="line">2) &quot;+slave&quot;</span><br><span class="line">3) &quot;+slave&quot;</span><br><span class="line">4) &quot;slave 127.0.0.1:8001 127.0.0.1 8001 @ master1 127.0.0.1 8000&quot;</span><br><span class="line">1) &quot;pmessage&quot;</span><br><span class="line">2) &quot;+slave&quot;</span><br><span class="line">3) &quot;+slave&quot;</span><br><span class="line">4) &quot;slave 127.0.0.1:8002 127.0.0.1 8002 @ master1 127.0.0.1 8000&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="故障迁移的过程"><a href="#故障迁移的过程" class="headerlink" title="故障迁移的过程"></a>故障迁移的过程</h3><ul>
+<li>发现主服务器已经进入客观下线状态。</li>
+<li>对我们的当前纪元进行自增（详情请参考 Raft leader election ），并尝试在这个纪元中当选</li>
+<li>如果当选失败，那么在设定的故障迁移超时时间的两倍之后，重新尝试当选。 如果当选成功，那么执行以下步骤。</li>
+<li>选出一个从服务器，并将它升级为主服务器。</li>
+<li>向被选中的从服务器发送 SLAVEOF NO ONE 命令，让它转变为主服务器</li>
+<li>通过发布与订阅功能，将更新后的配置传播给所有其他Sentinel， 其他Sentinel对它们自己的配置进行更新。</li>
+<li>向已下线主服务器的从服务器发送SLAVEOF命令，让它们去复制新的主服务器。</li>
+<li>当所有从服务器都已经开始复制新的主服务器时，领头Sentinel终止这次故障迁移操作。<br>每当一个 Redis 实例被重新配置（reconfigured）——无论是被设置成主服务器、从服务器、又或者被设置成其他主服务器的从服务器 ——Sentinel都会向被重新配置的实例发送一个CONFIG REWRITE命令，从而确保这些「配置会持久化在硬盘里」。</li>
+</ul>
+<h4 id="sentinel选择主服务器的规则"><a href="#sentinel选择主服务器的规则" class="headerlink" title="sentinel选择主服务器的规则"></a>sentinel选择主服务器的规则</h4><ul>
+<li>在失效主服务器属下的从服务器当中， 那些被标记为主观下线、已断线、或者最后一次回复 PING 命令的时间大于五秒钟的从服务器都会被淘汰。</li>
+<li>在失效主服务器属下的从服务器当中， 那些与失效主服务器连接断开的时长超过 down-after选项指定的时长十倍的从服务器都会被淘汰。</li>
+<li>在经历了以上两轮淘汰之后剩下来的从服务器中，我们选出复制偏移量（replication offset）最大的那个从服务器作为新的主服务器； 如果复制偏移量不可用，或者从服务器的复制偏移量相同，那么带有最小运行ID的那个从服务器成为新的主服务器。（很想zk的选举，zxid与sid的逻辑）</li>
+</ul>
+<h4 id="leader选举"><a href="#leader选举" class="headerlink" title="leader选举"></a>leader选举</h4><p>Sentinel使用Raft算法来选举领头（leader） Sentinel，从而确保在一个给定的纪元（epoch）里，只有一个领头产生。<br>更高的配置纪元总是优于较低的纪元， 因此每个Sentinel都会主动使用更新的纪元来代替自己的配置。我们可以将Sentinel配置看作是一个带有版本号的状态。 一个状态会以「最后写入」者胜出（last-write-wins）的方式（也即是，<strong>最新的配置总是胜出</strong>）传播至所有其他Sentinel。</p>
+<h1 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h1><h2 id="哨兵的意义"><a href="#哨兵的意义" class="headerlink" title="哨兵的意义"></a>哨兵的意义</h2><p>主从复制保证了主节点失败之后，从节点仍然可以保持数据完整性，如果从节点能在主节点失败后自动升级为主节点，那么就能保证redis的可用。<br>如下三个服务器</p>
+<ul>
+<li>master。host：127.0.0.1。 port：8000</li>
+<li>slave1。host：127.0.0.1。 port：8001</li>
+<li>slave2。host：127.0.0.1。 port：8002<br>分别启动后，一个master两个slave。在master执行set key1 1111。在slave1和slave2上通过get key1都可以获得value。如下<br><img src="/willis-blog/images/2020-08-06/redis-2.png" alt="master写"><br><img src="/willis-blog/images/2020-08-06/redis-1.png" alt="slave1读"><br>在slave1中尝试set key2 2222，会提示在从服务器中无法进行写操作，只读的（READONLY You can’t write against a read only replica），如下<br><img src="/willis-blog/images/2020-08-06/redis-3.png" alt="slave1写"></li>
+</ul>
+<p>此时，停止master服务，从服务器会一致提示连接拒绝，如下<br><img src="/willis-blog/images/2020-08-06/redis-4.png" alt="重连master"><br>再次尝试在slave1中写操作，发现和之前结果一样，提示「READONLY You can’t write against a read only replica」，说明简单的<strong>主从配置并不会自动升级slave为master</strong></p>
+<h3 id="复制模式接入哨兵"><a href="#复制模式接入哨兵" class="headerlink" title="复制模式接入哨兵"></a>复制模式接入哨兵</h3><p>按照上述主从配置，再额外配置一个哨兵服务，然后尝试停止master redis服务。<br>此时观察sentinel日志，发现一段时间后，sentinel开始执行故障迁移，并选择新的主服务器，如图<br><img src="/willis-blog/images/2020-08-06/redis-5.png" alt="failover"><br>发现主服务器变成了127.0.0.1:8001，再次在8001上尝试set命令，发现成功了~<br><img src="/willis-blog/images/2020-08-06/redis-6.png" alt="failover"></p>
+<p>因此，哨兵解决了redis在master崩溃后的不可用问题，为了让服务达到更好的高可用，接哨兵是免不了的。而且哨兵提供了监控和通知，一旦出现问题，可以第一时间发送事件通知到客户端。</p>
+<h2 id="集群的意义"><a href="#集群的意义" class="headerlink" title="集群的意义"></a>集群的意义</h2><p>前面介绍了，集群的特点就是将数据进行了分片，将大量的数据分散存储，对存储数据量有了更大的提升，可以缓存更多内容，更侧重于解决高并发的需求。在集群中，redis也是可以自动failover的，但是没有监控。<br>个人认为，为集群接入sentinel，在可以完成自动failover同时，还可以对各节点进行监控，互不冲突~</p>
+</div><div class="tags"></div><div class="post-nav"><a class="pre" href="/willis-blog/2020/08/07/Redis%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96/">Redis 持久化</a><a class="next" href="/willis-blog/2020/07/28/TCP3%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%8E4%E6%AC%A1%E6%8C%A5%E6%89%8B/">TCP3次握手与4次挥手</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="https://willis-song.gitee.io/willis-blog"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/willis-blog/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/willis-blog/tags/InnoDb/" style="font-size: 15px;">InnoDb</a> <a href="/willis-blog/tags/Dubbo/" style="font-size: 15px;">Dubbo</a> <a href="/willis-blog/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 15px;">微服务</a> <a href="/willis-blog/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/willis-blog/tags/Swarm/" style="font-size: 15px;">Swarm</a> <a href="/willis-blog/tags/jvm/" style="font-size: 15px;">jvm</a> <a href="/willis-blog/tags/java/" style="font-size: 15px;">java</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/03/07/Docker-Swarm%E5%B0%8F%E8%AE%A1/">Docker swarm小计</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/dubbo%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">dubbo线程模型</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/Dubbo-Service%20Consumer/">2021-02-24-Dubbo-Service Consumer</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/12/06/%E5%A4%9A%E7%BA%BF%E7%A8%8B-SynchronousQueue%E7%AC%94%E8%AE%B0/">多线程-SynchronousQueue笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/23/%E4%B8%80%E8%B5%B7%E8%81%8A%E8%81%8A%E5%BC%95%E7%94%A8/">一起聊聊引用</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/16/shell%E7%AC%94%E8%AE%B0/">Shell命令之语法笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/12/SLF4j%E7%9A%84%E8%AE%BE%E8%AE%A1/">SLF4j的设计</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/11/%E4%BD%BF%E7%94%A8es%E7%9A%84%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/">es笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/09/ThreadLocal%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">Thread Local实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/11/09/Docker%E5%88%9D%E6%8E%A2/">Docker初探</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.baidu.com/" title="百度" target="_blank">百度</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/willis-blog/." rel="nofollow">Willis's Note.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/willis-blog/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/willis-blog/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/willis-blog/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/willis-blog/js/smartresize.js?v=1.0.0"></script></div></body></html>
