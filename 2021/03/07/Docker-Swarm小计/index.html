@@ -4,7 +4,8 @@
 <li><p><strong>节点（Node）</strong>：结点指的是加入到swarm中的一个Docker实例。结点分为管理者节点（Manager Node）和工作节点（Worker Node）。当发布一个应用到swarm，需要提交一个服务定义到管理者结点，管理者几点负责分发任务到工作结点。除此之外，管理者节点还负责管理集群，选举leader组织编排任务。工作结点接收和执行管理者节点下发的任务。</p>
 <p> <strong>管理者结点任务:</strong><br> 1.维持集群状态<br> 2.调度服务(scheduling services)<br> 3.提供swarm模式的http接口</p>
 <p> 需要注意的是，如果只有一个管理者，当管理者结点宕机，服务想要继续运行，需要创建一个新的集群来恢复。因此，为了提高容错性，docker建议我们，根据具体的高可用需求，配置响应的奇数个数的管理者结点。<br> 1.一个拥有3个管理者结点的swarm集群可以容忍1个管理者结点失败<br> 2.一个拥有2个管理者结点的swarm集群可以容忍2个管理者结点失败<br> 3.一个拥有N个管理者结点的swarm集群可以容忍(N-1)/个管理者结点失败</p>
-<p> <strong>工作结点</strong><br> 工作结点也是Docker引擎，但是他唯一的目的就是运行容器。他不参与任务编排，野兔提供swarm模式的http接口。</p>
+<p> <strong>工作结点</strong><br> 工作结点也是Docker引擎，但是他唯一的目的就是运行容器。他不参与任务编排，也不提供swarm模式的http接口。</p>
+<p><img src="https://docs.docker.com/engine/swarm/images/swarm-diagram.png" alt="Swarm Nodes"></p>
 </li>
 <li><p><strong>服务（Service）</strong>：服务是对要执行任务的定义，是swarm系统的核心结构，是用户与swarm沟通的根本。创建一个服务时，需要指定要使用哪个镜像、要在容器中执行哪些命令；当要运行多个副本是，还可以指定要运行的副本数量。</p>
 </li>
@@ -15,7 +16,7 @@
 </ol>
 <h3 id="二、节点（Node）管理"><a href="#二、节点（Node）管理" class="headerlink" title="二、节点（Node）管理"></a>二、节点（Node）管理</h3><p><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/swarm/how-swarm-mode-works/nodes/">结点原理-官网</a></p>
 <ol>
-<li><strong>初始化Swarm</strong>，安装docker以后，使用<strong>init</strong>命令初始化docker模式<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker swarm init</span><br></pre></td></tr></table></figure>
+<li><strong>初始化Swarm</strong>，安装docker以后，使用<strong>init</strong>命令初始化swarm模式<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker swarm init</span><br></pre></td></tr></table></figure>
 运行结果如下<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">willis@willis-pc:~$ docker swarm init</span><br><span class="line">Swarm initialized: current node (2s85xcbwpdhu7aycyz9jee09j) is now a manager.</span><br><span class="line"></span><br><span class="line">To add a worker to this swarm, run the following command:</span><br><span class="line"></span><br><span class="line">    docker swarm join --token SWMTKN-1-5v2djh383r9k6eopv9ztyo03fzirtc1ey3rqwso9psisynolt2-ccxsph75bo4qj2qitbj1o19am 192.168.1.106:2377</span><br><span class="line"></span><br><span class="line">To add a manager to this swarm, run &#x27;docker swarm join-token manager&#x27; and follow the instructions</span><br></pre></td></tr></table></figure>
 如上，在Docker Manager/Leader节点上执行init命令后，就会将当前docker engine结点当做swarm管理的的master结点</li>
 </ol>
@@ -53,17 +54,17 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker node update --availability active willis-pc</span><br></pre></td></tr></table></figure>
 
 
-
 </li>
 </ol>
 <h3 id="三、服务发布"><a href="#三、服务发布" class="headerlink" title="三、服务发布"></a>三、服务发布</h3><ol>
 <li><p><strong>创建一个服务</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 创建服务的命令</span></span><br><span class="line">docker service create --replicas 1 --name helloworld alpine ping docker.com</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 执行结果</span></span><br><span class="line">uofmjvemu552lafilgp3vkpqs</span><br><span class="line">overall progress: 1 out of 1 tasks</span><br><span class="line">1/1: running   [==================================================&gt;]</span><br><span class="line">verify: Service converged</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>docker service create命令用于创建服务</li>
-<li>–name指定服务名称</li>
-<li>–replicas指定运行副本数量</li>
-<li>alpine ping docker.com，Alpine Linux 容器，并执行命令ping docker.com</li>
+<li><em>docker service create</em>命令用于创建服务</li>
+<li><em>- -name</em>指定服务名称</li>
+<li><em>- -replicas</em>指定运行副本数量</li>
+<li><em>alpine ping docker.com</em>，Alpine Linux 容器，并执行命令ping docker.com</li>
 </ul>
 </li>
 <li><p><strong>查看service详情</strong><br>docker service inspect –pretty <SERVICE-ID></p>
@@ -78,7 +79,7 @@
 </li>
 <li><p>查看service运行结点<br>docker service ps &lt;SERVICE-ID&gt;</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 执行命令</span></span><br><span class="line">docker service ps helloworld</span><br><span class="line"><span class="meta">#</span><span class="bash"> 运行结果</span></span><br><span class="line">ID             NAME           IMAGE           NODE        DESIRED STATE   CURRENT STATE            ERROR     PORTS</span><br><span class="line">p7vdudkzmt6v   helloworld.1   alpine:latest   willis-pc   Running         Running 32 minutes ago</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>在宿主机上执行docker ps，可以</p>
+<p>在宿主机上执行docker ps，也可以</p>
 </li>
 </ul>
 <ol start="4">
@@ -99,7 +100,9 @@
 <p>使用 <em>docker service ps redis</em>可以查看滚动更新记录。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker service ps redis</span><br><span class="line">ID             NAME          IMAGE         NODE        DESIRED STATE   CURRENT STATE            ERROR     PORTS</span><br><span class="line">3mh1rpc01rwa   redis.1       redis:3.0.7   willis-pc   Running         Running 3 minutes ago</span><br><span class="line">ne639btxikot    \_ redis.1   redis:3.0.6   willis-pc   Shutdown        Shutdown 3 minutes ago</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-
+<h3 id="四、Docker-Machine"><a href="#四、Docker-Machine" class="headerlink" title="四、Docker Machine"></a>四、Docker Machine</h3><ul>
+<li>什么是Docker Machine，什么时候要用到Docker Machine？<br><a target="_blank" rel="noopener" href="https://docs.docker.com/machine/">传送门</a><br>官网释义：Docker Machine是一个可以让你在虚拟主机上安装Docker 引擎的工具</li>
+</ul>
 <h2 id="Swarm的原理"><a href="#Swarm的原理" class="headerlink" title="Swarm的原理"></a>Swarm的原理</h2><h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ul>
 <li>Swarm关键概念：<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/swarm/key-concepts/">https://docs.docker.com/engine/swarm/key-concepts/</a></li>
 <li>工作原理：<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/swarm/how-swarm-mode-works/nodes/">https://docs.docker.com/engine/swarm/how-swarm-mode-works/nodes/</a></li>
