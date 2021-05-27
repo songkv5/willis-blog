@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="824 997 355 204" width="355" height="204">
+  <defs>
+    <font-face font-family="PingFang SC" font-size="16" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="StickArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 0 M 0 -3 L 8 0 L 0 3" fill="none" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="PingFang SC" font-size="10" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.18.5\n2021-05-25 14:05:09 +0000</metadata>
+  <g id="版面___-1" fill="none" fill-opacity="1" stroke="none" stroke-dasharray="none" stroke-opacity="1">
+    <title>进程状态</title>
+    <rect fill="white" x="824" y="997" width="355" height="204"/>
+    <g id="版面___-1_图层_1">
+      <title>图层 1</title>
+      <g id="Graphic_2">
+        <ellipse cx="997.5" cy="1030.75" rx="54.5000870856535" ry="32.750052331287" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(958.9 1019.75)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="22.599998" y="17">运行</tspan>
+        </text>
+      </g>
+      <g id="Graphic_3">
+        <ellipse cx="879.5" cy="1167.25" rx="54.5000870856534" ry="32.7500523312869" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(840.9 1156.25)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="22.599998" y="17">就绪</tspan>
+        </text>
+      </g>
+      <g id="Graphic_5">
+        <ellipse cx="1124" cy="1167.25" rx="54.5000870856536" ry="32.7500523312869" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1085.4 1156.25)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="22.599998" y="17">等待</tspan>
+        </text>
+      </g>
+      <g id="Line_6">
+        <line x1="1024.023" y1="1059.3697" x2="1090.7476" y2="1131.369" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_7">
+        <line x1="1069.5" y1="1167.25" x2="943.9" y2="1167.25" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_10">
+        <line x1="904.6304" y1="1138.1796" x2="965.8951" y2="1067.3098" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_11">
+        <text transform="translate(1056.5 1076)" fill="black">
+          <tspan font-family="PingFang SC" font-size="10" font-weight="400" fill="black" x="5.02" y="11">服务请求</tspan>
+          <tspan font-family="PingFang SC" font-size="10" font-weight="400" fill="black" x="43343107e-20" y="25">如请求IO等</tspan>
+        </text>
+      </g>
+      <g id="Graphic_12">
+        <text transform="translate(959.25 1153.25)" fill="black">
+          <tspan font-family="PingFang SC" font-size="10" font-weight="400" fill="black" x="0" y="11">服务完成/事件来到</tspan>
+        </text>
+      </g>
+      <g id="Graphic_13">
+        <text transform="translate(901 1090)" fill="black">
+          <tspan font-family="PingFang SC" font-size="10" font-weight="400" fill="black" x="0" y="11">进程调度</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>

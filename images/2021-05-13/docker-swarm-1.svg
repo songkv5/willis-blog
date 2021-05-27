@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="46 300 933 350" width="933" height="350">
+  <defs>
+    <font-face font-family="PingFang SC" font-size="16" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica Neue" font-size="10" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica Neue" font-size="13" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.18.5\n2021-05-20 09:30:55 +0000</metadata>
+  <g id="Canvas_1" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1" stroke="none">
+    <title>Canvas 1</title>
+    <rect fill="white" x="46" y="300" width="933" height="350"/>
+    <g id="Canvas_1_Layer_1">
+      <title>Layer 1</title>
+      <g id="Graphic_3">
+        <path d="M 168 301 L 367.5 301 C 369.70914 301 371.5 302.79086 371.5 305 L 371.5 387.5 C 371.5 389.70914 369.70914 391.5 367.5 391.5 L 168 391.5 C 165.79086 391.5 164 389.70914 164 387.5 L 164 305 C 164 302.79086 165.79086 301 168 301 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <g id="Graphic_4">
+        <path d="M 421 301 L 620.5 301 C 622.70914 301 624.5 302.79086 624.5 305 L 624.5 387.5 C 624.5 389.70914 622.70914 391.5 620.5 391.5 L 421 391.5 C 418.79086 391.5 417 389.70914 417 387.5 L 417 305 C 417 302.79086 418.79086 301 421 301 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <g id="Graphic_5">
+        <path d="M 665.5 301 L 967 301 C 969.2091 301 971 302.79086 971 305 L 971 387.5 C 971 389.70914 969.2091 391.5 967 391.5 L 665.5 391.5 C 663.2909 391.5 661.5 389.70914 661.5 387.5 L 661.5 305 C 661.5 302.79086 663.2909 301 665.5 301 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <g id="Line_7">
+        <line x1="48" y1="486.96436" x2="978" y2="484.466" stroke="#235e00" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <g id="Line_8">
+        <line x1="48" y1="547.5129" x2="978" y2="545.01456" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <g id="Line_9">
+        <line x1="48" y1="608.06144" x2="978" y2="605.5631" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <g id="Graphic_10">
+        <text transform="translate(55.896 491.96436)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="6039613e-20" y="17">Ingress</tspan>
+        </text>
+      </g>
+      <g id="Graphic_11">
+        <text transform="translate(53 555.01124)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="6963319e-19" y="17">overlay1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_12">
+        <text transform="translate(55.896 622.9304)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">docker_gwbridge</tspan>
+        </text>
+      </g>
+      <g id="Graphic_13">
+        <path d="M 283 339.5 L 357 339.5 C 359.20914 339.5 361 341.29086 361 343.5 L 361 367.5 C 361 369.70914 359.20914 371.5 357 371.5 L 283 371.5 C 280.79086 371.5 279 369.70914 279 367.5 L 279 343.5 C 279 341.29086 280.79086 339.5 283 339.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(284 349.36)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="10" font-weight="400" fill="black" x="2.66" y="10">demo_ws_sk.1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_14">
+        <path d="M 534 339.5 L 608 339.5 C 610.20914 339.5 612 341.29086 612 343.5 L 612 367.5 C 612 369.70914 610.20914 371.5 608 371.5 L 534 371.5 C 531.79086 371.5 530 369.70914 530 367.5 L 530 343.5 C 530 341.29086 531.79086 339.5 534 339.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(535 349.36)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="10" font-weight="400" fill="black" x="2.66" y="10">demo_ws_sk.2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_15">
+        <path d="M 781 339.5 L 855 339.5 C 857.2091 339.5 859 341.29086 859 343.5 L 859 367.5 C 859 369.70914 857.2091 371.5 855 371.5 L 781 371.5 C 778.7909 371.5 777 369.70914 777 367.5 L 777 343.5 C 777 341.29086 778.7909 339.5 781 339.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(782 349.36)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="10" font-weight="400" fill="black" x="2.66" y="10">demo_ws_sk.2</tspan>
+        </text>
+      </g>
+      <g id="Line_16">
+        <line x1="320.0139" y1="371.5" x2="320.11347" y2="486.23335" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_17">
+        <line x1="571.1051" y1="371.5" x2="571.8543" y2="485.5571" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_18">
+        <line x1="818.6881" y1="371.5" x2="823.5643" y2="484.8809" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_19">
+        <line x1="322.22078" y1="371.5" x2="346.5398" y2="546.7109" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_21">
+        <line x1="573.48296" y1="371.5" x2="600.5671" y2="546.0285" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_22">
+        <line x1="821.666" y1="371.5" x2="861.4941" y2="545.32754" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_25">
+        <path d="M 179.5 340 L 246 340 C 248.20914 340 250 341.79086 250 344 L 250 367.5 C 250 369.70914 248.20914 371.5 246 371.5 L 179.5 371.5 C 177.29086 371.5 175.5 369.70914 175.5 367.5 L 175.5 344 C 175.5 341.79086 177.29086 340 179.5 340 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(180.5 348.068)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="black" x="6.1265" y="12">Sandbox</tspan>
+        </text>
+      </g>
+      <g id="Graphic_26">
+        <path d="M 434.5 339.5 L 501 339.5 C 503.20914 339.5 505 341.29086 505 343.5 L 505 367 C 505 369.20914 503.20914 371 501 371 L 434.5 371 C 432.29086 371 430.5 369.20914 430.5 367 L 430.5 343.5 C 430.5 341.29086 432.29086 339.5 434.5 339.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(435.5 347.568)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="black" x="6.1265" y="12">Sandbox</tspan>
+        </text>
+      </g>
+      <g id="Graphic_27">
+        <path d="M 689.5291 339.02913 L 756.0291 339.02913 C 758.2383 339.02913 760.0291 340.82 760.0291 343.02913 L 760.0291 366.52913 C 760.0291 368.73827 758.2383 370.52913 756.0291 370.52913 L 689.5291 370.52913 C 687.32 370.52913 685.5291 368.73827 685.5291 366.52913 L 685.5291 343.02913 C 685.5291 340.82 687.32 339.02913 689.5291 339.02913 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(690.5291 347.09713)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="black" x="6.1265" y="12">Sandbox</tspan>
+        </text>
+      </g>
+      <g id="Line_28">
+        <line x1="214.43256" y1="371.5" x2="239.6492" y2="607.5466" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_29">
+        <line x1="467.86213" y1="371" x2="469.54186" y2="606.929" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_30">
+        <line x1="726.019" y1="370.52913" x2="774.4792" y2="606.10984" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_31">
+        <line x1="324.53788" y1="371.5" x2="391.36915" y2="607.139" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_32">
+        <line x1="575.74263" y1="371.5" x2="645.3872" y2="606.4566" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_33">
+        <line x1="822.6908" y1="371.5" x2="891.381" y2="605.7958" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_34">
+        <line x1="212.52984" y1="371.5" x2="210.92194" y2="486.5267" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_35">
+        <line x1="470.87703" y1="371" x2="493.6631" y2="485.76713" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_36">
+        <line x1="723.0129" y1="370.52913" x2="724.7144" y2="485.14644" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_37">
+        <text transform="translate(738.77 306)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">Node.3</tspan>
+        </text>
+      </g>
+      <g id="Graphic_38">
+        <text transform="translate(494.27 306)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">Node.2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_39">
+        <text transform="translate(242.862 306)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="831335e-18" y="17">Node.1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_40">
+        <path d="M 879.9709 340 L 953.9709 340 C 956.18 340 957.9709 341.79086 957.9709 344 L 957.9709 368 C 957.9709 370.20914 956.18 372 953.9709 372 L 879.9709 372 C 877.7617 372 875.9709 370.20914 875.9709 368 L 875.9709 344 C 875.9709 341.79086 877.7617 340 879.9709 340 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(880.9709 349.86)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="10" font-weight="400" fill="black" x="10.255" y="10">demo_ws.1</tspan>
+        </text>
+      </g>
+      <g id="Line_41">
+        <line x1="917.3624" y1="372" x2="920.1184" y2="484.6215" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_42">
+        <line x1="920.2664" y1="372" x2="968.3796" y2="605.58895" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>

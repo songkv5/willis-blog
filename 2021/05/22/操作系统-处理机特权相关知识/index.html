@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>操作系统-处理机特权级相关知识 | Willis's Note</title><link rel="stylesheet" type="text/css" href="/willis-blog/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/willis-blog/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/willis-blog/favicon.ico"><link rel="apple-touch-icon" href="/willis-blog/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/willis-blog/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">操作系统-处理机特权级相关知识</h1><a id="logo" href="/willis-blog/.">Willis's Note</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/willis-blog/."><i class="fa fa-home"> 首页</i></a><a href="/willis-blog/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/willis-blog/about/"><i class="fa fa-user"> 关于</i></a><a href="/willis-blog/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">操作系统-处理机特权级相关知识</h1><div class="post-meta">2021-05-22<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><h2 id="一、操作系统的组成"><a href="#一、操作系统的组成" class="headerlink" title="一、操作系统的组成"></a>一、操作系统的组成</h2><p>操作系统由内核(核心层)和其他操作系统功能组成. 核心层包括操作系统最重要的功能模块:<br>处理机管理、存储管理、设备管理、文件管理、中断(也称外部中断)和俘获(也称内部中断、异常)的处理.</p>
+<p>人们讨论操作系统的时候往往涉及的是操作系统内核. 所以, 许多场合,<strong>操作系统一般指的是操作系统内核</strong>.</p>
+<h2 id="二、操作系统运行时结构"><a href="#二、操作系统运行时结构" class="headerlink" title="二、操作系统运行时结构"></a>二、操作系统运行时结构</h2><p>操作系统是一个大型的「系统软件」,由程序(也叫例程)组成. 同时,操作系统又是一个服务系统, 它根据用户的请求而提供服务.操作系统运行过程中,<strong>它的例程如何被调用并提供服务呢</strong>?</p>
+<ol>
+<li>通过系统功能调用. 操作系统的服务例程以内核功能调用或库函数方式来提供,库函数的方式是假上市隐式的内核功能调用,即将内核功能调用通过包装后,以库函数的形式供用户使用. 操作系统被调用的服务例程作为用户进程的子例程(必须通过「陷入内核」的方式进入操作系统)</li>
+<li>客户/服务器方式,将操作系统服务作为系统服务进程来提供,服务请求响应通过消息传递方式来实现.提供服务的进程一般称为服务器,调用进程成为客户端.<ol>
+<li>适用于分布式系统</li>
+<li>便于实现多种不同的服务类型. 例如,通过Internet提供的各类服务</li>
+<li>具有良好的容错性. 当一个服务进程崩溃时,操作系统其他的服务可以继续工作</li>
+<li>客户端/服务器组织方式严格进行了功能性的分离,与相互调用的大型同类函数集合体相比较,使系统易于理解和维护.<br>缺点: 操作系统必须维持许多持久型的服务进程,这些进程要监听和响应各种不同的请求.<br><img src="/willis-blog/images/2021-05-22/os-1.svg" alt="系统调用-服务作为子例程"><br><img src="/willis-blog/images/2021-05-22/os-2.svg" alt="服务作为进程"></li>
+</ol>
+</li>
+</ol>
+<h2 id="三、处理机的状态"><a href="#三、处理机的状态" class="headerlink" title="三、处理机的状态"></a>三、处理机的状态</h2><p>操作系统的程序分为两大类: <strong>管理程序</strong>和<strong>用户程序</strong>.<br><strong>管理程序:</strong> 处理机调度程序、主存分配程序、IO管理程序等等. 是管理者和控制者, 权力、职责的象征,负责管理和分配系统资源, 为用户提供服务.<br><strong>用户程序:</strong> 用户程序运行时,必须向操作系统提出资源请求,自己不能随意取用系统资源. 例如, 不能直接启动外部设备工作,跟不能改变机器状态.</p>
+<p>对管理者而言,他的工作应该得到保护, 操作系统的管理程序不能被破坏,即必须为操作系统提供一个保护环境.<br><strong>处理机的状态:</strong> 指的是处理机当前处于何种状态, 正在执行哪类程序.<br>为了保护操作系统,至少需要区分两种状态: <strong>管态</strong>和<strong>用户态</strong>.</p>
+<ol>
+<li><p><strong>管态(Supervisor mode):</strong> 又称为系统态, <font color=#80404E>是操作系统的管理程序执行时,处理机所处的状态</font>. 在此状态下中央处理机可以使用全部机器指令,包括一组特权指令(例如, 设计外部设备的输入、输出指令,改变机器状态或者修改存储保护的指令), 可以使用所有的资源,允许访问整个存储区.</p>
+</li>
+<li><p><strong>用户态(User mode):</strong> <font color=#80404E>又称为目态,是用户程序执行时机器所处的状态</font>. 此状态下,禁用特权指令,不能直接去用资源与改变机器状态,并且只允许用户程序访问自己的存储区域.</p>
+<p> 有的操作系统还将管理程序执行时的机器状态进一步分为<strong>核态</strong>和<strong>管态</strong>, 这时, <strong>核态(Kernel mode)</strong> 就具有上述管态所具有的所有权限. <strong>管态</strong> 的权限有所变化, 管态允许使用一些用户态所不能使用的资源,但是不能使用修改机器的状态指令. 在无核态的系统,管态执行核态的全部功能.权限比较: 核态 &gt; 管态  &gt; 用户态</p>
+<p> <font color=#406F80 size=4>用户程序执行时,超出了它的权限(例如,企图访问操作系统核心数据或企图执行一个特权指令)都将发生<strong>中断(程序性中断)</strong>,系统从用户态转为管态,由操作系统得到CPU控制权,处理这一非法事件,这样可以保护操作系统不受破坏</font><br> <font color=#BD1232 size=4>用户程序请求操作系统服务的正确方式时通过系统功能调用. 用户程序执行时,若需要请求操作系统服务,则通过一种受控方式进入操作系统,将用户态转为核态,由操作系统得到控制权,在核态下执行其相应的服务例程,服务完毕后,返回用户态,让用户程序继续执行.</font></p>
+</li>
+</ol>
+<h4 id="特权指令与状态转换场景"><a href="#特权指令与状态转换场景" class="headerlink" title="特权指令与状态转换场景"></a>特权指令与状态转换场景</h4><ul>
+<li><strong>特权指令</strong></li>
+</ul>
+<ol>
+<li>改变机器状态的指令</li>
+<li>修改特殊寄存器的指令</li>
+<li>设计外部设备的输入/输出指令</li>
+</ol>
+<ul>
+<li>一下情况下,<strong>用户态自动转向管态</strong></li>
+</ul>
+<ol>
+<li>用户进程访问操作系统,要求操作系统的某种服务, 这种访问称为系统功能调用(system call)</li>
+<li>用户程序执行时,发生一次<strong>中断</strong>(如IO完成中断)</li>
+<li>用户进程中产生一个错误状态,这种状态被处理为<strong>程序性中断</strong>;</li>
+<li>在用户态下企图执行一条特权指令, 作为一种特殊类型的错误,并按情况3处理.</li>
+</ol>
+<h2 id="四、中断与中断处理"><a href="#四、中断与中断处理" class="headerlink" title="四、中断与中断处理"></a>四、中断与中断处理</h2><p><strong>概念</strong>: 中断是指某个事件(例如电源掉电、定点加法溢出或者IO传输结束等)发生时, 系统中止现行程序的运行、引出处理该事件的程序进行处理,处理完成后返回断点,继续执行.<br><img src="/willis-blog/images/2021-05-22/interupt-1.svg" alt="中断概念"><br><font color=#406F80 size=4>整个中断过程涉及<strong>用户程序</strong>和<strong>操作系统的中断程序</strong> 这两类程序.整个过程包括由硬件实现的中断进入、软件的中断处理过程、中断返回(由中断返回指令实现)这几个步骤. 中断过程是由一个中断信号引发的.</font></p>
+<p><strong>中断类型</strong><br>引起中断的事件(中断源)有多种,每一个中断事件称为一个中断类型.<br>(1)按中断功能分类</p>
+<ol>
+<li><strong>输入输出中断</strong>: 当外部设备或通道操作正常结束或发生某种错误时所发生的中断. 如: IO传输出错、IO传输结束等</li>
+<li><strong>外中断</strong>: 对某台中央处理机而言,他的外部非通道式装置所引起的中断称为外部中断. 如时钟中断、操作员控制台中断、多机系统中CPU到CPU的通信中断等<br>参考7.4.2</li>
+<li><strong>机器故障中断</strong>: 当机器发证故障时所产生的中断叫硬件故障中断. 例如,电源故障、通道与主存交换信息时主存出错、从主存取指令错、去数据错、长线传输时的奇偶校验错等</li>
+<li><strong>程序性中断</strong>: 在现行程序执行过程中, 发现了「程序性质的错误」或者出现了某些程序的「特定状态」而产生的中断称为程序性中断. 程序性错误: 定点溢出、十进制溢出、十进制数错、地址错、用户态下用核态指令、越界、非法操作等; 特点状态: 逐条指令跟踪、指令地址符合跟踪、转态跟踪、监视等</li>
+<li><strong>访管中断</strong>: 对操作系统提出某种需求(如请求IO传输、建立进程)时所发出的中断称为访管中断.</li>
+</ol>
+<p>(2)按中断方式分类</p>
+<ol>
+<li><strong>强迫性中断</strong>: 这类中断不是正在运行的程序所期待的,而是由某种事故或外部请求信号引起的.</li>
+<li><strong>资源中断</strong>: 运行程序所期待的事件,这类事件是由于运行程序请求操作系统服务而引起的.<br>上述的输入输出中断、外中断、机器故障中断、程序性中断属于强迫性中断,访管中断属于自愿中断</li>
+</ol>
+<p>(3)按中断来源分类</p>
+<ol>
+<li><strong>中断</strong>: 由处理机外部事件引起的中断称为外中断,又称为中断, 在x86中称之为一步中断,他是随着CPU的时钟随机产生,可能发生在一条指令执行过程中,也可能发生在一条指令执行后.包括IO中断,外中断</li>
+<li><strong>俘获</strong>: 由处理机内部时间引起的中断称为俘获, 在x86中成为一场,也称为同步中断.包括访管中断、程序性中断、机器故障中断. 同步中断指的是由CPU控制单元产生,是在一条指令执行完毕后才会发出中断.<br><font color=#406F80 size=4>现代一些小型机和微型机系统将所有中断按照中断来源分为中断和俘获(异常).在同时发生中断和俘获请求时,俘获总是优先得到响应和处理,所以他也称为高优先级中断.中断和俘获除了来源和响应的先后顺序不同以外,一般机器处理中断和俘获所使用的机构和方式基本上是相同的</font></li>
+</ol>
+<h3 id="中断处理"><a href="#中断处理" class="headerlink" title="中断处理"></a>中断处理</h3><ol>
+<li><strong>向量中断</strong>: 中断发生时, 由中断源自己引导进入中断服务程序的中断过程称为向量中断.<br><font color=#406F80 size=4>在向量中断中, 对于每一个中断类型都设置一个中断向量.每个中断向量包含两个字:第一个字含有中断服务例程的入口地址;第二个字时服务程序所用的处理器状态字</font><br><font color=#BD1232 size=4>系统中所有中断类型的中断向量放在一起,形成中断向量表.每台计算机的主存地址区有一组存储单元,用于存放中断向量表. 在向量中断中,由于每一个中断都有自己的中断向量,所以当发生某一中断事件时,可直接进入处理该事件的中断处理程序</font></li>
+<li><strong>探询中断</strong>: 探询中断的机制,将系统中所有中断类型分为几大类,每一大类中都包含若干个中断类型.当产生一个中断信号时,在探询中断机制下,由中断响应转入的是某一大类中断的处理程序入口,例如,转入到IO中断处理程序入口.在这一中断处理程序中,又一个中断分析例程用来分析、判断进入哪个具体的设备中断例程. 所以,向量中断和探询中断相比,在处理中断时间上可以大大缩短.「空间(中断向量表)换时间」.</li>
+</ol>
+<p>发现中断源而产生中断过程的设备称为中断装置,又称为中断系统.中断系统的职能是实现中断的进入,也就是实现中断响应的过程</p>
+<p><strong>中断进入过程</strong><br>当中断信号打算了某个用户程序执行时,即开始了中断过程的进入,这是,必须中止当前用户程序的执行,自动的引出处理这一事件的中断处理程序.为了能自动引出中断处理程序,要一句中断类型,通过中断向量表找到该中断处理程序的执行地址.</p>
+<ol>
+<li>保存现场和恢复现场.<br>现场指的是在中断的那一刻能确保程序继续运行的有关信息.</li>
+<li>程序状态字<br>程序运行时,他的运行状态时不断变化的. 如程序运行所处的状态(核态还是用户态)、后继指令地址、指令执行情况,这些信息基本上反映了程序运行过程中指令一级的瞬间状态.这些信息是动态变化的、十分重要的. 为此,操作系统将这一组信息组织在一起,称为程序状态字,并存放在特定的寄存器中.</li>
+<li>中断响应<br>中断响应的实质: 交换用户程序和响应中断处理程序的指令执行地址和处理器状态,从而达到如下目的:<br> 1)保留程序断点及有关信息;<br> 2)自动转入响应的中断处理程序执行.</li>
+</ol>
+<h2 id="五、系统功能调用"><a href="#五、系统功能调用" class="headerlink" title="五、系统功能调用"></a>五、系统功能调用</h2><p><font color=#406F80 size=4 weight=ligtht>用户需要的各种功能,在操作系统设计时,就确定和编制好能实现这些功能的理性子程序,他们属于操作系统「内核模块」. 操作系统的例行子程序不能采用用户程序哪种方式来调用,因为用户程序运行时处于「用户态」,而操作系统例行子程序执行时处于「管态」. 用户程序请求操作系统服务时, 会发生处理机状态的改变,有用户态转变为管态. 而应用程序调用子程序是, 同处于「用户态」,不会发生处理机状态的改变. 用户程序与操作系统例行子程序的调用以一种特殊的调用方式,就是访管方式来实现</font></p>
+<ol>
+<li><p><strong>访管指令</strong><br>访管指令的一般形式如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svc n;</span><br></pre></td></tr></table></figure>
+<p>访管指令,就是用于调用这些预先编制好的、具有特定功能的操作系统内核的例行子程序. scv(supervisor call的缩写), 表示机器自愿进管指令的操作记忆符, n为地址码, 用来标识系统调用的功能号,他是操作系统提供的众多例行子程序的编号. 访管指令传入相应的号码,就能是控制转到特定的例行子程序区执行,实现用户所需要的服务.<br><font color=#BD1232 size=4>当处理机执行到访管指令时就发生「中断」,成为「访管中断/自愿进管中断」,表示正在运行的程序对曹旭哦系统的某种需求. 借助中断,机器状态由用户态转为管态,进入访管中断处理程序,经过访管中断处理程序的处理,控制会转到用户所需的那个例行子程序.如何找到那个子程序, 就是通过上面的地址码</font></p>
+</li>
+<li><p><strong>访管指令与系统功能调用的联系和区别</strong><br><font color=#BD1232 size=4>区别</font><br>(1)系统功能调用是「操作系统」提供的「程序接口」,是操作系统命令集中的一部分; 而访管指令是一条机器指令,是裸机提供的接口.<br>(2)系统功能调用是软件实现的;访管指令是通过硬件实现的<br><font color=#BD1232 size=4>联系</font><br>(1)每一个带有确定功能号的访管指令对应一条操作系统的系统功能调用,即一个带有一定功能号的访管指令定义了一个系统调用. 或者说, 系统调用时利用“访管指令”定义的命令.</p>
+<blockquote>
+<p><font size=3 color=#7CB5B5>不同的程序设计语言提供的操作系统服务的调用方式不同,他们有显式调用和隐式调用之分. 例如,汇编语言采用显式调用,c语言等高级语言采用隐式调用</font></p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<p>参考文献<br><font size=3 color=#7CB5B5>《计算机操作系统》</font></p>
+</div><div class="tags"></div><div class="post-nav"><a class="pre" href="/willis-blog/2021/05/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B&amp;%E7%BA%BF%E7%A8%8B/">操作系统-进程/线程</a><a class="next" href="/willis-blog/2021/05/18/Docker%E5%B7%A5%E5%85%B7-Docker%20Machine/">Docker Machine</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="https://willis-song.gitee.io/willis-blog"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/willis-blog/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/willis-blog/tags/InnoDb/" style="font-size: 15px;">InnoDb</a> <a href="/willis-blog/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/willis-blog/tags/elastic/" style="font-size: 15px;">elastic</a> <a href="/willis-blog/tags/Dubbo/" style="font-size: 15px;">Dubbo</a> <a href="/willis-blog/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 15px;">微服务</a> <a href="/willis-blog/tags/%E6%B8%B8%E7%8E%A9/" style="font-size: 15px;">游玩</a> <a href="/willis-blog/tags/jvm/" style="font-size: 15px;">jvm</a> <a href="/willis-blog/tags/java/" style="font-size: 15px;">java</a> <a href="/willis-blog/tags/Swarm/" style="font-size: 15px;">Swarm</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/05/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B&%E7%BA%BF%E7%A8%8B/">操作系统-进程/线程</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/05/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%A4%84%E7%90%86%E6%9C%BA%E7%89%B9%E6%9D%83%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">操作系统-处理机特权级相关知识</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/05/18/Docker%E5%B7%A5%E5%85%B7-Docker%20Machine/">Docker Machine</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/05/13/docker%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/">docker网络模型</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/03/25/Docker-Registry/">Docker-registry</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/03/25/%E6%B8%B8%E7%8E%A9%E6%94%BB%E7%95%A5/">游玩攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/03/07/Docker-Swarm%E5%85%A5%E9%97%A8/">Docker swarm-入门</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/dubbo%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">dubbo线程模型</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/Dubbo-Service%20Consumer/">2021-02-24-Dubbo-Service Consumer</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2020/12/06/%E5%A4%9A%E7%BA%BF%E7%A8%8B-SynchronousQueue%E7%AC%94%E8%AE%B0/">多线程-SynchronousQueue笔记</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.baidu.com/" title="百度" target="_blank">百度</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/willis-blog/." rel="nofollow">Willis's Note.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/willis-blog/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/willis-blog/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/willis-blog/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/willis-blog/js/smartresize.js?v=1.0.0"></script></div></body></html>

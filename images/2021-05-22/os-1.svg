@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="239 221 211 257" width="211" height="257">
+  <defs>
+    <font-face font-family="PingFang SC" font-size="13" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="StickArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 0 M 0 -3 L 8 0 L 0 3" fill="none" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="PingFang SC" font-size="8" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.18.5\n2021-05-22 06:07:37 +0000</metadata>
+  <g id="版面___" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1" stroke="none">
+    <title>系统调用</title>
+    <rect fill="white" x="239" y="221" width="211" height="257"/>
+    <g id="版面____系统调用">
+      <title>系统调用</title>
+      <g id="Graphic_2">
+        <path d="M 325.5 221.5 L 445.5 221.5 C 447.70914 221.5 449.5 223.29086 449.5 225.5 L 449.5 465 C 449.5 467.20914 447.70914 469 445.5 469 L 325.5 469 C 323.29086 469 321.5 467.20914 321.5 465 L 321.5 225.5 C 321.5 223.29086 323.29086 221.5 325.5 221.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_3">
+        <text transform="translate(346.5 241.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="black" x="0" y="14">操作系统内核</tspan>
+        </text>
+      </g>
+      <g id="Line_5">
+        <line x1="243.5" y1="229" x2="243.24837" y2="290.03243" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_6">
+        <line x1="243.5" y1="406.56766" x2="243.24837" y2="467.6001" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_7">
+        <line x1="379.29245" y1="301.20968" x2="379.42204" y2="396.66766" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_8">
+        <line x1="243.20755" y1="299.93234" x2="369.3929" y2="301.11676" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Line_12">
+        <line x1="379.4355" y1="406.56766" x2="253.4" y2="406.56766" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Graphic_15">
+        <text transform="translate(258.85378 278.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="8" font-weight="400" fill="black" x="0" y="8">库或内核调用</tspan>
+        </text>
+      </g>
+      <g id="Graphic_16">
+        <text transform="translate(362 339.75)" fill="black">
+          <tspan font-family="PingFang SC" font-size="8" font-weight="400" fill="black" x="0" y="8">服务例程</tspan>
+        </text>
+      </g>
+      <g id="Graphic_17">
+        <text transform="translate(280.5 385)" fill="black">
+          <tspan font-family="PingFang SC" font-size="8" font-weight="400" fill="black" x="0" y="8">返回</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>
