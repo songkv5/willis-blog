@@ -2,7 +2,7 @@
 <li>设计标准<br>CNM: 容器网络模型(Container network model), 是容器网络的设计标准,一套规范. 它规定了docker网络架构的基础组成要素.<ol>
 <li><strong>沙盒(SandBox)</strong>: 一个独立的网络栈,或者网络命名空间。其中包括以太网接口、端口、路由表以及 DNS 配置</li>
 <li><strong>终端(End Point)</strong>: 虚拟网络接口。就像普通网络接口一样，负责接收网络连接,如一个veth对. 一个沙盒可能包含多个Endpoint*。</li>
-<li><strong>网络(Network)</strong>: 802.1d 网桥（类似大家熟知的交换机）的「软件实现」.网络就是需要交互的终端的集合，并且终端之间相互独立。这个模块的作用就是保证容器之间的通信.<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wpqwpq/p/5720606.html">什么是网桥</a><br>CNM模型参考下图<br><img src="http://c.biancheng.net/uploads/allimg/190418/4-1Z41Q55GJ60.gif" alt="CNM模型组成"><br>网络互联模型参考下图<br><img src="http://c.biancheng.net/uploads/allimg/190418/4-1Z41Q60051393.gif" alt="网络互联"></li>
+<li><strong>网络(Network)</strong>: 802.1d 网桥（类似大家熟知的交换机）的「软件实现」.网络就是需要交互的终端的集合，并且终端之间相互独立。这个模块的作用就是保证容器之间的通信.<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wpqwpq/p/5720606.html">什么是网桥</a><br>CNM模型参考下图<br><img src="http://c.biancheng.net/uploads/allimg/190418/4-1Z41Q55GJ60.gif" alt="CNM模型组成"><br>网络互联模型参考下图<br><img src="http://c.biancheng.net/uploads/allimg/190418/4-1Z41Q60051393.gif" alt="网络互联"> </li>
 </ol>
 </li>
 </ul>
@@ -18,7 +18,7 @@
 </ul>
 <p>具体网络说明:</p>
 <ul>
-<li><p>ingress: 是一个特殊的overlay网络, 用于服务节点之间的「负载均衡」.当然和swarm节点在发布端口上接收到请求时,会将请求提交给一个IPVS模块. IPVS模块跟踪该服务的所有ip地址,选择其中一个,并通过ingress网络找到他. swarm初始化或者加入swarm集群的时候会自动创建ingress 网络.<br><img src="/willis-blog/images/2021-05-13/ingress-routing-mesh.png" alt="ingress工作模式"><br><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/swarm/ingress/">官网链接</a></p>
+<li><p>ingress: 是一个特殊的overlay网络, 用于服务节点之间的「负载均衡」.当任何swarm节点在发布端口上接收到请求时,会将请求提交给一个IPVS模块. IPVS模块跟踪该服务的所有ip地址,选择其中一个,并通过ingress网络找到他. swarm初始化或者加入swarm集群的时候会自动创建ingress 网络.<br><img src="/willis-blog/images/2021-05-13/ingress-routing-mesh.png" alt="ingress工作模式"><br><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/swarm/ingress/">官网链接</a></p>
 </li>
 <li><p>docker_gwbridge: 一个特殊的桥接网络. 将overlay(overlay用于连接所有swarm节点)网络连接到docker守护进程的物理网络.docker_gwbridge网络在初始化或加入集群是创建.</p>
 </li>
