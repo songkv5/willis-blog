@@ -97,6 +97,113 @@
 <h3 id="8-调度"><a href="#8-调度" class="headerlink" title="8. 调度"></a>8. 调度</h3><p>进程调度分为「调度」和「分派」两部分.分别由调度程序和分派程序执行.<font color="#406F80">调度程序负责将一个进程插入到就绪队列并按照一定原则保持队列结构;分派程序是将进程从就绪队列中移出并建立该进程执行的机器状态</font></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进程调度的功能: 进程调度是指按照一定的调度策略,动态地把处理机分配给就绪队列中的某一进程,使之执行. 具体分为三步:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>记录进程有关情况</strong>.进程在活动期间其状态是可以改变的,如由运行转换到阻塞、由就绪转到运行.相应的,该进程的PCB就在运行指针、各种等待队列和就绪队列之间转换.进程进入就绪队列的排序规则体现了调度思想.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>决定分配策略</strong>. 在处理机空闲时,根据一定的原则选择一个进程去运行,同时确定获得处理机的时间片的长短.进程调度策略实际上是由就绪队列的排序原则体现的.若按优先调度原则,进程就绪队列按优先级高低排序;若按先来先服务原则,则按进程来到的先后顺序排序.由「入链子程序」实施这一功能.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) <strong>实施处理机的分配和回收</strong>.当调度时机来到时,根据调度原则选择一个进程去运行,将选中进程从就绪队列中移出,改状态为“运行”,并将该进程的处理机线程信息送到相应的寄存器中,将处理机控制权真正交给被选中的进程.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进程切换: 保留原来运行进程的状态信息,并用保留在选中进程PCB中的状态信息设置CPU现场. 进程切换所需的时间是额外开销,因为切换时系统并不能做其他工作.进程切换所需的时间与硬件息息相关,如主存速度、要复制的寄存器数量、是否有特殊指令等.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进程调度时机:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1)进程完成其任务时;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2)在一次系统调用之后(中断),该调用使用当前进程暂时不能继续运行时;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3)在一次出错陷入之后,该陷入使现行进程在出错处理时「被挂起时」;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4)在分时操作系统中,当进程用完规定的时间片,时钟中断时该进程让出处理时机;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(5)在采用可剥夺调度方式的系统,当具有更高优先级的进程要求处理机时.</p>
 <h4 id="线程调度"><a href="#线程调度" class="headerlink" title="线程调度"></a>线程调度</h4><p>线程调度采用优先调度算法.对于任务较紧急,重要的线程,赋予较高的优先级.线程就绪队列按照优先级的高低排序,对于优先级相同的进程,遵循“先进先出”的原则.<br><strong>举例:</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在windows系统中,有两个调度程序,一个是初始调度程序,一个是时间片调度程序. 初始调度程序负责计算线程优先级;时间片调度程序负责确定时间,并分配给线程.具体过程如下<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) 初始调度程序考察系统的每个进程,计算进程读经线程的执行优先级,去0 ~ 31之间的整数;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) 初始调度程序确定当前具有最高优先级的线程,低于此值的正在运行的线程将被挂起,一旦某个线程被挂起,初始调度程序在这个时间片期间不会再注意盖线程,除非再进行优先级的计算;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) 时间片调度程序根据优先级值和VM的当前状态计算并分配给每个线程时间片的分数;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) 线程运行;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(5) 初始调度程序每隔20ms再次计算线程的优先级并作出评级</p>
+<h3 id="9-Linux进程管理"><a href="#9-Linux进程管理" class="headerlink" title="9. Linux进程管理"></a>9. Linux进程管理</h3><h4 id="9-1-进程描述符"><a href="#9-1-进程描述符" class="headerlink" title="9.1 进程描述符"></a>9.1 进程描述符</h4><p>Linux系统中描述进程的数据结构称为进程描述符(Processor Descriptor,下用PD指代),它包含了一个具体进程的所有状态,完整地描述一个正在执行的程序.在Linux中,进程描述符PD就相当于进程控制块PCB.进程描述符task_struct结构字段如下.</p>
+<table>
+<thead>
+<tr>
+<th align="left">字段</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">state</td>
+<td align="left">进程状态.描述了进程当前的状态</td>
+</tr>
+<tr>
+<td align="left">prio</td>
+<td align="left">优先级</td>
+</tr>
+<tr>
+<td align="left">pid</td>
+<td align="left">进程的pid</td>
+</tr>
+<tr>
+<td align="left">tgid</td>
+<td align="left">线程组领头进程的PID</td>
+</tr>
+<tr>
+<td align="left">pgrp</td>
+<td align="left">进程组领头的进程ID</td>
+</tr>
+<tr>
+<td align="left">session</td>
+<td align="left">会话领头的进程pid</td>
+</tr>
+<tr>
+<td align="left">thread_info</td>
+<td align="left">指向进程基本信息块的指针</td>
+</tr>
+<tr>
+<td align="left">run_list</td>
+<td align="left">进程调度有关的字段. 指向进程队列.</td>
+</tr>
+<tr>
+<td align="left">real_parent</td>
+<td align="left">指向创建p进程的父进程的描述符,若该父进程不在,就指向1#进程(init进程)</td>
+</tr>
+<tr>
+<td align="left">parent</td>
+<td align="left">指向p进程的当前父进程,它的值通常与real_parent一致,偶尔也有不同</td>
+</tr>
+<tr>
+<td align="left">children</td>
+<td align="left">链表的头部,连表中的所有进程都是p进程创建的子进程.「指向子进程链表头指针」</td>
+</tr>
+<tr>
+<td align="left">sibling</td>
+<td align="left">指向兄弟进程链表中的下一个或前一个元素的指针</td>
+</tr>
+<tr>
+<td align="left">fs</td>
+<td align="left">指向当前目录的指针</td>
+</tr>
+<tr>
+<td align="left">files</td>
+<td align="left">指向文件描述符的指针</td>
+</tr>
+<tr>
+<td align="left">mm</td>
+<td align="left">指向主存描述符的指针.指向主存描述符</td>
+</tr>
+<tr>
+<td align="left">sigal</td>
+<td align="left">指向信号结构的指针.指向所接收的信号</td>
+</tr>
+<tr>
+<td align="left">tty</td>
+<td align="left">指向tty结构的指针</td>
+</tr>
+<tr>
+<td align="left">…</td>
+<td align="left">…</td>
+</tr>
+</tbody></table>
+<p><em>进程描述符相关字段说明</em></p>
+<ul>
+<li><p><strong>进程状态</strong><br>(1)可运行状态 <font color=#BD1232>TASK_RUNNING</font>. Linux的可运行状态细分为一下两种情形<br>i 运行: 该进程正在CPU上运行,存储管理地址映射机构正指向该进程;<br>ii就绪: 该进程正在运行队列上等待运行<br><br>(2)可中断的等待状态<font color=#BD1232>TASK_INTERRUPTIBLE</font><br>进程处于挂起或睡眠状态, 正在等待某一事件的发生.当检查到正式等待的事件(条件为真)是,已出等待该事件的队列,转变为就绪状态.<font color=#406F80>进程被挂起(睡眠)，直到某个条件变为真。一旦该条件为真，内核会设置进程的状态为 TASK_RUNNIN。产生一个硬件中断，释放进程正等待的系统资源，或传递一个信号都可以是可以唤醒进程的条件。</font><br><br>(3)不可中断的等待状态<font color=#BD1232>TASK_UNINTERRUPTIBLE</font><br>与TASK_INTERRUPTIBLE类似,不同的是,信号传递到睡眠进程并不能改变其状态. 进程必须等待,直到使他不能中断的那个事件结束.<font color=#406F80>例如, 一个进程打开一个设备文件,其相应的设备驱动程序开始工作. 设备驱动程序在探测所需启动的硬件设备时,设置这种状态. 在探测完成之前,设备驱动程序不能被中断,否则设备状态会处于不可预知的状态.</font><font color=#BD1232>不可中断，指的并不是CPU不响应外部硬件的中断，而是指进程不响应异步信号。绝大多数情况下，进程处在睡眠状态时，总是应该能够响应异步信号的。否则你将惊奇的发现，kill -9竟然杀不死一个正在睡眠的进程了！于是我们也很好理解，为什么ps命令看到的进程几乎不会出现TASK_UNINTERRUPTIBLE状态，而总是TASK_INTERRUPTIBLE状态。</font><br>(4)暂停状态<font color=#BD1232>TASK_STOPPED</font><br>进程停止执行. 当进程接收到SIGSTOP、SIGTSTP、SIGTTIN、SIGTTOUT等信号时,会发生这种状态<br>(5)终止状态<font color=#BD1232>TASK_ZOMBIE</font><br>进程执行被终止. 此时,父进程还没有发出waitpid()系统调用来回收该撤销进程的信息(即被撤销进程描述符中的有关数据未被父进程接收)</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">S（Interruptible sleep）：可中断休眠状态。</span><br><span class="line">D（Uninterruptible sleep）：不可中断休眠状态。</span><br><span class="line">R（Running or runnable）：执行或者在可执行队列中。</span><br><span class="line">Z（Zombie process）：僵尸。</span><br><span class="line">T（Stopped）：暂停。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>进程优先级</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进程优先级反映了进程需要运行的紧迫程度. Linux内核提供两组独立的优先级范围.<font color=#BD1232>第一种nice值</font>,范围从-20 ~ +19,默认值为0. nice值越大优先级越低.<font color=#BD1232>第二是实时优先级</font>,范围从0 ~ 99..<font color=#406F80>总的来说，Linux系统中运行的进程可以分成两类:实时进程;它们的主要区别就是通过优先级来区分的。所有优先级值在0-99范围内的，都是实时进程，所以这个优先级范围也可以叫做实时进程优先级，而100-139范围内的是非实时进程。Linux实际上实现了140个优先级范围，取值范围是从0-139，这个值越小，优先级越高。nice值的-20到19，映射到实际的优先级范围是100-139(-20(100) ~ 19(139))。</font></p>
+</li>
+<li><p><strong>进程标识</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进程标识符process ID,简称pid用来标识一个进程.pid放在进程描述符的pid字段中.PID在系统中时顺序编号的,且存在上限(32为系统最大是32767),当内核使用的PID达到上限,必须循环使用已闲置的小的PID好.</p>
+</li>
+<li><p><strong>进程基本信息块thread_info</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每个进程都有一个基本信息块. PD中的thread_info字段包含了指向该结构的指针. thread_info位于进程内核栈的尾端,在该结构的TASK域存放的是指向该进程的task_struct的指针.thread_info结构是为了快速找到进程描述符而设置的.<br><font color=#BD1232><strong>一般情况下,系统都提供current宏,以方便找到当前正在运行的进程描述符</strong>,current宏的实现必须针对具体的硬件体系结构来处理. 所以,不同的硬件体系结构的current宏的处理方法不同. 如果硬件的寄存器较多,可以专门用一个寄存器来存放指向当前PD的指针, 这样做,处理速度最快. 而向x86这张的体系结构,由于硬件寄存器并不富裕,只能用其他办法解决. 因此, x86上的Linux设计了一个thread_info结构,称为进程基本信息块,又称为线程描述符. Linux系统将内核态的进程堆栈和thread_info结构组织在一起,存放在一个单独为进程分配的区域,该区域一般占用两个连续的「页框」.如图, thread_info结构放在内核栈的尾端,其中task字段存放着指向进程描述符task_struct的指针.而在进程描述符的thread_info字段存放的是指向thread_info结构的指针. Linux系统内核堆栈域thread_info结构紧密结合,一起存放,其好处是,内核很容易从esp的值获得当前在CPU上运行的进程的thread_info结构地址.获得thread_info结构地址后,再从thread_info结构的task域提取并返回PD的地址</font><font color=#406F80>linux中,每个进程都有一个单独内核栈(考虑这是否就是”自陷“说法的由来?)</font><br><img src="/willis-blog/images/2021-05-23/thread_info.svg" alt="内核栈与thread_info结构"></p>
+</li>
+<li><p><strong>与调度有关的字段</strong><br>Linux系统采用优先调度策略,每个进程都有一个优先级. 当CPU空闲时,进程调度程序选一个优先级最高的进程去运行. Linux2.6版本为了实现灵活、有效的进程调度,对处于就绪状态的进程按优先级的高低组织成多个进程链表.<font color=#BD1232>系统给每个进程去定一个优先级(对应一个优先数),其值为k(0 ~ 139). 系统将处于同一优先级的进程组成一个队列,每种优先级对应一个不同的链表.这样,Linux系统中运行进程链表最多有140个(对应140个优先级).</font></p>
+</li>
+</ul>
+<h4 id="9-2-Linux进程的创建和终止"><a href="#9-2-Linux进程的创建和终止" class="headerlink" title="9.2 Linux进程的创建和终止"></a>9.2 Linux进程的创建和终止</h4><ol>
+<li><p>Linux进程的创建<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;传统的Linux系统用fork()系统调用来创建一个进程,它是通过子进程复制父进程所拥有的资源的方法来实现的.<font color=#BD1232>这种方法效率较低,因为,子进程需要拷贝父进程所有的地址空间,实际上子进程几乎不用读或修改父进程拥有的资源. 在很多情况下,子进程会立即调用exec()系统调用,执行一个新的文件,并清除从父进程拷贝过来的地址空间.</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux的fork()对此问题进行了优化,使用<font color=#BD1232><strong>写时拷贝(copy-on-write)</strong></font>.<font color=#406F80>写时拷贝指的是在创建新进程时,内核并不复制父进程的整个地址空间,而是让父进程和子进程共享同一拷贝(以只读方式共享). 只有当一方真正需要写入时,数据才被复制,这是,父子进程才拥有各自的拷贝.换句话说,资源的复制只有在需要写入时才进行. </font>采用这种技术,fork()后立即调用exec()函数,父进程的地址空间是不会被复制的.一般情况下, 调用fork()后,都会立即调用exec()函数,所以这项技术能极大提高进程创建的效率.<br><em>进程创建过程</em>:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Linux提供fork()和clone()系统调用支持进程的创建. fork()用来创建一般进程,clone()用于创建轻量级进程(线程).Linux 系统通过clone()函数来实现fork()功能,该调用通过一系列的参数标志来指明父、子进程需要共享的资源.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clone()函数的主要工作是调用do_fork(). do_fork()完成了创建进程的大部分工作.在do_fork()中为新的进程分配新的PID(通过查找pidmap_array位图);根据父进程中设置的若干标志进行相应处理,其中最重要的是调用copy_process()函数来创建PD以及子进程执行所需要的所有其他的内核数据结构.copy_process()函数的主要工作如下:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) 调用dup_task_struct()为新的进程创建内核栈、thread_info结构和task_struct.此时,子进程和父进程的描述符是完全相同的.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) 子进程描述符的一些成员被清0或被设置为初始值,而大多数结构是共享的.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) 检查系统中的进程数量是否超过了max_threads变量的值.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) 子进程的状态被设置为TASK_UNINTERRUPTIBLE,以保证他不会被投入运行.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(5) 调用copy_flags(0)以更新flags成员;将表明进程是否拥有超级用户权限的PF_SUPERPRIV标志清0;设置表明进程还没有调用exec()函数的PF_FPRKNOEXEC标志.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(6) 将新进程的PID存入进程描述符的pid字段.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(7) 根据传递给clone()函数的参数标志,拷贝或共享打开的文件、文件系统信息、信号处理函数、进程地址空间和命名空间等.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(8) 父子进程平分剩余的时间片<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(9) 扫尾工作并返回一个指向子进程的指针.</p>
+</li>
+<li><p>Linux进程的终止<br>linux系统提供exit()系统调用以终止一个进程.所有进程的终止都是由do_exit()函数来处理.主要工作如下:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1)将task_struct中的flags字段设置为PF_EXITING标志,以表示该进程正在被删除.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2)分别调用exit_mm(),exit_sem(),__exit_files(),__exit_fs(),exit_namespace()和exit_thread()函数,从进程描述符中分离出与分页、信号量、文件系统、打开文件描述符、命名空间相关的数据结构.若无别的进程共享这些数据结构,则彻底释放它们<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3)将进程描述符的exit_code字段设置为进程的终止代码,该终止代码可供父进程随时检索.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4)调用exit_notify()向父进程发信号,更新父进程和子进程的亲属关系,并将进程状态设置为TASK_ZOMBIE.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(5)最后,调用schedule()进程调度程序,调另一个进程运行.<br><font color=#406F80>进程终止后,此进程处于僵死状态(僵尸进程),但系统还保留了他的进程描述符.Linux系统与unix系统一样,将进程终止是所需要做的清理工作和进程描述符的删除分两步执行.<strong>只有父进程发出了与被终止进程相关的wait()系统调用后,子进程的task_struct结构才能释放</strong>. wait()函数系统调用在最后会调用release_task(),release_task()函数调用put_task_struct(),以释放进程内核栈和thread_info结构所占用的页并释放task_struct所占用的空间.至此,进程描述符和进程占有的所有资源就全部释放.</font>所以,父进程要尽量保证调用wait()方法,否则,进程描述符和进程内核栈都没有回收,长期执行下去会导致系统资源越来越少,最终无法支持程序运行.</p>
+</li>
+<li><p>Linux进程的等待<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;运行进程需要等待某一事件时会转变为等待状态.Linux系统设置了TASK_INTERRUPTIBLE 和TASK_UNINTERRUPTIBLE两种不同的进程等待状态.关于区别,参考上述进程状态的描述.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux系统设置了等待队列,进程等待实质上是通过加入某一等待队列来实现的.等待队列是由等待某一事件发生的进程组成的进程链表,linux内核用wake_queue_head_t表示等待队列.进程需要等待某一事件时,加入到相应的等待队列并设置成不可执行的状态.当与等待队列相关的事件发生时,队列上的进程会被唤醒.进程等待的主要步骤如下<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) 调用declare_waitqueue()创建一个等待队列的元素.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) 调用add_wait_queue()将该元素加入到等待队列.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) 进程的状态设置为TASK_INTERRUPTIBLE或TASK_UNINTERRUPTIBLE<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) 转进程调度程序schedule().</p>
+</li>
+<li><p>Linux进程的唤醒<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进程等待的状态有TASK_INTERRUPTIBLE 和TASK_UNINTERRUPTIBLE, 所以当信号来到或发生等待的事件时都会唤醒进程.进程唤醒的主要工作如下:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) 当进程状态设置为TASK_INTERRUPTIBLE,则由信号唤醒进程,这是所谓的伪唤醒(不是直接邮所等待的事件唤醒),因此需要检查并处理信号.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) 若检查条件为真(所等待的事件发生),转(4); 若条件不为真,转调度程序schedule();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) 当进程被唤醒时(因事件发生),检查条件是否为真,若为真转(4);否则转进程调度程序schedule();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) 当条件满足时,进程状态设置为TASK_RUNNING,并调用remove_wait_queue()将该进程已出等待队列<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(5) 调用rry_to_wait_up(),该函数将进程状态设置为TASK_RUNNING,再调用activate_task()将此进程加入到可执行队列.若被唤醒进程的优先级比当前正在运行的进程优先级高,设置need_resched标志.</p>
+</li>
+</ol>
+<h4 id="9-3-Linux线程"><a href="#9-3-Linux线程" class="headerlink" title="9.3 Linux线程"></a>9.3 Linux线程</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux系统将所有线程当作进程来实现, 线程仅仅被看作是一个与其他进程共享某些资源的进程. 所以Linux内核并没有针对线程的数据结构和特别的调度算法,每个线程拥有自己的进程描述符task_struct.在Linux中线程只是进程间共享资源的一种手段.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;内核线程: 内核线程在后台执行一些操作,他是独立运行在内核空间的标准进程. 特点: 没有独立的地址空间;只在内核空间运行,从不切换到用户空间;可以被调度,被抢占. 内核线程只能有内核线程来创建,新的内核线程通过clone()创建.Linux系统的内核线程所完成的主要任务包括: 刷新磁盘高速缓存、换出不用的页面、维护网络连接、处理与高级电源管理(APM)相关的事件等.</p>
+<h4 id="9-4-Linux系统的进程调度"><a href="#9-4-Linux系统的进程调度" class="headerlink" title="9.4 Linux系统的进程调度"></a>9.4 Linux系统的进程调度</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color=#BD1232>Linux系统采用的是动态优先数加可变时间片的调度算法,也是可抢占的调度方式</font>Linux系统选择优先级高的进程先运行,低的后运行,相同优先级的进程按循环方式调度.优先级高的进程分配的时间片较长,调度程序总是优先酸则时间片未用完,且优先级最高的进程先运行.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux系统实现了基于进程的过去行为的启发式算法.进程有一个动态优先级,「调度程序」会根据进程占有cpu的情况、休眠时间的长短来加、减优先级. 系统根据进程动态优先级调整分配给它的时间片. 另一方面,若某一个可运行进程的优先级变化后比正在运行进程的优先级高,就可以实施抢占方式.这样,可是那些较长时间内没有使用cpu的进程,通过动态增加其优先级获得奖励;而那些在cpu上运行较长时间的进程,通过降低优先级来惩罚它们.</p>
 <hr>
-<p>参考文献<br><font size=3 color=#7CB5B5>《计算机操作系统》</font></p>
+<p>参考文献<br><font size=3 color=#7CB5B5>《计算机操作系统》</font><br><font size=3 color=#7CB5B5><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/57013926">https://www.zhihu.com/question/57013926</a></font><br><font size=3 color=#7CB5B5><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/365401177">https://zhuanlan.zhihu.com/p/365401177</a></font><br><font size=3 color=#7CB5B5><a target="_blank" rel="noopener" href="https://www.huaweicloud.com/articles/2d186eec85576a1d4e24e130540167c7.html">https://www.huaweicloud.com/articles/2d186eec85576a1d4e24e130540167c7.html</a></font><br><font size=3 color=#7CB5B5><a target="_blank" rel="noopener" href="https://linux.cn/article-7325-1.html">https://linux.cn/article-7325-1.html</a></font></p>
 </div><div class="tags"></div><div class="post-nav"><a class="pre" href="/willis-blog/2021/06/03/Maven%E7%9A%84docker%E6%8F%92%E4%BB%B6/">Maven的Docker插件</a><a class="next" href="/willis-blog/2021/05/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%A4%84%E7%90%86%E6%9C%BA%E7%89%B9%E6%9D%83%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">操作系统-处理机特权级相关知识</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="https://willis-song.gitee.io/willis-blog"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/willis-blog/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/willis-blog/tags/InnoDb/" style="font-size: 15px;">InnoDb</a> <a href="/willis-blog/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/willis-blog/tags/elastic/" style="font-size: 15px;">elastic</a> <a href="/willis-blog/tags/Dubbo/" style="font-size: 15px;">Dubbo</a> <a href="/willis-blog/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 15px;">微服务</a> <a href="/willis-blog/tags/Swarm/" style="font-size: 15px;">Swarm</a> <a href="/willis-blog/tags/%E6%B8%B8%E7%8E%A9/" style="font-size: 15px;">游玩</a> <a href="/willis-blog/tags/jvm/" style="font-size: 15px;">jvm</a> <a href="/willis-blog/tags/java/" style="font-size: 15px;">java</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/06/03/Maven%E7%9A%84docker%E6%8F%92%E4%BB%B6/">Maven的Docker插件</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/05/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B&%E7%BA%BF%E7%A8%8B/">操作系统-进程/线程</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/05/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%A4%84%E7%90%86%E6%9C%BA%E7%89%B9%E6%9D%83%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">操作系统-处理机特权级相关知识</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/05/18/Docker%E5%B7%A5%E5%85%B7-Docker%20Machine/">Docker Machine</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/05/13/docker%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/">docker网络模型</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/03/25/Docker-Registry/">Docker-registry</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/03/25/%E6%B8%B8%E7%8E%A9%E6%94%BB%E7%95%A5/">游玩攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/03/07/Docker-Swarm%E5%85%A5%E9%97%A8/">Docker swarm-入门</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/dubbo%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">dubbo线程模型</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/Dubbo-Service%20Consumer/">2021-02-24-Dubbo-Service Consumer</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.baidu.com/" title="百度" target="_blank">百度</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/willis-blog/." rel="nofollow">Willis's Note.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/willis-blog/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/willis-blog/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/willis-blog/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/willis-blog/js/smartresize.js?v=1.0.0"></script></div></body></html>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2000/svg" viewBox="995 1173 486 397" width="486" height="397">
+  <defs>
+    <font-face font-family="Kaiti SC" font-size="15" panose-1="2 1 6 0 4 1 1 1 1 1" units-per-em="1000" underline-position="-133" underline-thickness="20" slope="0" x-height="446" cap-height="695" ascent="1059.9976" descent="-339.99634" font-weight="400">
+      <font-face-src>
+        <font-face-name name="STKaitiSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Comic Sans MS" font-size="15" panose-1="3 15 7 2 3 3 2 2 2 4" units-per-em="1000" underline-position="-132.8125" underline-thickness="85.44922" slope="0" x-height="522.9492" cap-height="749.0234" ascent="1102.0508" descent="-291.5039" font-weight="400">
+      <font-face-src>
+        <font-face-name name="ComicSansMS"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="SharpArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-4 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 5 0 L -3 -3 L 0 0 L 0 0 L -3 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="Kaiti SC" font-size="13" panose-1="2 1 6 0 4 1 1 1 1 1" units-per-em="1000" underline-position="-133" underline-thickness="20" slope="0" x-height="446" cap-height="695" ascent="1059.9976" descent="-339.99634" font-weight="400">
+      <font-face-src>
+        <font-face-name name="STKaitiSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Comic Sans MS" font-size="13" panose-1="3 15 7 2 3 3 2 2 2 4" units-per-em="1000" underline-position="-132.8125" underline-thickness="85.44922" slope="0" x-height="522.9492" cap-height="749.0234" ascent="1102.0508" descent="-291.5039" font-weight="400">
+      <font-face-src>
+        <font-face-name name="ComicSansMS"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Comic Sans MS" font-size="14" panose-1="3 15 7 2 3 3 2 2 2 4" units-per-em="1000" underline-position="-132.8125" underline-thickness="85.44922" slope="0" x-height="522.9492" cap-height="749.0234" ascent="1102.0508" descent="-291.5039" font-weight="400">
+      <font-face-src>
+        <font-face-name name="ComicSansMS"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Kaiti SC" font-size="14" panose-1="2 1 6 0 4 1 1 1 1 1" units-per-em="1000" underline-position="-133" underline-thickness="20" slope="0" x-height="446" cap-height="695" ascent="1059.9976" descent="-339.99634" font-weight="400">
+      <font-face-src>
+        <font-face-name name="STKaitiSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Kaiti SC" font-size="13" panose-1="2 1 6 0 4 1 1 1 1 1" units-per-em="1000" underline-position="-133" underline-thickness="20" slope="0" x-height="446" cap-height="695" ascent="1059.9976" descent="-339.99634" font-weight="700">
+      <font-face-src>
+        <font-face-name name="STKaitiSC-Bold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Comic Sans MS" font-size="17" panose-1="3 15 7 2 3 3 2 2 2 4" units-per-em="1000" underline-position="-132.8125" underline-thickness="85.44922" slope="0" x-height="522.9492" cap-height="749.0234" ascent="1102.0508" descent="-291.5039" font-weight="400">
+      <font-face-src>
+        <font-face-name name="ComicSansMS"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Kaiti SC" font-size="17" panose-1="2 1 6 0 4 1 1 1 1 1" units-per-em="1000" underline-position="-133" underline-thickness="20" slope="0" x-height="446" cap-height="695" ascent="1059.9976" descent="-339.99634" font-weight="400">
+      <font-face-src>
+        <font-face-name name="STKaitiSC-Regular"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.18.5\n2021-06-14 15:05:16 +0000</metadata>
+  <g id="thread_info" stroke-dasharray="none" fill="none" fill-opacity="1" stroke-opacity="1" stroke="none">
+    <title>thread_info</title>
+    <g id="thread_info_图层_1">
+      <title>图层 1</title>
+      <g id="Graphic_5">
+        <rect x="995.5" y="1174" width="162" height="313.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_3">
+        <rect x="1010.5" y="1191" width="133" height="131.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1015.5 1214.75)" fill="black">
+          <tspan font-family="Kaiti SC" font-size="15" font-weight="400" fill="black" x="46.5" y="16">堆栈</tspan>
+        </text>
+      </g>
+      <g id="Graphic_4">
+        <rect x="1010.5" y="1392.5" width="133" height="82" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1015.5 1412.5)" fill="black">
+          <tspan font-family="Comic Sans MS" font-size="15" font-weight="400" fill="black" x="19.19165" y="17">thread_info</tspan>
+          <tspan font-family="Kaiti SC" font-size="15" font-weight="400" fill="black" x="46.5" y="37">结构</tspan>
+        </text>
+      </g>
+      <g id="Graphic_8">
+        <rect x="1278.5" y="1174" width="119" height="164" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1283.5 1235)" fill="black">
+          <tspan font-family="Kaiti SC" font-size="15" font-weight="400" fill="black" x="17" y="16">进程描述符</tspan>
+          <tspan font-family="Comic Sans MS" font-size="15" font-weight="400" fill="black" x="12.649414" y="38">task_struct</tspan>
+        </text>
+      </g>
+      <g id="Line_9">
+        <line x1="1209.5" y1="1322.5" x2="1150.3998" y2="1322.9477" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_11">
+        <text transform="translate(1161 1285.5)" fill="black">
+          <tspan font-family="Kaiti SC" font-size="13" font-weight="400" fill="black" x="0" y="14">栈指针</tspan>
+          <tspan font-family="Comic Sans MS" font-size="13" font-weight="400" fill="black" x="9.299316" y="32">esp</tspan>
+        </text>
+      </g>
+      <g id="Line_12">
+        <path d="M 1130.5882 1434.1176 L 1217.1642 1434.1176 L 1217.5 1338 L 1275.6 1338" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_14">
+        <path d="M 1381.5 1227.5 L 1479.5 1227.5 L 1480.5 1487.5 L 1164.4 1486.6372" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_15">
+        <text transform="translate(1361.5122 1465)" fill="black">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="black" x="0" y="15">thread_info</tspan>
+          <tspan font-family="Kaiti SC" font-size="14" font-weight="400" fill="black" y="15">指针</tspan>
+        </text>
+      </g>
+      <g id="Graphic_16">
+        <text transform="translate(1043 1489.5)" fill="black">
+          <tspan font-family="Kaiti SC" font-size="13" font-weight="700" fill="black" x="0" y="14">主存页框</tspan>
+        </text>
+      </g>
+      <g id="Line_17">
+        <path d="M 1241.9355 1552.6882 L 1157.5 1552.5 L 1157.5 1494.0127" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_18">
+        <text transform="translate(1247.3826 1539.5)" fill="black">
+          <tspan font-family="Comic Sans MS" font-size="17" font-weight="400" fill="black" x="0" y="19">current</tspan>
+          <tspan font-family="Kaiti SC" font-size="17" font-weight="400" fill="black" y="19">宏</tspan>
+        </text>
+      </g>
+      <g id="Graphic_19">
+        <text transform="translate(1161.001 1407.1176)" fill="black">
+          <tspan font-family="Comic Sans MS" font-size="17" font-weight="400" fill="black" x="0" y="19">task</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>
