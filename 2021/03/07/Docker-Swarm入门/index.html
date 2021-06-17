@@ -5,7 +5,7 @@
 <p> <strong>管理者结点任务:</strong><br> 1.维持集群状态<br> 2.调度服务(scheduling services)<br> 3.提供swarm模式的http接口</p>
 <p> 需要注意的是，如果只有一个管理者，当管理者结点宕机，服务想要继续运行，需要创建一个新的集群来恢复。因此，为了提高容错性，docker建议我们，根据具体的高可用需求，配置响应的奇数个数的管理者结点。<br> 1.一个拥有3个管理者结点的swarm集群可以容忍1个管理者结点失败<br> 2.一个拥有2个管理者结点的swarm集群可以容忍2个管理者结点失败<br> 3.一个拥有N个管理者结点的swarm集群可以容忍(N-1)/个管理者结点失败</p>
 <p> <strong>工作结点</strong><br> 工作结点也是Docker引擎，但是他唯一的目的就是运行容器。他不参与任务编排，也不提供swarm模式的http接口。</p>
-<p><img src="https://docs.docker.com/engine/swarm/images/swarm-diagram.png" alt="Swarm Nodes"><br><img src="/willis-blog/images/2021-03-07/docker-swarm_topology.png" alt="manager&amp;worker nodes"></p>
+<p><img src="/willis-blog/images/2021-03-07/swarm-13.png" alt="Swarm Nodes"><br><img src="/willis-blog/images/2021-03-07/docker-swarm_topology.png" alt="manager&amp;worker nodes"></p>
 </li>
 <li><p><strong>服务（Service）</strong>：服务是对要执行任务的定义，是swarm系统的核心结构，是用户与swarm沟通的根本。创建一个服务时，需要指定要使用哪个镜像、要在容器中执行哪些命令；当要运行多个副本是，还可以指定要运行的副本数量。</p>
 </li>
