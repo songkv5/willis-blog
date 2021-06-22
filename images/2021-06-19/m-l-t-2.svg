@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xl="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="1362 2330 650 371" width="650" height="371">
+  <defs>
+    <font-face font-family="PingFang SC" font-size="14" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="SharpArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-4 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 5 0 L -3 -3 L 0 0 L 0 0 L -3 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="PingFang SC" font-size="12" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.18.5\n2021-06-21 16:05:03 +0000</metadata>
+  <g id="版面__________" fill-opacity="1" stroke-dasharray="none" fill="none" stroke="none" stroke-opacity="1">
+    <title>线性地址转换为物理地址</title>
+    <g id="版面___________图层_1">
+      <title>图层 1</title>
+      <g id="Graphic_3">
+        <rect x="1362.5" y="2357.5" width="210.33333" height="30" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1367.5 2362.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="79.16666" y="15">页目录</tspan>
+        </text>
+      </g>
+      <g id="Graphic_4">
+        <rect x="1572.8333" y="2357.5" width="210.33333" height="30" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1577.8333 2362.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="86.16666" y="15">页表</tspan>
+        </text>
+      </g>
+      <g id="Graphic_5">
+        <rect x="1783.1667" y="2357.5" width="210.33333" height="30" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1788.1667 2362.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="72.16666" y="15">页内位移</tspan>
+        </text>
+      </g>
+      <g id="Graphic_8">
+        <ellipse cx="1515.5" cy="2602.75" rx="17.5000279632833" ry="17.2115659638882" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_7">
+        <line x1="1498.7865" y1="2602.3717" x2="1533" y2="2602.4832" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_6">
+        <line x1="1516.0899" y1="2586.106" x2="1515.9735" y2="2619.9615" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_10">
+        <rect x="1362.5" y="2670" width="98" height="30" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_11">
+        <rect x="1574.5" y="2560.9615" width="71" height="41.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_13">
+        <rect x="1574.5" y="2602.4615" width="71" height="17.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_14">
+        <rect x="1574.5" y="2619.9615" width="71" height="41.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_15">
+        <ellipse cx="1704.5" cy="2577.2885" rx="17.5000279632833" ry="17.2115659638882" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_16">
+        <line x1="1687.7865" y1="2576.9102" x2="1722" y2="2577.0217" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_17">
+        <line x1="1705.0899" y1="2560.6443" x2="1704.9735" y2="2594.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_18">
+        <rect x="1759.25" y="2536" width="71" height="41.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_19">
+        <rect x="1759.25" y="2577.5" width="71" height="17.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_20">
+        <rect x="1759.25" y="2595" width="71" height="41.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_21">
+        <ellipse cx="1885" cy="2529.2885" rx="17.5000279632833" ry="17.211565963888" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_22">
+        <line x1="1868.2865" y1="2528.9102" x2="1902.5" y2="2529.0217" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_23">
+        <line x1="1885.59" y1="2512.6443" x2="1885.4735" y2="2546.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_24">
+        <rect x="1939.75" y="2487.5" width="71" height="41.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_25">
+        <rect x="1939.75" y="2529" width="71" height="17.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_26">
+        <rect x="1939.75" y="2546.5" width="71" height="41.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_28">
+        <line x1="1533" y1="2602.75" x2="1567.6002" y2="2602.5095" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_29">
+        <path d="M 1646 2619.9577 L 1704.9735 2619.5 L 1704.6307 2601.3988" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_30">
+        <line x1="1515.9735" y1="2388" x2="1515.5165" y2="2578.6385" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_31">
+        <path d="M 1461 2685.237 L 1515.9735 2685.5 L 1515.5498 2626.8614" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_32">
+        <line x1="1704.9735" y1="2387" x2="1704.5189" y2="2553.177" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_33">
+        <line x1="1722" y1="2577.2885" x2="1752.3501" y2="2577.4608" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_34">
+        <path d="M 1830.25 2595 L 1885.4735 2595 L 1885.0674 2553.3997" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_35">
+        <line x1="1885.4735" y1="2387" x2="1885.0261" y2="2505.177" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_36">
+        <line x1="1902.5" y1="2529.2885" x2="1932.8502" y2="2529.0534" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_37">
+        <text transform="translate(1367.5 2335.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="0" y="13">31</tspan>
+        </text>
+      </g>
+      <g id="Graphic_38">
+        <text transform="translate(1554.6273 2335.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="7274181e-19" y="13">22</tspan>
+        </text>
+      </g>
+      <g id="Graphic_39">
+        <text transform="translate(1580.694 2335.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="0" y="13">21</tspan>
+        </text>
+      </g>
+      <g id="Graphic_40">
+        <text transform="translate(1764.25 2335.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="0" y="13">12</tspan>
+        </text>
+      </g>
+      <g id="Graphic_42">
+        <text transform="translate(1980.088 2336.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="36370906e-20" y="13">0</tspan>
+        </text>
+      </g>
+      <g id="Graphic_43">
+        <text transform="translate(1790.938 2336.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="0" y="13">11</tspan>
+        </text>
+      </g>
+      <g id="Graphic_44">
+        <text transform="translate(1389.5 2648)" fill="black">
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="0" y="13">CR3</tspan>
+        </text>
+      </g>
+      <g id="Graphic_45">
+        <text transform="translate(1580.694 2666.4615)" fill="black">
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="0" y="13">页目录表</tspan>
+        </text>
+      </g>
+      <g id="Graphic_47">
+        <text transform="translate(1782.75 2641.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="0" y="13">页表</tspan>
+        </text>
+      </g>
+      <g id="Graphic_48">
+        <text transform="translate(1957.25 2593)" fill="black">
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="0" y="13">物理页</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>

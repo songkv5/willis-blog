@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>操作系统-内存管理 | Willis's Note</title><link rel="stylesheet" type="text/css" href="/willis-blog/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/willis-blog/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/willis-blog/favicon.ico"><link rel="apple-touch-icon" href="/willis-blog/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/willis-blog/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">操作系统-内存管理</h1><a id="logo" href="/willis-blog/.">Willis's Note</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/willis-blog/."><i class="fa fa-home"> 首页</i></a><a href="/willis-blog/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/willis-blog/about/"><i class="fa fa-user"> 关于</i></a><a href="/willis-blog/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">操作系统-内存管理</h1><div class="post-meta">2021-06-19<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;任何程序执行时都要从主存中存取指令和数据,都必须和主存打交道.在多用户操作系统中各种系统程序和用户程序共享主存.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现代操作系统将主存分为物理主存和逻辑主存两类. 物理主存是共享的物质基础,由0 ~ (m-1)个物理地址组成. 物理地址是计算机主存单元的真实地址,又称为绝对地址或实地址.处理机一句绝对地址可以随机存取放在其内的信息. 物理地址的集合所对应的空间为主存空间,而主存空间中的一个区域是物理地址集合的一个递增整数序列子集n, n+1, … , n + m所对应的主存空间.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果直接以物理地址提交给用户使用,这样对用户来说是十分困难的事.而且,多个用户程序共享主存,由用户自行分配主存那个是不可能的事.为了支持多用户的同时执行,方便用户使用,系统必须为每个用户提供0~(n-1) 的一组<strong>逻辑地址(虚地址)</strong>,即提供一个<strong>虚拟地址空间</strong>. <font color=#BD1232>每一个应用程序相信他的主存是由0单元开始的一组连续地址组成</font>. 用户的程序地址(指令地址或操作数地址)均为逻辑地址.对于每个逻辑地址,在主存中并没有一个固定的、实在的物理地址单元与之对应.因此,根据逻辑地址还不能直接到主存中去存取信息,它是一个虚地址或称为相对地址.用户所看到的虚存(逻辑地址)与被共享的主存(物理地址)之间有一定的映射关系.程序执行时,必须将逻辑地址正确的转换为物理地址,此即为地址映射.<br>现代操作系统实现了地址映射、主存分配、主存保护、虚拟主存等功能.</p>
+<h2 id="虚拟存储器"><a href="#虚拟存储器" class="headerlink" title="虚拟存储器"></a>虚拟存储器</h2><h3 id="虚拟存储器存在的必要性"><a href="#虚拟存储器存在的必要性" class="headerlink" title="虚拟存储器存在的必要性"></a>虚拟存储器存在的必要性</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;操作系统支持多用户、多任务同时执行,需要大量的主存空间(所以一般来说,纯粹的靠计算机内存那些地址空间去支持所有进程的执行,是不够的).特别是现在需要计算机解决的问题越来越多,越来越复杂,有些可续计算或数据处理的问题需要向胆大的主存容量,使系统中主存容量想的更为紧张.由于主存容量与应用需求相比较,总是不能满足日益增长的需求,因此不得不考虑如何解决主存不够用的需求的问题.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;操作系统将主存和辅存统一管理,可以将应用程序的地址空间一部分放入主存内,其余部分放在副存上.当所访问的信息不在主存上,由操作系统负责调入所需要的部分.大部分程序执行时,在一段时间内仅使用它的程序编码的一部分,即并不需要在全部时间内将该程序的全部指令和数据都放在主存中,所以,程序的地址空间部分装入主存时,它还能正确地执行,此即为程序的<strong>局部性特性</strong>.</p>
+<h3 id="虚存的定义"><a href="#虚存的定义" class="headerlink" title="虚存的定义"></a>虚存的定义</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虚拟存储器(vitual memory)将用户的逻辑主存与物理主存分开,这是现代计算机对虚存的实质性描述.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计算机系统在处理应用程序时,指状如部分程序代码和数据就启动其运行,由操作系统和硬件相配合完成主存和辅存之间的信息动态调度,这样的计算机系统好像为用户提供了一个其存储容量比实际主存大得多的存储器,这个存储器称为虚拟存储器.之所以称为虚拟存储器,因为这样的存储器实际上并不存在,只是由于系统提供了自动覆盖功能后,给用户造成了一种虚拟的感觉,仿佛有一个很大的主存供他使用一样.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虚拟存储器的核心问题: 将程序的访问地址和准存的物理地址相分离. 程序的访问地址称为虚地址,它可以访问的虚地址范围称为程序的虚拟地址空间V.在指定的计算机系统中,可使用的物理地址范围称为计算机的实际地址空间R.在多用户运行的环境下,操作系统将物理主存扩充成若干个虚存,系统可以为每个应用程序建立一个虚存.这样每个应用可以在自己的地址空间中编制程序,在各自的虚存上运行.</p>
+<h3 id="地址映射"><a href="#地址映射" class="headerlink" title="地址映射"></a>地址映射</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;处理机在执行指令时,必须使用物理地址才能从准存存取信息,而应用程序使用的地址是逻辑地址(包括指令地址和操作数地址),这就需要地址映射来完成逻辑地址和物理地址的转换.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;动态地址映射: 在程序执行期间,随着每条指令和数据的访问,自动的、连续的进行的映射. 这种重定位的实现需要硬件支持,最简单的硬件机构是一个重定位寄存器.当某个进程取得CPU控制权时,操作系统负责将该程序在主存的起始地址送入重定位寄存器中,之后在进程的整个运行过程中,每次访问存储器时,重定位寄存器的内容将被自动的加到逻辑地址中去,竟这样变换后,执行的结果时正确的.<br><img src="/willis-blog/images/2021-06-19/m-1.png" alt="动态地址映射"></p>
+<h3 id="主存分配"><a href="#主存分配" class="headerlink" title="主存分配"></a>主存分配</h3><ul>
+<li>主存管理存储器的策略</li>
+</ul>
+<ol>
+<li><strong>放置策略</strong>. 决定准存中放置信息的区域,确定如何在一些空闲存储区中选择一个空闲区或若干空闲去的原则. </li>
+<li><strong>掉入策略</strong>. 决定信息装入主存的时机,实在需要信息时装入(请调策略)还是预先调入信息(预调策略).</li>
+<li><strong>淘汰策略</strong>. 对一个应用程序而言,它在主存中已没有可用的空闲区(对一个应用程序分配的主存区是一个有限值)时,决定哪些信息可以从主存中移走,即确定淘汰已占用主存区部分信息的原则.</li>
+</ol>
+<h3 id="存储保护"><a href="#存储保护" class="headerlink" title="存储保护"></a>存储保护</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了保证多个应用程序之间互不影响,必须由硬件(软件配合)保证每个程序只能在给定的存储区域内活动,这种措施叫做存储保护.</p>
+<h2 id="分区存储管理"><a href="#分区存储管理" class="headerlink" title="分区存储管理"></a>分区存储管理</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分区存储管理,现在主要是动态分区.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;动态分区存储管理按用户作业的大小划分分区,主存中分区的大小时不等的.随着作业的进入与完成,主存中分区的数目也是动态变化的,可用分区大小也是动态变化的.<br><img src="/willis-blog/images/2021-06-19/m-2.png" alt="动态分区存储管理分区分配"><br><img src="/willis-blog/images/2021-06-19/m-3.png" alt="动态分区存储管理分区释放"><br>问题: 系统运行一段时间后,作业陆续完成而释放主存区域,于是在主存中形成一些空闲区.这些空闲区可以被其他作业利用,<font color = #BD1232>但由于空闲区和作业请求的大小不一定相等</font>,因而这样剩余的空闲区域变得更小.当系统运行相当长一段时间后,主存中会出现一些更小的空闲区,这将造成主存的浪费.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color = #406F80>在动态分区的分配方法中,对用户程序进行动态分配并实现动态地址映射.一般通过基址寄存器实现动态在定位.基址寄存器用于存放一个程序在主存中所占分区的首址,相当于重定位寄存器的作用.当相应进程运行时,CPU每次产生的逻辑地址都要加上这个基址寄存器的内容作为访问主存的物理地址</font><br><img src="/willis-blog/images/2021-06-19/d-m-m-1.svg" alt="动态分区空闲队列对照"></p>
+<p><strong>分区分配机构</strong><br>在动态分区分配方法中,描述主存资源的数据结构有「主存资源信息块m_rib」和「分区描述符」.</p>
+<table>
+<thead>
+<tr>
+<th align="left">字段</th>
+<th align="left">名称</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">flag</td>
+<td align="left">分配标志</td>
+<td align="left">对空闲分区而言是0,对已分配区而言是1</td>
+</tr>
+<tr>
+<td align="left">size</td>
+<td align="left">分区大小</td>
+<td align="left">分区可用字数与分区描述器所需字数之和</td>
+</tr>
+<tr>
+<td align="left">next</td>
+<td align="left">勾链字</td>
+<td align="left">对空闲分区而言,为空闲队列中的勾链字,指向队列中下一个空闲分区</td>
+</tr>
+</tbody></table>
+<h3 id="分区分配"><a href="#分区分配" class="headerlink" title="分区分配"></a>分区分配</h3><ol>
+<li>分区分配与回收<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分配主存块的功能是,依申请者所要求的主存区的大小,在空闲队列中找一个足以满足此要求的可用空闲区. <font color=#406F80>有两种情况,情况一是空闲区与要求的相等,则将该空闲区分配并从队列中摘除;情况二是空闲区大于所需要的大小,这是将空闲区分为两部分:已分配区和空闲区,并新增或调整相关分区描述器的信息</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回收分区的主要工作: 检查释放分区(即为回收分区)在主存中的邻接情况,它的上、下是否有邻接的空闲区,如果有责合并,是指成为一个连续的空闲区,而不是许多零散的小的部分,然后修改空闲分区描述器的信息.若回收分区不与任何空闲队列相邻接,这是应该建立一个新的空闲分区,并加入到空闲队列中去.</li>
+<li>分区的放置策略<br>主存分配程序在多个空闲分区中,选择哪一个空闲分区给应用程序是一个放置策略问题.</li>
+</ol>
+<p><em>空闲区的排序方法:</em><br>(1) 按照地址增加或减少的次序分类排序<br>(2) 按区的大小增加或减少的次序分类排序</p>
+<p><em>分配算法</em><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) 首次适应算法. 将所也放知道主存中,按地址查找到的第一个能装入它的空闲区. 在此算法中,空闲区是按其位置顺序连在一起,每个后继空闲区的起始地址总比前者大.当要分配一个空闲区时,总是从低地址空闲区开始查找,知道找到第一个足以满足改作业要求的空闲区为止.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) 最佳适应算法. 将作业放入主存中与它所需大小最接近的空闲区中,这样剩下的未用空间最小.在此算法中,空闲区队列是按空闲区大小递增顺序链在一起.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;确定: 空闲区大小一般不可能与要求的大小相等,因而将它分割成两部分,这往往使剩下的空闲区非常小,以至小到几乎无法使用.最终可能造成主存空间浪费.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) 最坏适应算法. 将作业放入主存中最不适合它的空闲区,即最大的空闲区.原因: 这样,剩下的空闲区也很大.在该算法中,空闲区按大小递减的顺序链在一起.</p>
+<h3 id="碎片问题-amp-拼接技术"><a href="#碎片问题-amp-拼接技术" class="headerlink" title="碎片问题&amp;拼接技术"></a>碎片问题&amp;拼接技术</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分区存储管理技术能满足多道程序的设计需要,但它也存在一个非常严重的「碎片问题」.碎片指的就是在已分配区之间存在着一些没有被充分利用的空闲区.在按区分配方法中,根据用户申请按区分配主存,会把主存越分越零碎.在系统运行一段时间后,甚至会出现这样的局面: 当一个作业申请一定数量的主存时,虽然此时空闲区的总和大于该作业所需要的主存容量,但却没有耽搁的空闲区大到足够装下这个作业.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;解决这个问题的方法之一就是采用拼接技术.指的是,移动存储器中某些已分配区中的信息,使本来分散的空闲区联成一个大的空闲区.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>拼接时机</strong>: 1) 在某个分区回收时立即进行拼接,于是在主存中总是只有一个连续的空闲区而无碎片,但这时的拼接频率过高,系统开销大; 2)当找不到足够大的空闲分区,而空闲区的存储容量总和却可以满足作业需要时进行拼接,这样,拼接频率比第一种方案笑得多,但空闲区的管理稍微复杂.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;拼接技术的缺点: 1) 消耗系统资源,因为移动已分配区信息要花费大量的CPU时间; 2) 当系统进行拼接时,它必须停止所有的其他工作.对交互作用的用户,可能导致响应时间不规律;对实时系统的紧迫任务而言,由于不能及时响应,可能造成严重后果; 3) 拼接需要消耗大量的系统资源,且有为拼接所花系统开销要大于拼接所得到的效益,因而这种方法的使用收到了限制.</p>
+<h2 id="页式存储管理"><a href="#页式存储管理" class="headerlink" title="页式存储管理"></a>页式存储管理</h2><p>也叫分页存储管理<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了寻求解决碎片问题的新图鉴,很容易想到能否避开程序对连续性的要求,让程序的地址空间去适应存储器的现状.<font color=#B923D9>例如,有一个作业要投入运行,其程序的地址空间为5KB,二主存当前已有两个各为3KB和2KB的空闲区.显然,每个空闲区的大小都比该程序的地址空间小,而总和却同它相等,这时可以把该程序存放到主存中两个不相邻的区域中,这正是分野的思想</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color=#BD1232>在分页存储管理中,主存被等分成一系列的块,程序的地址空间被等分成一系列的页面,然后将页面存放到主存中.</font>为了便于实现动态的地址变换,主存的块和页面大小相等并为2的幂次.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页式系统需要解决的问题<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) 页式系统的地址映射. 程序地址空间的各个页面被装入到主存的若干块中,由于这些块可能是不连续的,因此,为保证程序的正确执行,必须进行动态地址映射<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) 情调策略. 当装入部分页面时,需要判断当前访问的信息(页面)是否在主存. 当确认所访问的页面不在主存时,系统必须从辅存调入请求的页面,这就是页面请调.系统应提供情调策略和机制.采用这一策略的页式系统又称为请求分页系统<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) 放置策略. 页式系统的存储分配可采用固定空间调度算法,对每个作业分配一定数目的主存块,一般作业分配到主存块数小于作业程序的页面总数.放置策略就是确定程序的各个页面分配到主存的哪些块中,以及用什么原则挑选主存块.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) 淘汰策略. 当需要调入一新页,而改作业所分得的主存块数已全部用完时,需要确定哪个页面可淘汰,从而空出页框以便装入所需的那一页.系统应提供淘汰策略和机制.</p>
+<h3 id="页式地址变化"><a href="#页式地址变化" class="headerlink" title="页式地址变化"></a>页式地址变化</h3><ol>
+<li><p>页表<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;程序的虚拟地址空间划分为若干页,这些连续的页面在主存中可能占用不连续的主存块.为了保证程序正确的运行,必须在执行每条指令时将程序中的逻辑地址变换为实际的物理地址,即进行动态重定位.在页式系统中,实现这种地址变换的机构称为页面映像表,简称页表.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在页式系统中,<font color=#BD1232>当程序按页划分装入存储器时,操作系统为该程序建立一个页表</font>.<strong>页表是记录程序虚页与其在主存中块(页框)的对应关系的数据结构.</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页表可采用高速缓冲存储器或主存来构造. 若用高速缓存做页表,其特点是地址变换速度快,但是成本高.若用存储单元来存放页表,要占用一部分主存空间,而且地址变换速度较慢.一般采用硬件与主存页表相结合的方法实现地址变换.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页面尺寸选择. 如果页面尺寸选择得过大,以至和一般作业大小不相上下,实质上就接近分区分配方法.如果页面选得过小,一个作业的地址空间所划分的页数增多,页表就会比较大.如果用高速缓存来组成页表,成本太高;如果使用物理存储器做页表,则会占用较多的主存.根据实际使用经验,一般页面尺寸为1KB、2KB、或4KB.<br><em>页表结构</em></p>
+<table>
+<thead>
+<tr>
+<th align="left">字段</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">p</td>
+<td align="left"><img width=300/>页号</td>
+</tr>
+<tr>
+<td align="left">b</td>
+<td align="left">主存块号</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>虚地址结构<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当CPU给出一个虚地址(指令地址或操作数地址)时,这个地址的高20位(12~31位)表示该地址所在页号(计作p),低12位表示该地址在这页内的相对位移(计作w).</p>
+</li>
+<li><p>页式地址变换<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设当前有一作业: 程序地址空间中,第200号单元处有一条指令“mov r1,[2052]”.这条指令在主存中的实际位置位2248号单元(第二块200号单元),而操作数12345的虚地址为2052号单元(第二页的4号单元),它的物理地址是7172号单元(第七块4号单元).<br><img src="/willis-blog/images/2021-06-19/p-m-1.svg" alt="页式系统的地址变换"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当该作业在cpu上运行时,操作系统负责把作业的页表在主存中的起始地址(a)送到页表的起始地址寄存器中,以便在进程运行过程中进行地址变换时能快速的找到该作业的页表.当作业的“mov r1,[2052]”指令执行时,CPU给出的操作数地址为2052,首先有「分页机构」自动把它分为两部分,得到页号p=2,页内位移w=4. 然后,根据页表始址寄存器指示的页表是地址,以页号为所以,找到第二页对应的块号为7. 最后,将块号7和页内位移量w拼接在一起,就形成了访问主存物理地址7172,这就是操作数12345所在主存的实际位置.</p>
+</li>
+<li><p>联想存储器<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在地址变换过程中,若页表全部由主存实现,那么存取一个数据(或一个指令)至少要访问主存两次: 依次是访问页表,确定需要的数据(或指令)的物理地址;第二次才是根据物理地址取数据(或指令).采用高速缓冲存储器可以提高速度,但是成本较高.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前系统大多采用高速缓冲存储器页表和主存页表相结合的方法,将应用程序的所有页表放在主存中,而将一部分页表放在快速存储器中.这种方法与页表全部放在主存的系统相比,成本略有提高,但是指令执行速度却明显加快.存放页表部分内容的快速存储器称为联想存储器,联想存储器中存放的部分页表称为快表.地址变换时,先查快表,快表中有匹配项则直接返回;快表中美有匹配项,就从内存中查.实际上两者会同时进行,如果快表查到了,就会停止主存的查询. 如果最终是从主存中查到的,还应将结果保存在快表的空闲单元中.</p>
+</li>
+</ol>
+<h3 id="请调页面机制"><a href="#请调页面机制" class="headerlink" title="请调页面机制"></a>请调页面机制</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在页式系统中,允许一个作业程序只装入部分页面即可投入运行,需要信息时动态调入,这种装入信息的策略称为请调策略. 进程运行过程中必然会遇到所需代码或数据不在主存的情况,这样,系统必须解决一下两个问题:<br>(1) 怎样发现所访问的页面不在主存<br>(2) 如何确认所要访问的页面不在主存时如何处理<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. 扩充页表功能<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了能判断某页面在不在主存,可在每个页表表目中,除了登记虚页所在的主存块号外再增加两个数据项——中断为和辅存地址.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中断位i,它用来标识该页是否在主存.i=1: 该页在主存;i=0: 该页不在主存;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;辅存地址标识该页面在辅存的位置.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>页表结构</em></p>
+<table>
+<thead>
+<tr>
+<th align="left">字段</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">页号p</td>
+<td align="left"><img width=300/>页号</td>
+</tr>
+<tr>
+<td align="left">块号b</td>
+<td align="left">主存块号</td>
+</tr>
+<tr>
+<td align="left">中断位i</td>
+<td align="left">中断位</td>
+</tr>
+<tr>
+<td align="left">辅存地址</td>
+<td align="left">辅存地址</td>
+</tr>
+<tr>
+<td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. 缺页判断与处理</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当进程运行时,主存中至少有一块为该进程所对应的程序所占用,并正在执行此块内的某一条指令.若这条指令涉及访内地址,则由分页机构得到页号,并以该页号为索引查页表.这时将有两种可能性:</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1) 此页对应的页表表目中的中断位i=0,表示此页面已经掉入主存,可查的块号b并形成b+w的物理地址,从而使指令得以执行</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) 虚地址所在页号的中断位i=1,说明此也不在主存,则情况就比较复杂,这时首先要把这一页掉入主存,安置在某一块中,才谈得上逻辑地址的再定位.具体步骤是:当所访问的页面不在主存时,发生缺页中断请求调入此页;<font color=#BD1232>当缺页中断发生时,用户程序被中断,控制转到操作系统的调也程序,由调页程序将所需页面从磁盘(页表提供盘区地址)调入主存的某块中,并把页表中该页面登记项中的中断位i由1改为0 ,填入实际块号,随后继续执行被中断的程序</font>.</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于页面时根据请求而装入的,因此,这种页式系统也称为请求分页系统.在请求分页存储管理系统中采用固定页面分配方法,对每个作业事先分配固定数目的主存块数.例如,某个作业程序分了3块,此时已经使用2块,那么还剩一块,这块可以在被装入.但是当3块都被占用之后,当在需要主存的时候,主存就不够用了,这时,就需要相关的淘汰策略,释放某个主存块以供程序使用.</p>
+<h3 id="淘汰机制"><a href="#淘汰机制" class="headerlink" title="淘汰机制"></a>淘汰机制</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页面淘汰,又称页面置换.为了给置换页面提供依据,页表中还必须包含关于页面使用情况的信息,并增设专门的硬件和软件来考查和更新这些信息.因此,页表新增了引用位和改变位.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>页表结构</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">字段</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">页号p</td>
+<td align="left"><img width=300/>页号</td>
+</tr>
+<tr>
+<td align="left">块号b</td>
+<td align="left">主存块号</td>
+</tr>
+<tr>
+<td align="left">中断位i</td>
+<td align="left">中断位</td>
+</tr>
+<tr>
+<td align="left">辅存地址</td>
+<td align="left">辅存地址</td>
+</tr>
+<tr>
+<td align="left">引用位</td>
+<td align="left">用来指示某页最近被访问过没有.0=没有;1=有</td>
+</tr>
+<tr>
+<td align="left">改变位</td>
+<td align="left">用来标识某页是否被修改过.0=没有;1=有</td>
+</tr>
+<tr>
+<td align="left"><img src="/willis-blog/images/2021-06-19/m-4.png" alt="指令执行步骤与缺页中断处理"></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p><strong>淘汰算法/置换算法</strong>,当要索取一页面并送入主存时,必须将该作业已在主存中的某一页面淘汰掉.用来选择淘汰哪一页的规则就是置换算法.<br><strong>颠簸现象</strong>: 导致系统效率急剧下降的主存和辅存之间的频繁页面置换现象成为颠簸(thrashin),又可称为抖动.</p>
+<h3 id="置换算法"><a href="#置换算法" class="headerlink" title="置换算法"></a>置换算法</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. 最佳算法(OPT算法)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是一种理论算法.从理论上讲,最佳算法时当要调入一新页而必须淘汰一旧页时,所淘汰的那一页应是以后不再要用的,或者是在最长的时间以后才会用到的也.然而,这样的算法时无法实现的,因为在程序运行中无法对后面要使用的页面做出精确的断言.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. 先进先出淘汰算法(FIFO算法).算法实质,总是选择在主存中居留时间最长(即最老)的一页淘汰.其理由是最早调入主存的页,其不再被使用的可能性比最近调入主存的可能性大.算法实现: 系统保留一张次序表,该表记录了程序的各页进入主存的先后次序.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. 最久未使用淘汰算法(LRU). LRU算法能够比较普遍的适用于各种类型的程序,但它与FIFO算法相比实现起来困难得多.因为LRU算法必须在每次访问页面时都要修改有关信息,且要进行连续的修改,而FIFO算法仅当页面置换时才做修改.LRU算法这种连续的修改,如果依靠软件来做,其代价太高,但若由硬件来实现,又要大大增加成本.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>LRU近似算法</strong>: 算法中要求每个存储块有一位“引用位”,当某块中的页面被访问时,这一位由硬件自动置为“1”,而页面管理软件周期性(设周期为T)地将所有引用位重新置“0”.这样,在T时间内,某些被访问的页面,想相应的引用位为1,未被访问的页面,其相应的引用位为0.因此,可根据引用位的状态来判断各个页面的最近使用的情况,当需要置换一页时,选择引用位为0的页并淘汰之.</p>
+<h2 id="段式存储管理"><a href="#段式存储管理" class="headerlink" title="段式存储管理"></a>段式存储管理</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;背景:分区存储管理与页式存储管理都存在缺点.分区存储管理容易出现碎片,页式系统中一页或页号连续的几个虚页上存放的内容一般都不是一个逻辑意义完整的信息单位,这对于要调用许多子程序的大型用户程序来说,仍然会感到主存空间的使用率不高.</p>
+<h3 id="段式地址变换"><a href="#段式地址变换" class="headerlink" title="段式地址变换"></a>段式地址变换</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在段式系统中,作业由若干个逻辑分段组成,如,可由代码分段、数据分段、栈段组成.<font color=#406F80>段式系统标识某一程序地址要同时给出段名和段内地址,因此其地址空间时2维的.</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;程序地址的一般形式由(s, w)组成,这里s是段号,w是段内位移.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;段式地址变换由<strong>段表(smt)**来实现. 段表由若干个表目组成.每一个表目描述一个分段的信息,其逻辑上应包括:段号、段长、段首址.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**段式地址变换步骤</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) 取出程序地址(s, w)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) 用s检索段表<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) 如w&lt;0或w&gt;=L,则主存越界(因为当&gt;=L是,这个地址可能是属于第「s+n」段的)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) (b+w)即为所需主存地址<br><img src="/willis-blog/images/2021-06-19/m-s-1.svg" alt="段式地址变换"></p>
+<h3 id="段表扩充"><a href="#段表扩充" class="headerlink" title="段表扩充"></a>段表扩充</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;段式系统和请求分页系统一样也可以方便地扩充主存,即先装入部分分段,再根据需要装入其他个段.段表字段如下</p>
+<table>
+<thead>
+<tr>
+<th align="left">字段</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">保护位</td>
+<td align="left"><img width=100/>保护位</td>
+</tr>
+<tr>
+<td align="left">s</td>
+<td align="left">段号</td>
+</tr>
+<tr>
+<td align="left">L</td>
+<td align="left">段长</td>
+</tr>
+<tr>
+<td align="left">I</td>
+<td align="left">中断位</td>
+</tr>
+<tr>
+<td align="left">引用位</td>
+<td align="left">引用位</td>
+</tr>
+<tr>
+<td align="left">改变位</td>
+<td align="left">改变位</td>
+</tr>
+<tr>
+<td align="left">R</td>
+<td align="left">可读性标识</td>
+</tr>
+<tr>
+<td align="left">W</td>
+<td align="left">可写性标识</td>
+</tr>
+<tr>
+<td align="left">E</td>
+<td align="left">可执行性标识</td>
+</tr>
+<tr>
+<td align="left">A</td>
+<td align="left">可以在某位续加信息标识</td>
+</tr>
+<tr>
+<td align="left">b</td>
+<td align="left">段首址.</td>
+</tr>
+</tbody></table>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;段式系统极易实现分段的共享.<font color=#B923D9>例如,若两个作业共享一子程序分段,则只要在作业段表的相应表目的<strong>段首址</strong>一项填入相同的主存地址(即该子程序分段的主存地址)即可</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;段式系统和页式系统的地址变换过程十分相似,但页式系统是一维地址结构,<font color=#BD1232>而段式系统是二维地址结构.</font>页式系统中的页面和段式系统中的分段有本质的区别,主要表现在以下几个方面<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) 页式系统可实现存储空间的物理划分,而段式系统实现的是<font color=#BD1232>程序地址空间的逻辑划分</font>.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) 页面的大小固定且相等(页的大小由w字段的尾数决定);段式系统中的分段、长度可变且不相等,由用户编程时决定(段的最大长度由w字段的位数决定)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) 页面时用户不可见的,而分段是用户可见的<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) 将程序地址分成也好p和页内位移w是硬件的功能,w字段的一处将自动加入到页号中去;程序的地址分成段号s和段内位移是逻辑功能,w字段溢出将产生主存越界(而不是加到段号中去)</p>
+<h3 id="段页式存储管理"><a href="#段页式存储管理" class="headerlink" title="段页式存储管理"></a>段页式存储管理</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在段式存储管理中结合分页存储管理技术,即在程序地址空间内分段,在一个分段内划分页面,这就形成了段页式存储管理.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;段页式存储管理的用户地址空间是二维的,按段划分的.在段中在划分成若干大小相等的页.这样,地址结构就由段号、段内页号和页内位移三部分组成.用户使用的仍是段号和段内相对地址,由地址变换机构自动将段内相对地址的高几位解释为段内页号,将剩余的低位解释为页内位移.这样,用户地址空间的最小单位不是段,而是页,而主存按页的大小划分,按页装入,这样一个段可以装入到若干个不连续的主存块内,段的大小不再受主存可用区的限制.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;段页式地址变换的数据结构是每一个程序一张段表、每个段对应一张页表,段表中的地址是页表的起始地址,而页表中的地址为某页的主存块号.<br><img src="/willis-blog/images/2021-06-19/m-s-p-1.png" alt="段页式管理中段表、页表与主存的关系"></p>
+<h2 id="Linux系统存储管理"><a href="#Linux系统存储管理" class="headerlink" title="Linux系统存储管理"></a>Linux系统存储管理</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux采用的存储管理技术与UNIX一样,也是段页式存储管理技术.</p>
+<h3 id="主存寻址"><a href="#主存寻址" class="headerlink" title="主存寻址"></a>主存寻址</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. 三种地址<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) 逻辑地址. 就是程序的指令地址或操作数地址,它包含在机器语言指令中.在段式结构中,应用程序由若干个分段组成,每一个逻辑地址由段和偏移量组成,偏移量指明了从段开始的地方到实际地址之间的距离.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) 线性地址. 或称为虚地址,是一个32位无符号整数,用以表达高达4GB的虚地址.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) 物理地址.存放信息的实地址,用于主存芯片级的主存单元寻址.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主存控制单元(MMU)通过硬件电路进行地质变换.首先通过分页单元的硬件电路将一个逻辑地址转换为线性地址,接着分页单元的硬件电路将线性地址转换为物理地址.<font color=#BD1232>总结来说, 机器语言指令中出现的内存地址,都是逻辑地址,需要转换成线性地址,再经过MMU(内存管理单元)转换成物理地址才能被访问到</font></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. 分段机制与段描述符<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux系统采用了分段机制保护模式.与保护模式对应的是实模式,现在实模式仍然存在的原因有两个:一是要维持处理器与早期模型的兼容;二是实现操作系统自举.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) 段选择符<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在分段机制下,一个逻辑地址包含两个部分:段选择符;段内相对地址偏移量.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;段选择符是一个16位长的字段</p>
+<table>
+<thead>
+<tr>
+<th align="left">字段名</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">index</td>
+<td align="left">指定在GDT(或LDT)中概字段描述符的入口(第3~15位)</td>
+</tr>
+<tr>
+<td align="left">T1</td>
+<td align="left">指定段描述符是在GDT中(T1=0)或在LDT(T1=1)中(第2位)</td>
+</tr>
+<tr>
+<td align="left">RPL</td>
+<td align="left">请求这特权级(Linux只用0级和3级,分别表示内核态和用户态)(第0、1位)</td>
+</tr>
+</tbody></table>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 系统提供段寄存器,以便能快速找到段选择符. 系统共有6个段寄存器,分别为cs、ss、ds、es、fs、gs.其中3个为专用寄存器,如下<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i. cs代码段寄存器,指向包含程序指令的段<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ii. ss栈段寄存器,指向包含当前程序栈的段<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iii. ds数据段寄存器,指向静态数据或全局数据段.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其他3个寄存器用作一般用途,可指向任意的数据段<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) 段描述符<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;段描述符描述了分段的特征,由8个字节组成.它存放在全局描述符表GDT或局部描述符表中.一般只定义一个GDT,若进程还需要创建附加的段,就可以有自己的LDT.GDT在主存中的地址和大小存放在gdtr控制寄存器中.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. 逻辑地址变换<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1)由段选择符的T1字段决定段描述符保存在GDT还是LDT中,再有gdtr或ldtr寄存器中得到GDT或LDT的首址<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2)由段选择符的index字段值乘以8,与gdtr或ldtr的寄存器内容相加,得到该段描述符地址<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3)将段描述符基地址字段与逻辑地址中的偏移量相加得到线性地址.<br><img src="/willis-blog/images/2021-06-19/m-l-t.svg" alt="逻辑地址转换为线性地址"></p>
+<h3 id="段页式地址变换"><a href="#段页式地址变换" class="headerlink" title="段页式地址变换"></a>段页式地址变换</h3><p><img src="/willis-blog/images/2021-06-19/m-l-t-2.svg" alt="线性地址转换为物理地址"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个32位的线性地址分为3个域:页目录、页表、页内位移.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux系统通过三级页表完成线性地址到物理地址的转换,正在使用的页目录表的物理地址存放在控制寄存器cr3中.地址变换过程如下<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) 由cr3指示的当前目录的物理地址域分页结构中的页目录字段的内容相加指向页目录表项<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) 有页目录表项内容得到当前使用的页表的起始地址,通过分页结构中的页表字段内容找到该页表项<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) 由页表项指示的该页的物理页(页框)的主存地址与分页结构中的页内位移相加,得到最终的物理地址.</p>
+<h3 id="Linux的进程地址空间"><a href="#Linux的进程地址空间" class="headerlink" title="Linux的进程地址空间"></a>Linux的进程地址空间</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux内核实现了请求主存的底层机制,提供用于页框分配和释放的函数.这些函数只能有内核直接使用,用户进程请求主存时不能直接使用.当用户进程请求主动态主存时,内核采用推迟分配的方法,即用户并没有获得请求的页框,而仅仅获得对一个新的线性地址区间的使用权.这一线性地址区间称为进程地址空间的一部分,称为“线性区”.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. 进程地址空间<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进程地址空间由每个进程的线性地址区组成,是一个独立的连续空间.描述进程地址空间的信息存放在一个称为主存描述符的数据结构中.主存描述符由mm_struct结构体表示,<a href="/willis-blog/2021/05/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B&%E7%BA%BF%E7%A8%8B/">进程描述符</a>的mm字段指向这个结构</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mm_strct &#123;</span><br><span class="line">	*mmap;		<span class="comment">/* 指向线性区对象的链表头*/</span></span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">	mm_users;	<span class="comment">/* 次使用计数器*/</span></span><br><span class="line">	mm_count;	<span class="comment">/* 主使用计数器*/</span></span><br><span class="line">	map_user;	<span class="comment">/* 线性区个数*/</span></span><br><span class="line">	mmlist;		<span class="comment">/* 包含全部mm_struct的链表*/</span></span><br><span class="line">	end_code;	<span class="comment">/* 代码段的最后地址*/</span></span><br><span class="line">	start_data;	<span class="comment">/* 数据段的首地址*/</span></span><br><span class="line">	end_data;	<span class="comment">/* 数据段的最后地址*/</span></span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">	rss;		<span class="comment">/* 分配给进程的页框数*/</span></span><br><span class="line">	total_vm;	<span class="comment">/* 进程地址空间的大小(页数)*/</span></span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmap表示该地址空间的全部主存区域,以链表形势存放,方便搞笑的遍历所有元素.所有的mm_struct结构体通过mmlist域链接形成一个双向链表,该链表的首元素是init_mm主存描述符(所有进程的主存描述符结构体通过链表链接在一块).<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. 线性区描述<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 进程的地址空间由若干个线性区组成,线性区域(又称为主存区域)用vm_area_struct结构体描述.主存区域在内核中被称为虚拟主存区域VMA.每个主存区域具有一致的属性和相应的操作.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vm_area_struct&#123;</span><br><span class="line">	*vm_mm;			<span class="comment">/* 对应的mm_struct 结构体*/</span></span><br><span class="line">	vm_start;		<span class="comment">/* 该主存区域的首址*/</span></span><br><span class="line">	vm_end;			<span class="comment">/* 该主存区域的尾地址*/</span></span><br><span class="line">	*vm_next;		<span class="comment">/* VMA链表*/</span></span><br><span class="line">	vm_page_prot;	<span class="comment">/* 访问控制权限*/</span></span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vm_mm域指向与该VMA相关的主存描述符mm_struct. vm_start域指向该主存区域的首地址,vm_end域指向该主存区域的尾地址之后的第一个字节,主存区域位于[vm_start,vm_end]之间. 在同一地址空间中的不同主存区域不能重叠.vm_next字段指向VMA链表中的下一个元素.<font color=#BD1232>这里说的线性地址区和上一节讲的线性地址(虚拟地址)是相通的,这里的线性区域信息最终都会转换成线性地址,最终通过三级页表将线性地址转换成物理地址,完成寻址逻辑</font><br><img src="/willis-blog/images/2021-06-19/mm-vm-1.svg" alt="主存描述符、线性区描述符与进程线性地址空间"></p>
+<hr>
+<p>参考文献<br><font color=#406F80 size=3>《计算机操作系统》</font><br><font color=#406F80 size=3><a target="_blank" rel="noopener" href="https://www.cnblogs.com/alantu2018/p/9002441.html">https://www.cnblogs.com/alantu2018/p/9002441.html</a></font></p>
+</div><div class="tags"><a href="/willis-blog/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="fa fa-tag"></i>操作系统</a><a href="/willis-blog/tags/%E5%86%85%E5%AD%98/"><i class="fa fa-tag"></i>内存</a></div><div class="post-nav"><a class="next" href="/willis-blog/2021/06/03/Maven%E7%9A%84docker%E6%8F%92%E4%BB%B6/">Maven的Docker插件</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="https://willis-song.gitee.io/willis-blog"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/willis-blog/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/willis-blog/tags/InnoDb/" style="font-size: 15px;">InnoDb</a> <a href="/willis-blog/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/willis-blog/tags/elastic/" style="font-size: 15px;">elastic</a> <a href="/willis-blog/tags/Dubbo/" style="font-size: 15px;">Dubbo</a> <a href="/willis-blog/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 15px;">微服务</a> <a href="/willis-blog/tags/Swarm/" style="font-size: 15px;">Swarm</a> <a href="/willis-blog/tags/%E6%B8%B8%E7%8E%A9/" style="font-size: 15px;">游玩</a> <a href="/willis-blog/tags/jvm/" style="font-size: 15px;">jvm</a> <a href="/willis-blog/tags/java/" style="font-size: 15px;">java</a> <a href="/willis-blog/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 15px;">操作系统</a> <a href="/willis-blog/tags/%E5%86%85%E5%AD%98/" style="font-size: 15px;">内存</a> <a href="/willis-blog/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 15px;">进程</a> <a href="/willis-blog/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 15px;">线程</a> <a href="/willis-blog/tags/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98/" style="font-size: 15px;">共享内存</a> <a href="/willis-blog/tags/%E7%94%A8%E6%88%B7%E6%80%81/" style="font-size: 15px;">用户态</a> <a href="/willis-blog/tags/%E6%A0%B8%E6%80%81/" style="font-size: 15px;">核态</a> <a href="/willis-blog/tags/%E7%AE%A1%E6%80%81/" style="font-size: 15px;">管态</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/06/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">操作系统-内存管理</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/06/03/Maven%E7%9A%84docker%E6%8F%92%E4%BB%B6/">Maven的Docker插件</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/05/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B&%E7%BA%BF%E7%A8%8B/">操作系统-进程/线程</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/05/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%A4%84%E7%90%86%E6%9C%BA%E7%89%B9%E6%9D%83%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">操作系统-处理机特权级相关知识</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/05/18/Docker%E5%B7%A5%E5%85%B7-Docker%20Machine/">Docker Machine</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/05/13/docker%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/">docker网络模型</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/03/25/Docker-Registry/">Docker-registry</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/03/25/%E6%B8%B8%E7%8E%A9%E6%94%BB%E7%95%A5/">游玩攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/03/07/Docker-Swarm%E5%85%A5%E9%97%A8/">Docker swarm-入门</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/02/24/dubbo%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">dubbo线程模型</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.baidu.com/" title="百度" target="_blank">百度</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/willis-blog/." rel="nofollow">Willis's Note.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/willis-blog/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/willis-blog/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/willis-blog/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/willis-blog/js/smartresize.js?v=1.0.0"></script></div></body></html>
