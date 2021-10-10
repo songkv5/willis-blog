@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" xmlns:xl="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="-165 -390 3893 1431" width="3893" height="1431">
+  <defs>
+    <font-face font-family="Comic Sans MS" font-size="14" panose-1="3 15 7 2 3 3 2 2 2 4" units-per-em="1000" underline-position="-132.8125" underline-thickness="85.44922" slope="0" x-height="522.9492" cap-height="749.0234" ascent="1102.0508" descent="-291.5039" font-weight="400">
+      <font-face-src>
+        <font-face-name name="ComicSansMS"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="HanziPen SC" font-size="14" panose-1="3 0 3 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HanziPenSC-W3"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="SharpArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-4 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 5 0 L -3 -3 L 0 0 L 0 0 L -3 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="PingFang SC" font-size="14" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="16" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Comic Sans MS" font-size="13" panose-1="3 15 7 2 3 3 2 2 2 4" units-per-em="1000" underline-position="-132.8125" underline-thickness="85.44922" slope="0" x-height="522.9492" cap-height="749.0234" ascent="1102.0508" descent="-291.5039" font-weight="400">
+      <font-face-src>
+        <font-face-name name="ComicSansMS"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="11" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="12" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="21" panose-1="2 11 8 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="80" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="600">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Semibold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="13" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Kaiti SC" font-size="13" panose-1="2 1 6 0 4 1 1 1 1 1" units-per-em="1000" underline-position="-133" underline-thickness="20" slope="0" x-height="446" cap-height="695" ascent="1059.9976" descent="-339.99634" font-weight="400">
+      <font-face-src>
+        <font-face-name name="STKaitiSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica Neue" font-size="14" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="11" panose-1="2 11 8 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="80" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="600">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Semibold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica Neue" font-size="11" panose-1="2 0 8 3 0 0 0 9 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="975.0061" descent="-216.99524" font-weight="700">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue-Bold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="10" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica Neue" font-size="16" panose-1="2 0 8 3 0 0 0 9 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="975.0061" descent="-216.99524" font-weight="700">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue-Bold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="16" panose-1="2 11 8 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="80" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="600">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Semibold"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.18.5\n2021-10-10 15:02:08 +0000</metadata>
+  <g id="Canvas_1" stroke="none" stroke-opacity="1" fill="none" stroke-dasharray="none" fill-opacity="1">
+    <title>Canvas 1</title>
+    <rect fill="white" x="-165" y="-390" width="3893" height="1431"/>
+    <g id="Canvas_1_边界">
+      <title>边界</title>
+      <g id="Graphic_33">
+        <path d="M 711 -124 L 1508 -124 L 1508 676 L 711 676 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Graphic_50">
+        <path d="M 28 15 L 567 15 L 567 661 L 28 661 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Graphic_80">
+        <path d="M 1689 -137.5 L 2384 -137.5 L 2384 689.5 L 1689 689.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Graphic_115">
+        <path d="M 2658 -170 L 3214 -170 L 3214 925 L 2658 925 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Graphic_121">
+        <rect x="-164" y="-389" width="3891" height="1429" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+    <g id="Canvas_1_进化史">
+      <title>进化史</title>
+      <g id="Graphic_3">
+        <path d="M 186 371 L 338 371 C 339.10457 371 340 371.89543 340 373 L 340 426 C 340 427.10457 339.10457 428 338 428 L 186 428 C 184.89543 428 184 427.10457 184 426 L 184 373 C 184 371.89543 184.89543 371 186 371 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(189 390)" fill="black">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="black" x="25.541504" y="15">System Kernel</tspan>
+        </text>
+      </g>
+      <g id="Graphic_4">
+        <path d="M 186 213.5 L 338 213.5 C 339.10457 213.5 340 214.39543 340 215.5 L 340 268.5 C 340 269.60457 339.10457 270.5 338 270.5 L 186 270.5 C 184.89543 270.5 184 269.60457 184 268.5 L 184 215.5 C 184 214.39543 184.89543 213.5 186 213.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(189 222.5)" fill="black">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="black" x="13.523926" y="15">Server application</tspan>
+          <tspan font-family="HanziPen SC" font-size="14" font-weight="400" fill="black" x="36.95" y="34">服务器应用</tspan>
+        </text>
+      </g>
+      <g id="Line_5">
+        <line x1="262" y1="271" x2="262" y2="363.6" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_7">
+        <ellipse cx="99.25" cy="511.25" rx="40.7500651145023" ry="40.2500643155513" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(71.65 501.25)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="3.7930004" y="15">客户端1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_8">
+        <ellipse cx="234.006" cy="515.75" rx="40.7500651145023" ry="40.2500643155513" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(206.406 505.75)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="2.4000004" y="15">客户端2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_9">
+        <ellipse cx="385.42667" cy="515.75" rx="40.7500651145023" ry="40.2500643155513" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(357.82667 505.75)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="2.6870004" y="15">客户端n</tspan>
+        </text>
+      </g>
+      <g id="Graphic_10">
+        <text transform="translate(279.756 525.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">……</tspan>
+        </text>
+      </g>
+      <g id="Line_11">
+        <line x1="133.12739" y1="487.98857" x2="214.39292" y2="432.18873" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_12">
+        <line x1="243.55386" y1="476.10083" x2="253.4045" y2="435.19434" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_13">
+        <line x1="355.57124" y1="487.6305" x2="297.6463" y2="433.07364" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_15">
+        <text transform="translate(119.11613 445.19166)" fill="#235e00">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="23.334515" y="15">connect</tspan>
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="36.21684" y="34">FD1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_16">
+        <text transform="translate(223.47564 435.27533)" fill="#235e00">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="0" y="15">connect</tspan>
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="11.76123" y="34">FD2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_18">
+        <text transform="translate(306.3596 446.14125)" fill="#235e00">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="0" y="15">connect</tspan>
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="10.455566" y="34">FDN</tspan>
+        </text>
+      </g>
+      <g id="Graphic_19">
+        <text transform="translate(270.13667 275)" fill="#666">
+          <tspan font-family="Comic Sans MS" font-size="13" font-weight="400" fill="#666" x="0" y="14">fd10 = new socket();</tspan>
+          <tspan font-family="Comic Sans MS" font-size="13" font-weight="400" fill="#666" x="0" y="32">bind(8080)</tspan>
+          <tspan font-family="Comic Sans MS" font-size="13" font-weight="400" fill="#666" x="0" y="50">listen(fd10);</tspan>
+          <tspan font-family="Comic Sans MS" font-size="13" font-weight="400" fill="#666" x="0" y="68">fd1 = accept(fd10);</tspan>
+          <tspan font-family="Comic Sans MS" font-size="13" font-weight="400" fill="#b1001c" x="0" y="86">read();</tspan>
+        </text>
+      </g>
+      <g id="Graphic_22">
+        <path d="M 185.7895 86.6599 C 167.33951 78.5585 181.49101 52.066145 205.81545 52.78754 C 202.56475 41.616065 232.54892 24.5 256.9764 41.07548 C 260.0167 28.64387 307.19266 25.940945 313.79927 46.121555 C 320.92762 31.70657 375.02367 39.453725 361.91995 65.21915 C 383.09675 61.615865 392.9519 105.21875 357.82974 106.48073 C 367.161 122.15585 332.77314 136.39002 319.04033 126.8403 C 320.8224 140.17228 270.39576 151.88434 260.6458 130.44359 C 256.766 143.77556 206.44455 134.94724 214.0968 116.93081 C 199.20884 123.7776 168.17688 101.97524 185.7895 86.6599 Z M 221.33035 165.75874 C 217.87138 170.08157 220.38778 177.82872 231.499 171.52436 C 232.3385 177.82872 247.53993 178.55012 250.3698 171.52436 C 258.5481 175.8472 265.46817 170.62216 260.95928 163.5964 C 269.76666 163.05581 266.51596 148.28105 254.46002 154.04668 C 257.5003 148.28105 239.46686 142.8752 237.2661 152.24411 C 233.17802 147.19988 222.27507 147.01907 222.48334 155.66843 C 215.77367 153.50609 210.3222 165.57792 221.33035 165.75874 Z M 190.08798 191.88394 C 188.3059 195.48722 199.73488 198.00934 200.78266 192.42452 C 207.1767 194.04627 209.90352 189.0002 205.81545 185.39692 C 209.7983 179.99106 200.04835 176.92836 197.00807 181.61282 C 193.0252 176.38778 184.6365 182.1534 187.782 185.7567 C 181.17754 187.91903 185.99991 193.5057 190.08798 191.88394 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(203.70642 51.54)" fill="black">
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="12">accept接收用户连接,方法阻</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="28">塞; read用于读取内容,同样是</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="44">阻塞的.为了解决这个问题,衍生</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="60">出了最初的多线程模型</tspan>
+        </text>
+      </g>
+      <g id="Graphic_23">
+        <path d="M 448.5 132 L 530 132 L 530 166.8 C 505.55 162.45 472.95 179.85 448.5 171.15 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(453.5 134.575)" fill="black">
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="10.274" y="13">Thread-1</tspan>
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="13.646" y="30">处理FD1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_25">
+        <path d="M 448.5 258 L 530 258 L 530 292.8 C 505.55 288.45 472.95 305.85 448.5 297.15 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(453.5 260.575)" fill="black">
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="9.326" y="13">Thread-n</tspan>
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="12.698" y="30">处理FDn</tspan>
+        </text>
+      </g>
+      <g id="Graphic_26">
+        <path d="M 448.5 187 L 530 187 L 530 221.8 C 505.55 217.45 472.95 234.85 448.5 226.15 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(453.5 189.575)" fill="black">
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="9.08" y="13">Thread-2</tspan>
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="12.452" y="30">处理FD2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_27">
+        <text transform="translate(479.6106 223.5)" fill="black">
+          <tspan font-family="Comic Sans MS" font-size="13" font-weight="400" fill="black" x="0" y="14">…</tspan>
+        </text>
+      </g>
+      <g id="Line_28">
+        <line x1="335.8556" y1="213.319" x2="441.6019" y2="172.25361" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_29">
+        <line x1="340.49473" y1="230.51507" x2="441.17796" y2="215.78364" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_30">
+        <line x1="340.49324" y1="255.03903" x2="441.20003" y2="271.7681" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_31">
+        <text transform="translate(209.35558 618)" fill="#003776">
+          <tspan font-family="PingFang SC" font-size="21" font-weight="600" fill="#003776" x="0" y="22">同步阻塞IO实现</tspan>
+        </text>
+      </g>
+      <g id="Graphic_34">
+        <path d="M 871.5 418.75 L 1023.5 418.75 C 1024.6046 418.75 1025.5 419.64543 1025.5 420.75 L 1025.5 473.75 C 1025.5 474.85457 1024.6046 475.75 1023.5 475.75 L 871.5 475.75 C 870.3954 475.75 869.5 474.85457 869.5 473.75 L 869.5 420.75 C 869.5 419.64543 870.3954 418.75 871.5 418.75 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(874.5 437.75)" fill="black">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="black" x="25.541504" y="15">System Kernel</tspan>
+        </text>
+      </g>
+      <g id="Graphic_35">
+        <ellipse cx="784.75" cy="559" rx="40.7500651145024" ry="40.2500643155512" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(757.15 549)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="3.7930004" y="15">客户端1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_36">
+        <ellipse cx="919.506" cy="563.5" rx="40.7500651145025" ry="40.2500643155512" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(891.906 553.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="2.4000004" y="15">客户端2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_37">
+        <ellipse cx="1075.75" cy="576.25" rx="40.7500651145021" ry="40.2500643155513" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1048.15 566.25)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="2.6870004" y="15">客户端n</tspan>
+        </text>
+      </g>
+      <g id="Graphic_38">
+        <text transform="translate(965.256 573.25)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">……</tspan>
+        </text>
+      </g>
+      <g id="Line_39">
+        <line x1="818.6274" y1="535.73857" x2="899.8929" y2="479.93873" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_40">
+        <line x1="929.0539" y1="523.85083" x2="938.9045" y2="482.94434" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_41">
+        <line x1="1046.8459" y1="547.1769" x2="981.0516" y2="480.9978" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_42">
+        <text transform="translate(804.6161 492.94166)" fill="#235e00">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="23.334515" y="15">connect</tspan>
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="36.21684" y="34">FD1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_43">
+        <text transform="translate(908.9756 483.02533)" fill="#235e00">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="0" y="15">connect</tspan>
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="11.76123" y="34">FD2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_44">
+        <text transform="translate(994.7092 501.21745)" fill="#235e00">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="0" y="15">connect</tspan>
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="10.455566" y="34">FDN</tspan>
+        </text>
+      </g>
+      <g id="Graphic_45">
+        <path d="M 871.5 113 L 1023.5 113 C 1024.6046 113 1025.5 113.89543 1025.5 115 L 1025.5 168 C 1025.5 169.10457 1024.6046 170 1023.5 170 L 871.5 170 C 870.3954 170 869.5 169.10457 869.5 168 L 869.5 115 C 869.5 113.89543 870.3954 113 871.5 113 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(874.5 122)" fill="black">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="black" x="13.523926" y="15">Server application</tspan>
+          <tspan font-family="HanziPen SC" font-size="14" font-weight="400" fill="black" x="36.95" y="34">服务器应用</tspan>
+        </text>
+      </g>
+      <g id="Graphic_46">
+        <path d="M 964.256 174.75 L 1481.756 174.75 C 1483.9651 174.75 1485.756 176.54086 1485.756 178.75 L 1485.756 414.75 C 1485.756 416.95914 1483.9651 418.75 1481.756 418.75 L 964.256 418.75 C 962.0469 418.75 960.256 416.95914 960.256 414.75 L 960.256 178.75 C 960.256 176.54086 962.0469 174.75 964.256 174.75 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8.0,4.0,1.0,4.0" stroke-width="1"/>
+        <text transform="translate(965.256 179.75)" fill="#666">
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="14">fd10 = new socket(NON_BLOCKING);</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="32">bind(8080)</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="50">listen(fd10);</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="68">while(true) {</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="28" y="86">//阻塞等待客户端链接. 将文件描述符fdxx暂存到数组中</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="28" y="104">fdxx = accept(fd10);</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="28" y="122">list.add(fddxx);</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="28" y="140">// 这里应该会使用另一个线程处理,不然可能会被accept阻塞</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="28" y="158">for(fd in list) {</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="56" y="176">// 非阻塞读, 如果没有数据进来,直接返回异常值, 不阻塞. 哪个fd有值读哪个</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="56" y="194">read(fd);</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="28" y="212">}</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="230">}</tspan>
+        </text>
+      </g>
+      <g id="Line_47">
+        <line x1="947.5" y1="170.5" x2="947.5" y2="411.35" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_48">
+        <path d="M 915.2895 -40.840105 C 896.8395 -48.9415 910.991 -75.433855 935.3154 -74.71246 C 932.0647 -85.88394 962.0489 -103 986.4764 -86.42452 C 989.5167 -98.85613 1036.6927 -101.55906 1043.2993 -81.378445 C 1050.4276 -95.79343 1104.5237 -88.04628 1091.42 -62.28085 C 1112.5967 -65.884135 1122.4519 -22.28125 1087.3297 -21.01927 C 1096.661 -5.34415 1062.2731 8.890025 1048.5403 -.659695 C 1050.3224 12.672275 999.8958 24.384335 990.1458 2.94359 C 986.266 16.27556 935.9445 7.447235 943.5968 -10.56919 C 928.7088 -3.722395 897.6769 -25.52476 915.2895 -40.840105 Z M 950.8304 38.258735 C 947.3714 42.58157 949.8878 50.328725 960.999 44.02436 C 961.8385 50.328725 977.0399 51.05012 979.8698 44.02436 C 988.0481 48.347195 994.9682 43.122155 990.4593 36.096395 C 999.2667 35.55581 996.016 20.78105 983.96 26.546675 C 987.0003 20.78105 968.9669 15.3752 966.7661 24.74411 C 962.678 19.69988 951.7751 19.51907 951.9833 28.16843 C 945.2737 26.00609 939.8222 38.077925 950.8304 38.258735 Z M 919.588 64.383935 C 917.8059 67.98722 929.2349 70.509335 930.2827 64.92452 C 936.6767 66.546275 939.4035 61.5002 935.3154 57.896915 C 939.2983 52.491065 929.5484 49.428365 926.5081 54.11282 C 922.5252 48.88778 914.1365 54.653405 917.282 58.25669 C 910.6775 60.41903 915.4999 66.00569 919.588 64.383935 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(933.2064 -83.96)" fill="black">
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="12">由于阻塞模型的read方法是阻</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="28">塞的,内核进一步演进,产生了非</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="44">阻塞模型. 每次read都会立即</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="60">返回,当内容不可用时,会直接返</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="76">回异常码.</tspan>
+        </text>
+      </g>
+      <g id="Graphic_49">
+        <text transform="translate(873.256 621.5)" fill="#003776">
+          <tspan font-family="PingFang SC" font-size="21" font-weight="600" fill="#003776" x="0" y="22">同步非阻塞IO实现</tspan>
+        </text>
+      </g>
+      <g id="Line_56">
+        <path d="M 915.2766 418.75 C 862.3822 367.14584 773.7735 255.97966 887.3662 173.94824" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Graphic_57">
+        <text transform="translate(817.064 329)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="9094947e-19" y="17">accept方向</tspan>
+        </text>
+      </g>
+      <g id="Graphic_58">
+        <path d="M 1824.75 388 L 2020.25 388 C 2021.3546 388 2022.25 388.89543 2022.25 390 L 2022.25 475 C 2022.25 476.10457 2021.3546 477 2020.25 477 L 1824.75 477 C 1823.6454 477 1822.75 476.10457 1822.75 475 L 1822.75 390 C 1822.75 388.89543 1823.6454 388 1824.75 388 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1827.75 393)" fill="black">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="black" x="94.58301" y="15">System Kernel</tspan>
+        </text>
+      </g>
+      <g id="Graphic_59">
+        <ellipse cx="1759.75" cy="551" rx="40.7500651145022" ry="40.2500643155512" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1732.15 541)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="3.7930004" y="15">客户端1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_60">
+        <ellipse cx="1894.506" cy="555.5" rx="40.7500651145021" ry="40.2500643155513" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1866.906 545.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="2.4000004" y="15">客户端2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_61">
+        <ellipse cx="2050.75" cy="568.25" rx="40.7500651145023" ry="40.2500643155512" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(2023.15 558.25)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="2.6870004" y="15">客户端n</tspan>
+        </text>
+      </g>
+      <g id="Graphic_62">
+        <text transform="translate(1940.256 565.25)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">……</tspan>
+        </text>
+      </g>
+      <g id="Line_63">
+        <line x1="1792.9598" y1="526.8196" x2="1855.4006" y2="481.35575" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_64">
+        <line x1="1903.5557" y1="515.73746" x2="1910.73" y2="484.2155" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_65">
+        <line x1="2022.6046" y1="538.4587" x2="1969.6233" y2="482.3791" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_66">
+        <text transform="translate(1771.4017 488.08025)" fill="#235e00">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="23.334515" y="15">connect</tspan>
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="36.21684" y="34">FD1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_67">
+        <text transform="translate(1882.212 479.2046)" fill="#235e00">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="0" y="15">connect</tspan>
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="11.76123" y="34">FD2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_68">
+        <text transform="translate(1975.3761 496.2838)" fill="#235e00">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="0" y="15">connect</tspan>
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="10.455566" y="34">FDN</tspan>
+        </text>
+      </g>
+      <g id="Graphic_69">
+        <text transform="translate(1858.756 613.5)" fill="#003776">
+          <tspan font-family="PingFang SC" font-size="21" font-weight="600" fill="#003776" x="0" y="22">IO多路复用实现</tspan>
+        </text>
+      </g>
+      <g id="Graphic_71">
+        <path d="M 1846.5 107.5 L 1998.5 107.5 C 1999.6046 107.5 2000.5 108.39543 2000.5 109.5 L 2000.5 162.5 C 2000.5 163.60457 1999.6046 164.5 1998.5 164.5 L 1846.5 164.5 C 1845.3954 164.5 1844.5 163.60457 1844.5 162.5 L 1844.5 109.5 C 1844.5 108.39543 1845.3954 107.5 1846.5 107.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1849.5 116.5)" fill="black">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="black" x="13.523926" y="15">Server application</tspan>
+          <tspan font-family="HanziPen SC" font-size="14" font-weight="400" fill="black" x="36.95" y="34">服务器应用</tspan>
+        </text>
+      </g>
+      <g id="Line_73">
+        <line x1="1922.5" y1="165" x2="1922.5" y2="380.6" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_75">
+        <path d="M 1957 171.9349 L 2343 171.9349 C 2345.209 171.9349 2347 173.72575 2347 175.9349 L 2347 357.9349 C 2347 360.14403 2345.209 361.9349 2343 361.9349 L 1957 361.9349 C 1954.7909 361.9349 1953 360.14403 1953 357.9349 L 1953 175.9349 C 1953 173.72575 1954.7909 171.9349 1957 171.9349 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8.0,4.0,1.0,4.0" stroke-width="1"/>
+        <text transform="translate(1958 176.9349)" fill="#666">
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="14">fd10 = new socket();</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="32">bind(8080)</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="50">listen(fd10);</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="68">while(true) {</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="28" y="86">//阻塞等待客户端链接. 将文件描述符fdxx暂存到数组中</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="28" y="104">fdxx = accept(fd10);</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="28" y="122">fd_array.add(fddxx);</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="28" y="140">// 使用select系统调用,一次把数组中所有的描述都提交上去.</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="28" y="158">select(fd_array);</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="176">}</tspan>
+        </text>
+      </g>
+      <g id="Graphic_79">
+        <path d="M 1865.196 -63.211345 C 1843.8302 -72.8935 1860.2182 -104.5551 1888.3869 -103.69294 C 1884.6224 -117.04422 1919.3453 -137.5 1947.6333 -117.69028 C 1951.154 -132.54757 2005.7857 -135.7779 2013.4364 -111.6596 C 2021.6913 -128.88727 2084.3366 -119.62848 2069.162 -88.83565 C 2093.6856 -93.14202 2105.0982 -41.03125 2064.4254 -39.52303 C 2075.2314 -20.78935 2035.4089 -3.777775 2019.5057 -15.190855 C 2021.5695 .742475 1963.1734 14.739815 1951.8826 -10.88449 C 1947.3896 5.04884 1889.1154 -5.502085 1897.977 -27.03391 C 1880.7362 -18.851155 1844.8 -44.90764 1865.196 -63.211345 Z M 1906.3538 31.321415 C 1902.3481 36.48773 1905.2622 45.746525 1918.1294 38.21204 C 1919.1016 45.746525 1936.7055 46.60868 1939.9826 38.21204 C 1949.4533 43.378355 1957.467 37.133795 1952.2456 28.737155 C 1962.445 28.09109 1958.6804 10.43345 1944.7192 17.324075 C 1948.24 10.43345 1927.3565 3.9728 1924.808 15.16979 C 1920.0738 9.14132 1907.4478 8.92523 1907.689 19.26227 C 1899.919 16.67801 1893.6059 31.105325 1906.3538 31.321415 Z M 1870.1739 62.544215 C 1868.1101 66.85058 1881.3453 69.864815 1882.5587 63.19028 C 1889.9633 65.128475 1893.121 59.0978 1888.3869 54.791435 C 1892.9992 48.330785 1881.7084 44.670485 1878.1876 50.26898 C 1873.5753 44.02442 1863.8608 50.915045 1867.5034 55.22141 C 1859.8552 57.80567 1865.4397 64.48241 1870.1739 62.544215 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1885.1543 -114.94)" fill="black">
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="12">非阻塞模型虽然可以不阻塞, 但是每</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="28">次都需要进行read系统调用. select</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="44">函数支持同时提交多个文件描述符,</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="60">当有一个或多个文件描述符数据可</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="76">用时,相关文件描述符标志位就会置</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="92">为1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_81">
+        <path d="M 2767.7447 468.5 L 3099.2447 468.5 C 3100.3492 468.5 3101.2447 469.39543 3101.2447 470.5 L 3101.2447 607.5 C 3101.2447 608.6046 3100.3492 609.5 3099.2447 609.5 L 2767.7447 609.5 C 2766.64 609.5 2765.7447 608.6046 2765.7447 607.5 L 2765.7447 470.5 C 2765.7447 469.39543 2766.64 468.5 2767.7447 468.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(2770.7447 473.5)" fill="black">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="black" x="0" y="15">System Kernel</tspan>
+        </text>
+      </g>
+      <g id="Graphic_82">
+        <ellipse cx="2769.4947" cy="692.75" rx="40.7500651145025" ry="40.2500643155512" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(2741.8947 682.75)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="3.7930004" y="15">客户端1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_83">
+        <ellipse cx="2904.2507" cy="787.25" rx="40.7500651145026" ry="40.2500643155512" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(2876.6507 777.25)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="2.4000004" y="15">客户端2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_84">
+        <ellipse cx="3060.4947" cy="800" rx="40.7500651145026" ry="40.2500643155513" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(3032.8947 790)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="2.6870004" y="15">客户端n</tspan>
+        </text>
+      </g>
+      <g id="Graphic_85">
+        <text transform="translate(2950.0007 797)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">……</tspan>
+        </text>
+      </g>
+      <g id="Line_86">
+        <line x1="2799.416" y1="664.6988" x2="2852.896" y2="614.5612" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_87">
+        <line x1="2909.019" y1="746.77155" x2="2924.324" y2="616.8492" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_88">
+        <line x1="3042.6188" y1="763.263" x2="2971.037" y2="616.1541" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_89">
+        <text transform="translate(2760.735 615.83446)" fill="#235e00">
+          <tspan font-family="Comic Sans MS" font-size="13" font-weight="400" fill="#235e00" x="0" y="14">connect. </tspan>
+          <tspan font-family="Kaiti SC" font-size="13" font-weight="400" fill="#235e00" y="14">请求与</tspan>
+          <tspan font-family="Comic Sans MS" font-size="13" font-weight="400" fill="#235e00" y="14">fd10</tspan>
+          <tspan font-family="Kaiti SC" font-size="13" font-weight="400" fill="#235e00" x="0" y="32">建立连接</tspan>
+          <tspan font-family="Comic Sans MS" font-size="13" font-weight="400" fill="#235e00" x="0" y="50">FD1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_90">
+        <text transform="translate(2891.0705 665.077)" fill="#235e00">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="0" y="15">connect</tspan>
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="0" y="34">FD2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_91">
+        <text transform="translate(2988.987 686.1075)" fill="#235e00">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="0" y="15">connect</tspan>
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="#235e00" x="0" y="34">FDn</tspan>
+        </text>
+      </g>
+      <g id="Graphic_94">
+        <path d="M 2854.2447 112.5 L 3006.2447 112.5 C 3007.3492 112.5 3008.2447 113.39543 3008.2447 114.5 L 3008.2447 167.5 C 3008.2447 168.60457 3007.3492 169.5 3006.2447 169.5 L 2854.2447 169.5 C 2853.14 169.5 2852.2447 168.60457 2852.2447 167.5 L 2852.2447 114.5 C 2852.2447 113.39543 2853.14 112.5 2854.2447 112.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(2857.2447 121.5)" fill="black">
+          <tspan font-family="Comic Sans MS" font-size="14" font-weight="400" fill="black" x="13.523926" y="15">Server application</tspan>
+          <tspan font-family="HanziPen SC" font-size="14" font-weight="400" fill="black" x="36.95" y="34">服务器应用</tspan>
+        </text>
+      </g>
+      <g id="Graphic_95">
+        <path d="M 2941.2447 201.5 L 3108.592 201.5 C 3110.801 201.5 3112.592 203.29086 3112.592 205.5 L 3112.592 423.5 C 3112.592 425.70914 3110.801 427.5 3108.592 427.5 L 2941.2447 427.5 C 2939.0355 427.5 2937.2447 425.70914 2937.2447 423.5 L 2937.2447 205.5 C 2937.2447 203.29086 2939.0355 201.5 2941.2447 201.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8.0,4.0,1.0,4.0" stroke-width="1"/>
+        <text transform="translate(2942.2447 206.5)" fill="#666">
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="14">fd10 = new socket();</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="32">bind(8080)</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="50">listen(fd10);</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="68">// 创建一个epoll描述符</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="86">fd15 = epoll_create();</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="104">epoll_ctl(fd15, fd10);</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="122">//等待fd15注册的事件满足</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="140">epoll_wait(fd15);</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="158">fd1 = accept(fd10);</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="176">epoll_ctl(fd15, fd1);</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="194">//阻塞等待fd15的事件满足</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="212">epoll_wait(fd15);</tspan>
+        </text>
+      </g>
+      <g id="Graphic_96">
+        <path d="M 2785.7447 518 L 2909.2447 518 L 2909.2447 598.5 L 2785.7447 598.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8.0,5.0,8.0,5.0,1.0,5.0" stroke-width="1"/>
+        <text transform="translate(2790.7447 523)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="42.743" y="13">fd15</tspan>
+        </text>
+      </g>
+      <g id="Line_97">
+        <path d="M 1844.5 140.40225 C 1817.9505 148.31403 1793.665 165.34621 1788.7097 200.53763 C 1779.8967 263.12553 1835.3144 361.22324 1864.1396 407.16774" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_98">
+        <text transform="translate(1750.3032 215.43916)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">select调用</tspan>
+        </text>
+      </g>
+      <g id="Graphic_99">
+        <path d="M 1844.5 413 L 1917 413 L 1917 452 L 1844.5 452 Z" stroke="#b1001c" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <text transform="translate(1849.5 416.5)" fill="#b1001c">
+          <tspan font-family="PingFang SC" font-size="11" font-weight="600" fill="#b1001c" x="4.058" y="12">循环判断</tspan>
+          <tspan font-family="Helvetica Neue" font-size="11" font-weight="700" fill="#b1001c" y="12">fd</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="600" fill="#b1001c" x="9.25" y="28">是否可用</tspan>
+        </text>
+      </g>
+      <g id="Line_100">
+        <path d="M 2852.2447 163.87546 C 2793.76 186.33658 2721.5574 227.38204 2708 295.74244 C 2692.728 372.7488 2756.552 460.827 2802.9 512.87195" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_101">
+        <text transform="translate(2732.0157 206.5)" fill="#666">
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="14">1. epoll_create</tspan>
+        </text>
+      </g>
+      <g id="Line_102">
+        <path d="M 2908.0037 169.5 C 2888.0574 198.77152 2859.802 250.22076 2845.541 322.12963 C 2831.2694 394.09128 2835.098 465.9426 2840.278 511.1492" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_103">
+        <text transform="translate(2770.7447 302.375)" fill="#666">
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="14">2. epoll_ctl(fd15, fd10);</tspan>
+        </text>
+      </g>
+      <g id="Graphic_105">
+        <text transform="translate(2791.9894 541.5)" fill="#666">
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="14">fd10的accept</tspan>
+        </text>
+      </g>
+      <g id="Graphic_106">
+        <path d="M 2955.3974 518 L 3078.8974 518 L 3078.8974 592.8156 L 2955.3974 592.8156 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8.0,5.0,8.0,5.0,1.0,5.0" stroke-width="1"/>
+        <text transform="translate(2960.3974 523)" fill="black">
+          <tspan font-family="PingFang SC" font-size="10" font-weight="400" fill="black" x="36.75" y="11">就绪链表</tspan>
+        </text>
+      </g>
+      <g id="Line_107">
+        <path d="M 2926.501 169.5 C 2920.1077 223.77038 2909.475 344.4113 2928.0057 432.7778 C 2935.5752 468.87405 2946.9165 494.3664 2958.995 512.36317" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_109">
+        <text transform="translate(2977.7647 535)" fill="#666">
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="14">fd10</tspan>
+        </text>
+      </g>
+      <g id="Graphic_110">
+        <text transform="translate(2933.0057 432.9375)" fill="#666">
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="14">10. epoll_wait(fd15)</tspan>
+        </text>
+      </g>
+      <g id="Graphic_111">
+        <text transform="translate(2791.9894 558.5)" fill="#666">
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="14">fd1的read</tspan>
+        </text>
+      </g>
+      <g id="Graphic_112">
+        <text transform="translate(2977.7647 554)" fill="#666">
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="14">fd1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_113">
+        <text transform="translate(2791.9894 575.5)" fill="#666">
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#666" x="0" y="14">fdn的read</tspan>
+        </text>
+      </g>
+      <g id="Graphic_114">
+        <path d="M 2864.0177 -84.59332 C 2842.652 -95.7245 2859.04 -132.12457 2887.2085 -131.13338 C 2883.444 -146.4828 2918.167 -170 2946.455 -147.22556 C 2949.9757 -164.30639 3004.6073 -168.02017 3012.258 -140.29233 C 3020.513 -160.09829 3083.1583 -149.45382 3067.9836 -114.05255 C 3092.5072 -119.0034 3103.92 -59.09375 3063.247 -57.35981 C 3074.053 -35.82245 3034.2305 -16.264925 3018.3274 -29.386085 C 3020.391 -11.068175 2961.995 5.024005 2950.7042 -24.43523 C 2946.2113 -6.11732 2887.937 -18.247295 2896.7986 -43.00157 C 2879.5578 -33.594185 2843.6216 -63.55028 2864.0177 -84.59332 Z M 2905.1754 24.087205 C 2901.1698 30.02671 2904.084 40.671175 2916.951 32.00908 C 2917.9233 40.671175 2935.527 41.66236 2938.8042 32.00908 C 2948.275 37.948585 2956.2887 30.769465 2951.0672 21.116185 C 2961.2665 20.37343 2957.502 .07315 2943.541 7.995025 C 2947.0616 .07315 2926.178 -7.3544 2923.6296 5.51833 C 2918.8954 -1.41236 2906.2694 -1.66079 2906.5106 10.22329 C 2898.7405 7.25227 2892.4275 23.838775 2905.1754 24.087205 Z M 2868.9955 59.982805 C 2866.9318 64.93366 2880.167 68.399005 2881.3804 60.72556 C 2888.785 62.953825 2891.9427 56.0206 2887.2085 51.069745 C 2891.8208 43.642195 2880.53 39.434095 2877.0092 45.87046 C 2872.397 38.69134 2862.6825 46.613215 2866.325 51.56407 C 2858.677 54.53509 2864.2614 62.21107 2868.9955 59.982805 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(2883.976 -136.88)" fill="black">
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="12">多路复用虽然减少系统调用次数, 但</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="28">是内核并不知道哪些fd时就绪的,只</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="44">能把所有的fd遍历一次. 而epoll通过</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="60">就绪链表就可以直接知道哪些fd就</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="76">绪,进而直接执行accept、read|recv</tspan>
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="92">就能直接返回</tspan>
+        </text>
+      </g>
+      <g id="Graphic_116">
+        <text transform="translate(2847.5007 875.8925)" fill="#003776">
+          <tspan font-family="PingFang SC" font-size="21" font-weight="600" fill="#003776" x="0" y="22">IO多路复用升级实现</tspan>
+        </text>
+      </g>
+      <g id="Graphic_117">
+        <path d="M 583 386.77916 L 583 356.9264 L 687.3068 356.9264 L 687.3068 342 L 698.3068 371.85277 L 687.3068 401.70554 L 687.3068 386.77916 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(588 362.1207)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="black" x="10.5334" y="16">OIO—&gt;NIO</tspan>
+        </text>
+      </g>
+      <g id="Graphic_118">
+        <path d="M 1526 386.77916 L 1526 356.9264 L 1670 356.9264 L 1670 342 L 1681 371.85277 L 1670 401.70554 L 1670 386.77916 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1531 362.1207)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="black" x="8.26" y="16">NIO-multiplexing</tspan>
+        </text>
+      </g>
+      <g id="Graphic_119">
+        <path d="M 2426.2996 386.77916 L 2426.2996 356.9264 L 2572.9716 356.9264 L 2572.9716 342 L 2583.9716 371.85277 L 2572.9716 401.70554 L 2572.9716 386.77916 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(2431.2996 360.85277)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="black" x="11.363999" y="17">multiplexing</tspan>
+          <tspan font-family="PingFang SC" font-size="16" font-weight="600" fill="black" y="17">升级</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>
