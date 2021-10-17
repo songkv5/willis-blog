@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" viewBox="-751.0814 -963 1236.3196 730" width="1236.3196" height="730">
+  <defs>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="UMLInheritance_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -8 14 16" markerWidth="14" markerHeight="16" color="black">
+      <g>
+        <path d="M 12 0 L 0 -7 L 0 7 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="Avenir" font-size="13" panose-1="2 11 5 3 2 2 3 2 2 4" units-per-em="1000" underline-position="-75" underline-thickness="50" slope="0" x-height="468" cap-height="708" ascent="1e3" descent="-365.9973" font-weight="400">
+      <font-face-src>
+        <font-face-name name="Avenir-Roman"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="13" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Avenir" font-size="13" panose-1="2 11 7 3 2 2 3 2 2 4" units-per-em="1000" underline-position="-75" underline-thickness="50" slope="0" x-height="480" cap-height="708" ascent="1e3" descent="-365.9973" font-weight="800">
+      <font-face-src>
+        <font-face-name name="Avenir-Heavy"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="7" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Avenir" font-size="7" panose-1="2 11 5 3 2 2 3 2 2 4" units-per-em="1000" underline-position="-75" underline-thickness="50" slope="0" x-height="468" cap-height="708" ascent="1e3" descent="-365.9973" font-weight="400">
+      <font-face-src>
+        <font-face-name name="Avenir-Roman"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="8" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Avenir" font-size="8" panose-1="2 11 5 3 2 2 3 2 2 4" units-per-em="1000" underline-position="-75" underline-thickness="50" slope="0" x-height="468" cap-height="708" ascent="1e3" descent="-365.9973" font-weight="400">
+      <font-face-src>
+        <font-face-name name="Avenir-Roman"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="UMLInheritance_Marker_2" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -8 14 16" markerWidth="14" markerHeight="16" color="black">
+      <g>
+        <path d="M 12 0 L 0 -7 L 0 7 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="PingFang SC" font-size="13" panose-1="2 11 8 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="80" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="600">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Semibold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Avenir" font-size="10" panose-1="2 11 5 3 2 2 3 2 2 4" units-per-em="1000" underline-position="-75" underline-thickness="50" slope="0" x-height="468" cap-height="708" ascent="1e3" descent="-365.9973" font-weight="400">
+      <font-face-src>
+        <font-face-name name="Avenir-Roman"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="10" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.18.6\n2021-10-16 08:32:20 +0000</metadata>
+  <g id="版面_" stroke-dasharray="none" fill-opacity="1" stroke="none" fill="none" stroke-opacity="1">
+    <title>类图</title>
+    <rect fill="white" x="-751.0814" y="-963" width="1236.3196" height="730"/>
+    <g id="版面__NioEventLoopGroup_类图">
+      <title>NioEventLoopGroup 类图</title>
+      <g id="Line_196">
+        <line x1="-493.91966" y1="-659.39706" x2="-424.5" y2="-659.39706" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_200">
+        <line x1="-212" y1="-659.39706" x2="-120.3795" y2="-659.39706" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+    <g id="版面__NioEventloop类图">
+      <title>NioEventloop类图</title>
+      <g id="Group_3">
+        <title>Class with Attributes</title>
+        <g id="Graphic_5">
+          <title>Attributes</title>
+          <rect x="-683.4197" y="-284" width="187" height="50" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-677.4197 -278)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="14">-selector java nio</tspan>
+            <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#515556" y="14">的</tspan>
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" y="14">selector</tspan>
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="37">newChild() </tspan>
+            <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#515556" y="37">创建线程池</tspan>
+          </text>
+        </g>
+        <g id="Graphic_4">
+          <title>Class Name</title>
+          <rect x="-683.4197" y="-309" width="187" height="25" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-677.4197 -305.5)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="800" fill="#515556" x="43.937" y="13">NioEventLoop</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Group_6">
+        <title>Class with Attributes</title>
+        <g id="Graphic_8">
+          <title>Attributes</title>
+          <rect x="-669.4197" y="-404.5" width="159" height="50" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-663.4197 -398.5)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="13">execute() </tspan>
+            <tspan font-family="PingFang SC" font-size="7" font-weight="400" fill="#515556" y="13">自己实现了线程池的</tspan>
+            <tspan font-family="Avenir" font-size="7" font-weight="400" fill="#515556" y="13">execute</tspan>
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="35">register() </tspan>
+            <tspan font-family="PingFang SC" font-size="8" font-weight="400" fill="#515556" y="35">线程池注册到</tspan>
+            <tspan font-family="Avenir" font-size="8" font-weight="400" fill="#515556" y="35">channel</tspan>
+          </text>
+        </g>
+        <g id="Graphic_7">
+          <title>Class Name</title>
+          <rect x="-669.4197" y="-429.5" width="159" height="25" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-663.4197 -426)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="800" fill="#515556" x=".908" y="13">SingleThreadEventLoop</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Group_9">
+        <title>Class with Attributes</title>
+        <g id="Graphic_11">
+          <title>Attributes</title>
+          <rect x="-685.9197" y="-517" width="192" height="50" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-679.9197 -511)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="14">- taskQueue </tspan>
+            <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#515556" y="14">任务队列</tspan>
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="37">- executor </tspan>
+            <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="#515556" y="37">线程池实例</tspan>
+          </text>
+        </g>
+        <g id="Graphic_10">
+          <title>Class Name</title>
+          <rect x="-685.9197" y="-542" width="192" height="25" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-679.9197 -538.5)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="800" fill="#515556" x="5.7275" y="13">SingleThreadEventExecutor</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Group_22">
+        <title>Class with Attributes</title>
+        <g id="Graphic_24">
+          <title>Attributes</title>
+          <rect x="-425" y="-517" width="227" height="50" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-419 -511)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="13">Attribute</tspan>
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="35">Attribute</tspan>
+          </text>
+        </g>
+        <g id="Graphic_23">
+          <title>Class Name</title>
+          <rect x="-425" y="-542" width="227" height="25" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-419 -538.5)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="800" fill="#515556" x="5.5345" y="13">AbstractScheduledEventExecutor</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Line_29">
+        <line x1="-589.91966" y1="-309" x2="-589.91966" y2="-341" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_30">
+        <path d="M -683.4197 -271.5 L -750.5814 -271.5 L -750.5814 -659.39706 L -706.4197 -659.39706" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Line_31">
+        <line x1="-589.91966" y1="-429.5" x2="-589.91966" y2="-453.5" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_32">
+        <path d="M -669.4197 -392 L -738.9535 -392 L -738.9535 -659.39706 L -706.4197 -659.39706" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Line_33">
+        <line x1="-493.91966" y1="-504.5" x2="-438.5" y2="-504.5" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_37">
+        <path d="M -493.91966 -504.5 L -464.965 -504.5 L -464.965 -660.1978 L -466.12777 -660.1978 L -466.12777 -659.39706 L -424.5 -659.39706" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Group_38">
+        <title>Class with Attributes</title>
+        <g id="Graphic_40">
+          <title>Attributes</title>
+          <rect x="-95.91966" y="-517" width="227" height="50" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-89.91966 -511)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="13">Attribute</tspan>
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="35">Attribute</tspan>
+          </text>
+        </g>
+        <g id="Graphic_39">
+          <title>Class Name</title>
+          <rect x="-95.91966" y="-542" width="227" height="25" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-89.91966 -538.5)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="800" fill="#515556" x="37.2025" y="13">AbstractEventExecutor</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Line_41">
+        <line x1="-198" y1="-504.5" x2="-109.41966" y2="-504.5" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_45">
+        <line x1="17.580336" y1="-542" x2="17.580336" y2="-583.5" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Group_46">
+        <title>Class with Attributes</title>
+        <g id="Graphic_48">
+          <title>Attributes</title>
+          <rect x="211.58034" y="-517" width="227" height="50" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(217.58034 -511)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="13">Attribute</tspan>
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="35">Attribute</tspan>
+          </text>
+        </g>
+        <g id="Graphic_47">
+          <title>Class Name</title>
+          <rect x="211.58034" y="-542" width="227" height="25" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(217.58034 -538.5)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="800" fill="#515556" x="32.62" y="13">AbstractExecutorService</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Line_49">
+        <line x1="131.08034" y1="-504.5" x2="198.08034" y2="-504.5" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_53">
+        <line x1="17.580336" y1="-671" x2="17.580336" y2="-747.5" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Group_59">
+        <title>Class with Attributes</title>
+        <g id="Graphic_61">
+          <title>Attributes</title>
+          <rect x="211.70534" y="-810.0861" width="241.25" height="47.333333" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(217.70534 -804.0861)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="13">Attribute</tspan>
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="35">Attribute</tspan>
+          </text>
+        </g>
+        <g id="Graphic_60">
+          <title>Class Name</title>
+          <rect x="211.70534" y="-833.7528" width="241.25" height="23.666667" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(217.70534 -831.4195)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="800" fill="#515556" x="1.642" y="14">ScheduledExecutorService</tspan>
+            <tspan font-family="PingFang SC" font-size="13" font-weight="600" fill="#515556" y="14">「JDK的」</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Group_62">
+        <title>Class with Attributes</title>
+        <g id="Graphic_64">
+          <title>Attributes</title>
+          <rect x="-75.91966" y="-811" width="187" height="50" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-69.91966 -805)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="13">Attribute</tspan>
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="35">Attribute</tspan>
+          </text>
+        </g>
+        <g id="Graphic_63">
+          <title>Class Name</title>
+          <rect x="-75.91966" y="-836" width="187" height="25" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-69.91966 -832.5)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="800" fill="#515556" x="23.826" y="13">EventExecutorGroup</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Line_65">
+        <line x1="111.08034" y1="-798.5" x2="198.20538" y2="-798.286" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Group_72">
+        <title>Class with Attributes</title>
+        <g id="Graphic_74">
+          <title>Attributes</title>
+          <rect x="218.83034" y="-937" width="227" height="50" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(224.83034 -931)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="13">Attribute</tspan>
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="35">Attribute</tspan>
+          </text>
+        </g>
+        <g id="Graphic_73">
+          <title>Class Name</title>
+          <rect x="218.83034" y="-962" width="227" height="25" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(224.83034 -959)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="800" fill="#515556" x="24.261" y="14">ExecutorService </tspan>
+            <tspan font-family="PingFang SC" font-size="13" font-weight="600" fill="#515556" y="14">「JDK的」</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Line_77">
+        <path d="M 438.58034 -504.5 L 484.73823 -504.5 L 484.73823 -924.5 L 459.33034 -924.5" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Line_78">
+        <line x1="332.33034" y1="-833.7528" x2="332.33034" y2="-873.5" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Group_83">
+        <title>Class with Attributes</title>
+        <g id="Graphic_85">
+          <title>Attributes</title>
+          <rect x="-405" y="-811" width="187" height="50" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-399 -805)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="13">Attribute</tspan>
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="35">Attribute</tspan>
+          </text>
+        </g>
+        <g id="Graphic_84">
+          <title>Class Name</title>
+          <rect x="-405" y="-836" width="187" height="25" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-399 -832.5)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="800" fill="#515556" x="35.5065" y="13">EventLoopGroup</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Line_86">
+        <path d="M -593.41966 -671 L -593.41966 -798.5 L -418.5 -798.5" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_87">
+        <line x1="-218" y1="-798.5" x2="-89.41966" y2="-798.5" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+    <g id="版面__NioServerSocketChannel">
+      <title>NioServerSocketChannel</title>
+      <g id="Group_193">
+        <title>Class with Attributes</title>
+        <g id="Graphic_195">
+          <title>Attributes</title>
+          <rect x="-691.9197" y="-648.7941" width="197" height="50.79411" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-685.9197 -642.7941)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="13">Attribute</tspan>
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="35">Attribute</tspan>
+          </text>
+        </g>
+        <g id="Graphic_194">
+          <title>Class Name</title>
+          <rect x="-691.9197" y="-670" width="197" height="21.205888" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-685.9197 -668.39706)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="800" fill="#515556" x="59.766" y="13">EventLoop</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Group_197">
+        <title>Class with Attributes</title>
+        <g id="Graphic_199">
+          <title>Attributes</title>
+          <rect x="-410" y="-648.7941" width="197" height="50.79411" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-404 -642.7941)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="13">Attribute</tspan>
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="35">Attribute</tspan>
+          </text>
+        </g>
+        <g id="Graphic_198">
+          <title>Class Name</title>
+          <rect x="-410" y="-670" width="197" height="21.205888" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-404 -668.39706)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="800" fill="#515556" x="22.196" y="13">OrderedEventExecutor</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Group_201">
+        <title>Class with Attributes</title>
+        <g id="Graphic_203">
+          <title>Attributes</title>
+          <rect x="-105.8795" y="-648.7941" width="246.91966" height="50.79411" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-99.8795 -642.7941)" fill="#515556">
+            <tspan font-family="Avenir" font-size="10" font-weight="400" fill="#515556" x="0" y="11">inEventLoop() </tspan>
+            <tspan font-family="PingFang SC" font-size="10" font-weight="400" fill="#515556" y="11">判断当前线程是否在</tspan>
+            <tspan font-family="Avenir" font-size="10" font-weight="400" fill="#515556" y="11">eventloop</tspan>
+            <tspan font-family="PingFang SC" font-size="10" font-weight="400" fill="#515556" y="11">中运行</tspan>
+          </text>
+        </g>
+        <g id="Graphic_202">
+          <title>Class Name</title>
+          <rect x="-105.8795" y="-670" width="246.91966" height="21.205888" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(-99.8795 -668.39706)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="800" fill="#515556" x="73.04533" y="13">EventExecutor</tspan>
+          </text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
