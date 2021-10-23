@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="30 929 460 172" width="460" height="172">
+  <defs>
+    <font-face font-family="PingFang SC" font-size="9" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.18.6\n2021-10-23 09:47:10 +0000</metadata>
+  <g id="Canvas_1" fill-opacity="1" stroke-dasharray="none" fill="none" stroke-opacity="1" stroke="none">
+    <title>Canvas 1</title>
+    <rect fill="white" x="30" y="929" width="460" height="172"/>
+    <g id="Canvas_1_对象头-mark">
+      <title>对象头-mark</title>
+      <g id="Graphic_15">
+        <rect x="31.5" y="929.5" width="98.5" height="57" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(36.5 951.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="30.75" y="10">锁状态</tspan>
+        </text>
+      </g>
+      <g id="Graphic_16">
+        <rect x="130" y="929.5" width="359.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(135 932.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="164.85" y="10">32位</tspan>
+        </text>
+      </g>
+      <g id="Graphic_19">
+        <rect x="130" y="948.5" width="176" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(135 951.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="72.2135" y="10">25bit</tspan>
+        </text>
+      </g>
+      <g id="Graphic_20">
+        <rect x="130" y="967.5" width="117.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(135 970.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="42.9635" y="10">23bit</tspan>
+        </text>
+      </g>
+      <g id="Graphic_21">
+        <rect x="247.5" y="967.5" width="58.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(252.5 970.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="16.1635" y="10">2bit</tspan>
+        </text>
+      </g>
+      <g id="Graphic_22">
+        <rect x="306" y="948.5" width="58.5" height="38" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(311 961)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="16.1635" y="10">4bit</tspan>
+        </text>
+      </g>
+      <g id="Graphic_23">
+        <rect x="364.5" y="948.5" width="62.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(369.5 951.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="19.059" y="10">1bit</tspan>
+        </text>
+      </g>
+      <g id="Graphic_24">
+        <rect x="427" y="948.5" width="62.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(432 951.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="18.1635" y="10">2bit</tspan>
+        </text>
+      </g>
+      <g id="Graphic_25">
+        <rect x="364.5" y="967.5" width="62.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(369.5 970.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="8.25" y="10">偏向模式</tspan>
+        </text>
+      </g>
+      <g id="Graphic_26">
+        <rect x="427" y="967.5" width="62.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(432 970.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="12.75" y="10">标志位</tspan>
+        </text>
+      </g>
+      <g id="Graphic_27">
+        <rect x="130" y="986.5" width="176" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(135 989.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="60.5" y="10">对象哈希码</tspan>
+        </text>
+      </g>
+      <g id="Graphic_28">
+        <rect x="306" y="986.5" width="58.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(311 989.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="6.25" y="10">分代年龄</tspan>
+        </text>
+      </g>
+      <g id="Graphic_29">
+        <rect x="364.5" y="986.5" width="62.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(369.5 989.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="23.55" y="10">0</tspan>
+        </text>
+      </g>
+      <g id="Graphic_30">
+        <rect x="427" y="986.5" width="62.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(432 989.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="21.7455" y="10">01</tspan>
+        </text>
+      </g>
+      <g id="Graphic_31">
+        <rect x="130" y="1005.5" width="297" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(135 1008.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="89.5" y="10">指向调用栈中锁记录的指针</tspan>
+        </text>
+      </g>
+      <g id="Graphic_32">
+        <rect x="427" y="1005.5" width="62.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(432 1008.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="20.85" y="10">00</tspan>
+        </text>
+      </g>
+      <g id="Graphic_33">
+        <rect x="130" y="1024.5" width="297" height="38" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(135 1037)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="103" y="10">指向重量级锁的指针</tspan>
+        </text>
+      </g>
+      <g id="Graphic_34">
+        <rect x="427" y="1024.5" width="62.5" height="38" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(432 1037)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="21.7455" y="10">10</tspan>
+        </text>
+      </g>
+      <g id="Graphic_35">
+        <rect x="130" y="1062.5" width="297" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(135 1065.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="139" y="10">空</tspan>
+        </text>
+      </g>
+      <g id="Graphic_36">
+        <rect x="427" y="1062.5" width="62.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(432 1065.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="22.641" y="10">11</tspan>
+        </text>
+      </g>
+      <g id="Graphic_37">
+        <rect x="130" y="1081.5" width="117.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(135 1084.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="40.5065" y="10">线程ID</tspan>
+        </text>
+      </g>
+      <g id="Graphic_38">
+        <rect x="247.5" y="1081.5" width="58.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(252.5 1084.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="13.9945" y="10">Epoll</tspan>
+        </text>
+      </g>
+      <g id="Graphic_39">
+        <rect x="306" y="1081.5" width="58.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(311 1084.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="6.25" y="10">分代年龄</tspan>
+        </text>
+      </g>
+      <g id="Graphic_40">
+        <rect x="364.5" y="1081.5" width="62.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(369.5 1084.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="24.4455" y="10">1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_41">
+        <rect x="427" y="1081.5" width="62.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(432 1084.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="21.7455" y="10">01</tspan>
+        </text>
+      </g>
+      <g id="Graphic_42">
+        <rect x="31.5" y="986.5" width="98.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(36.5 989.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="30.75" y="10">未锁定</tspan>
+        </text>
+      </g>
+      <g id="Graphic_43">
+        <rect x="31.5" y="1005.5" width="98.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(36.5 1008.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="21.75" y="10">轻量级锁定</tspan>
+        </text>
+      </g>
+      <g id="Graphic_44">
+        <rect x="31.5" y="1024.5" width="98.5" height="38" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(36.5 1030.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="21.75" y="10">重量级锁定</tspan>
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="21.75" y="23">（锁膨胀）</tspan>
+        </text>
+      </g>
+      <g id="Graphic_45">
+        <rect x="31.5" y="1062.5" width="98.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(36.5 1065.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="28.608" y="10">GC标记</tspan>
+        </text>
+      </g>
+      <g id="Graphic_46">
+        <rect x="31.5" y="1081.5" width="98.5" height="19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(36.5 1084.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="30.75" y="10">可偏向</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="144 315 186 205" width="186" height="205">
+  <defs>
+    <font-face font-family="Helvetica Neue" font-size="13" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="13" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="12" panose-1="2 11 8 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="80" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="600">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Semibold"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.18.6\n2021-10-23 04:21:14 +0000</metadata>
+  <g id="Canvas_1" fill-opacity="1" stroke-dasharray="none" fill="none" stroke-opacity="1" stroke="none">
+    <title>Canvas 1</title>
+    <rect fill="white" x="144" y="315" width="186" height="205"/>
+    <g id="Canvas_1_Layer_1">
+      <title>Layer 1</title>
+      <g id="Graphic_2">
+        <rect x="204.5" y="316" width="124.5" height="40" fill="#68bc36"/>
+        <rect x="204.5" y="316" width="124.5" height="40" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(209.5 319.318)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="13" font-weight="400" fill="black" x="28" y="12">Markword</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="black" x="37.75" y="29.364">标记字</tspan>
+        </text>
+      </g>
+      <g id="Graphic_3">
+        <rect x="204.5" y="356" width="124.5" height="40" fill="#3a8eed"/>
+        <rect x="204.5" y="356" width="124.5" height="40" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(209.5 358)" fill="black">
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="black" x="19.225" y="14">ClassPointer</tspan>
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="black" x="31.25" y="32">类型指针</tspan>
+        </text>
+      </g>
+      <g id="Graphic_4">
+        <path d="M 204.5 396 L 329 396 L 329 418 L 204.5 418 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <text transform="translate(209.5 398)" fill="black">
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="black" x="31.25" y="14">数组长度</tspan>
+        </text>
+      </g>
+      <g id="Graphic_5">
+        <rect x="204.5" y="479" width="124.5" height="40" fill="#6b7ca5"/>
+        <rect x="204.5" y="479" width="124.5" height="40" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(209.5 490)" fill="black">
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="black" x="31.25" y="14">对齐填充</tspan>
+        </text>
+      </g>
+      <g id="Graphic_12">
+        <rect x="204.5" y="418" width="124.5" height="61" fill="#ff914d"/>
+        <rect x="204.5" y="418" width="124.5" height="61" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(209.5 439.5)" fill="white">
+          <tspan font-family="PingFang SC" font-size="13" font-weight="400" fill="white" x="31.25" y="14">实例数据</tspan>
+        </text>
+      </g>
+      <g id="Graphic_14">
+        <path d="M 145 316 L 329 316 L 329 418 L 145 418 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <text transform="translate(150 358.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="12" font-weight="600" fill="black" x="0" y="13">对象头</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>
