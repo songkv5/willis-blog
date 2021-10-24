@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="-138 2025 764 442" width="764" height="442">
+  <defs>
+    <font-face font-family="PingFang SC" font-size="14" panose-1="2 11 8 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="80" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="600">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Semibold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="14" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="StickArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 0 M 0 -3 L 8 0 L 0 3" fill="none" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="StickArrow_Marker_2" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-9 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M -8 0 L 0 0 M 0 3 L -8 0 L 0 -3" fill="none" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.18.6\n2021-10-24 10:32:41 +0000</metadata>
+  <g id="Canvas_1" fill-opacity="1" stroke-dasharray="none" fill="none" stroke-opacity="1" stroke="none">
+    <title>Canvas 1</title>
+    <rect fill="white" x="-138" y="2025" width="764" height="442"/>
+    <g id="Canvas_1_ziplist">
+      <title>ziplist</title>
+      <g id="Graphic_160">
+        <rect x="-42" y="2318" width="622" height="67" stroke="#b34400" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-37 2323)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="600" fill="black" x="286.407" y="15">ziplist</tspan>
+        </text>
+      </g>
+      <g id="Graphic_175">
+        <rect x="98" y="2026" width="132" height="67" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <text transform="translate(103 2031)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="600" fill="black" x="33.077" y="15">quicklist</tspan>
+        </text>
+      </g>
+      <g id="Graphic_159">
+        <rect x="-137" y="2154" width="198" height="67" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <text transform="translate(-132 2159)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="600" fill="black" x="42.06" y="15">Linkedlist Node</tspan>
+        </text>
+      </g>
+      <g id="Graphic_142">
+        <rect x="-42" y="2349" width="85" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-37 2357)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="14.967" y="15">zlbytes</tspan>
+        </text>
+      </g>
+      <g id="Graphic_143">
+        <rect x="43" y="2349" width="85" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(48 2357)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="22.611" y="15">zltail</tspan>
+        </text>
+      </g>
+      <g id="Graphic_144">
+        <rect x="128" y="2349" width="85" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(133 2357)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="23.003" y="15">zllen</tspan>
+        </text>
+      </g>
+      <g id="Graphic_145">
+        <rect x="213" y="2349" width="85" height="36" fill="#68bc36"/>
+        <rect x="213" y="2349" width="85" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(218 2357)" fill="white">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="600" fill="white" x="17.76" y="15">entry1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_146">
+        <rect x="495" y="2349" width="85" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(500 2357)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="20.546" y="15">zlend</tspan>
+        </text>
+      </g>
+      <g id="Graphic_147">
+        <rect x="298" y="2349" width="85" height="36" fill="#68bc36"/>
+        <rect x="298" y="2349" width="85" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(303 2357)" fill="white">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="600" fill="white" x="16.43" y="15">entry2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_148">
+        <rect x="383" y="2349" width="27" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(388 2357)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="1.5" y="15">…</tspan>
+        </text>
+      </g>
+      <g id="Graphic_149">
+        <rect x="410" y="2349" width="85" height="36" fill="#68bc36"/>
+        <rect x="410" y="2349" width="85" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(415 2357)" fill="white">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="600" fill="white" x="16.563" y="15">entryn</tspan>
+        </text>
+      </g>
+      <g id="Graphic_150">
+        <rect x="133" y="2430" width="85" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(138 2438)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="10.641" y="15">prev_len</tspan>
+        </text>
+      </g>
+      <g id="Graphic_151">
+        <rect x="218" y="2430" width="85" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(223 2438)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="7.827" y="15">encoding</tspan>
+        </text>
+      </g>
+      <g id="Graphic_153">
+        <rect x="303" y="2430" width="85" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(308 2438)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="12.888" y="15">content</tspan>
+        </text>
+      </g>
+      <g id="Line_154">
+        <line x1="220.5" y1="2385" x2="141.80395" y2="2425.4723" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_155">
+        <line x1="293.35714" y1="2385" x2="379.0592" y2="2425.749" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_156">
+        <rect x="-137" y="2185" width="66" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-132 2193)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="14.084" y="15">prev</tspan>
+        </text>
+      </g>
+      <g id="Graphic_157">
+        <rect x="-71" y="2185" width="66" height="36" fill="#dead26"/>
+        <rect x="-71" y="2185" width="66" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-66 2193)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="9.24" y="15">ziplist</tspan>
+        </text>
+      </g>
+      <g id="Graphic_158">
+        <rect x="-5" y="2185" width="66" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(14210855e-21 2193)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="14.154" y="15">next</tspan>
+        </text>
+      </g>
+      <g id="Graphic_162">
+        <rect x="145" y="2154" width="198" height="67" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <text transform="translate(150 2159)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="600" fill="black" x="42.06" y="15">Linkedlist Node</tspan>
+        </text>
+      </g>
+      <g id="Graphic_163">
+        <rect x="145" y="2185" width="66" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(150 2193)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="14.084" y="15">prev</tspan>
+        </text>
+      </g>
+      <g id="Graphic_164">
+        <rect x="211" y="2185" width="66" height="36" fill="#dead26"/>
+        <rect x="211" y="2185" width="66" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(216 2193)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="9.24" y="15">ziplist</tspan>
+        </text>
+      </g>
+      <g id="Graphic_165">
+        <rect x="277" y="2185" width="66" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(282 2193)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="14.154" y="15">next</tspan>
+        </text>
+      </g>
+      <g id="Graphic_166">
+        <rect x="427" y="2154" width="198" height="67" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <text transform="translate(432 2159)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="600" fill="black" x="42.06" y="15">Linkedlist Node</tspan>
+        </text>
+      </g>
+      <g id="Graphic_167">
+        <rect x="427" y="2185" width="66" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(432 2193)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="14.084" y="15">prev</tspan>
+        </text>
+      </g>
+      <g id="Graphic_168">
+        <rect x="493" y="2185" width="66" height="36" fill="#dead26"/>
+        <rect x="493" y="2185" width="66" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(498 2193)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="9.24" y="15">ziplist</tspan>
+        </text>
+      </g>
+      <g id="Graphic_169">
+        <rect x="559" y="2185" width="66" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(564 2193)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="14.154" y="15">next</tspan>
+        </text>
+      </g>
+      <g id="Line_170">
+        <line x1="70.9" y1="2203" x2="135.1" y2="2203" marker-end="url(#StickArrow_Marker)" marker-start="url(#StickArrow_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_171">
+        <line x1="352.9" y1="2203" x2="417.1" y2="2203" marker-end="url(#StickArrow_Marker)" marker-start="url(#StickArrow_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_173">
+        <rect x="98" y="2057" width="66" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(103 2065)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="12.208" y="15">head</tspan>
+        </text>
+      </g>
+      <g id="Graphic_174">
+        <rect x="164" y="2057" width="66" height="36" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(169 2065)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="18.165" y="15">tail</tspan>
+        </text>
+      </g>
+      <g id="Line_176">
+        <path d="M 98 2075.159 L -38.56209 2075.817 L -38.22346 2143.1" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_177">
+        <path d="M 230 2074.9836 L 525.4902 2074.8366 L 525.7991 2143.1" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_178">
+        <path d="M -37.67903 2221 L -36.42384 2291.3907 L 89.06802 2316.0883" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>

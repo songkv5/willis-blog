@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="-459 1083 582 148" width="582" height="148">
+  <defs>
+    <font-face font-family="Helvetica Neue" font-size="14" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="StickArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 0 M 0 -3 L 8 0 L 0 3" fill="none" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.18.6\n2021-10-24 05:23:03 +0000</metadata>
+  <g id="Canvas_1" fill-opacity="1" stroke-dasharray="none" fill="none" stroke-opacity="1" stroke="none">
+    <title>Canvas 1</title>
+    <rect fill="white" x="-459" y="1083" width="582" height="148"/>
+    <g id="Canvas_1_sds-2">
+      <title>sds-2</title>
+      <g id="Graphic_50">
+        <rect x="-458" y="1084" width="102" height="36.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-453 1094.054)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="24.475" y="13">sdshdr</tspan>
+        </text>
+      </g>
+      <g id="Graphic_49">
+        <rect x="-458" y="1120.5" width="102" height="36.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-453 1122.358)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="34.205" y="13">free</tspan>
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="42.108" y="29.392">5</tspan>
+        </text>
+      </g>
+      <g id="Graphic_48">
+        <rect x="-458" y="1157" width="102" height="36.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-453 1158.858)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="36.795" y="13">len</tspan>
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="42.108" y="29.392">5</tspan>
+        </text>
+      </g>
+      <g id="Graphic_47">
+        <rect x="-458" y="1193.5" width="102" height="36.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-453 1203.554)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="35.885" y="13">buf</tspan>
+        </text>
+      </g>
+      <g id="Graphic_46">
+        <rect x="-297" y="1200" width="38" height="23.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-292 1203.554)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="5.313" y="13">‘R’</tspan>
+        </text>
+      </g>
+      <g id="Graphic_45">
+        <rect x="-259" y="1200" width="38" height="23.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-254 1203.554)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="5.831" y="13">‘E’</tspan>
+        </text>
+      </g>
+      <g id="Graphic_44">
+        <rect x="-220.7353" y="1200" width="38" height="23.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-215.7353 1203.554)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="5.18" y="13">‘D’</tspan>
+        </text>
+      </g>
+      <g id="Graphic_43">
+        <rect x="-182.47059" y="1200" width="38" height="23.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-177.47059 1203.554)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="8.295" y="13">‘I’</tspan>
+        </text>
+      </g>
+      <g id="Graphic_42">
+        <rect x="-144.20588" y="1200" width="38" height="23.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-139.20588 1203.554)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="5.572" y="13">’S’</tspan>
+        </text>
+      </g>
+      <g id="Graphic_41">
+        <rect x="-106.20588" y="1200" width="38" height="23.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-101.20588 1203.554)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="3.885" y="13">’\0’</tspan>
+        </text>
+      </g>
+      <g id="Line_40">
+        <line x1="-356" y1="1211.75" x2="-306.9" y2="1211.75" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_51">
+        <rect x="-68.20588" y="1200" width="38" height="23.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_52">
+        <rect x="-30" y="1200" width="38" height="23.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_54">
+        <rect x="7.794118" y="1200" width="38" height="23.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_55">
+        <rect x="45.79412" y="1200" width="38" height="23.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_56">
+        <rect x="83.79412" y="1200" width="38" height="23.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_57"/>
+    </g>
+  </g>
+</svg>
