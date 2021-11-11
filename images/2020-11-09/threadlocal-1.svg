@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xl="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="120 131 726 602" width="726" height="602">
+  <defs>
+    <font-face font-family="PingFang SC" font-size="14" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica Neue" font-size="14" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="10" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="SharpArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-4 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 5 0 L -3 -3 L 0 0 L 0 0 L -3 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="PingFang SC" font-size="11" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="9" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Courier" font-size="13" units-per-em="1000" underline-position="-178.22266" underline-thickness="57.61719" slope="0" x-height="456.54297" cap-height="586.91406" ascent="753.90625" descent="-246.09375" font-weight="400">
+      <font-face-src>
+        <font-face-name name="Courier"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Courier" font-size="13" units-per-em="1000" underline-position="-178.22266" underline-thickness="57.61719" slope="-923.0769" x-height="456.54297" cap-height="586.91406" ascent="753.90625" descent="-246.09375" font-style="italic" font-weight="400">
+      <font-face-src>
+        <font-face-name name="Courier-Oblique"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="StickArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 0 M 0 -3 L 8 0 L 0 3" fill="none" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="PingFang SC" font-size="12" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica Neue" font-size="10" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.19.1\n2021-11-07 16:43:08 +0000</metadata>
+  <g id="Canvas_1" stroke-opacity="1" fill-opacity="1" stroke="none" fill="none" stroke-dasharray="none">
+    <title>Canvas 1</title>
+    <rect fill="white" x="120" y="131" width="726" height="602"/>
+    <g id="Canvas_1_Layer_1">
+      <title>Layer 1</title>
+      <g id="Graphic_2">
+        <path d="M 125 314 L 333 314 C 335.20914 314 337 315.79086 337 318 L 337 543 C 337 545.20914 335.20914 547 333 547 L 125 547 C 122.79086 547 121 545.20914 121 543 L 121 318 C 121 315.79086 122.79086 314 125 314 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(126 319)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="66.32" y="15">用户Thread</tspan>
+        </text>
+      </g>
+      <g id="Graphic_3">
+        <path d="M 145.5 391 L 310 391 C 310.5523 391 311 391.4477 311 392 L 311 431 C 311 431.5523 310.5523 432 310 432 L 145.5 432 C 144.94772 432 144.5 431.5523 144.5 431 L 144.5 392 C 144.5 391.4477 144.94772 391 145.5 391 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(149.5 396.304)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="41.297" y="13">threadLocal</tspan>
+          <tspan font-family="PingFang SC" font-size="10" font-weight="400" fill="black" x="24.475" y="27.391998">自定义ThreadLocal引用</tspan>
+        </text>
+      </g>
+      <g id="Graphic_4">
+        <path d="M 145.5 445 L 310 445 C 310.5523 445 311 445.4477 311 446 L 311 531.5 C 311 532.0523 310.5523 532.5 310 532.5 L 145.5 532.5 C 144.94772 532.5 144.5 532.0523 144.5 531.5 L 144.5 446 C 144.5 445.4477 144.94772 445 145.5 445 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(149.5 450)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="27.29" y="13">threadLocalMap</tspan>
+          <tspan font-family="PingFang SC" font-size="10" font-weight="400" fill="black" x="48.25" y="27.391998">线程成员变量</tspan>
+        </text>
+      </g>
+      <g id="Graphic_5">
+        <path d="M 468.5 314 L 628.5 314 C 629.0523 314 629.5 314.4477 629.5 315 L 629.5 423 C 629.5 423.5523 629.0523 424 628.5 424 L 468.5 424 C 467.9477 424 467.5 423.5523 467.5 423 L 467.5 315 C 467.5 314.4477 467.9477 314 468.5 314 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(472.5 319)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="5.076" y="13">ThreadLocalMap.Entry</tspan>
+        </text>
+      </g>
+      <g id="Graphic_6">
+        <path d="M 485.5 356.5 L 533.5 356.5 C 535.70914 356.5 537.5 358.29086 537.5 360.5 L 537.5 393.5 C 537.5 395.70914 535.70914 397.5 533.5 397.5 L 485.5 397.5 C 483.29086 397.5 481.5 395.70914 481.5 393.5 L 481.5 360.5 C 481.5 358.29086 483.29086 356.5 485.5 356.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(486.5 368.804)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="12.108" y="13">key</tspan>
+        </text>
+      </g>
+      <g id="Graphic_7">
+        <path d="M 565.5 356.5 L 613.5 356.5 C 615.70914 356.5 617.5 358.29086 617.5 360.5 L 617.5 393.5 C 617.5 395.70914 615.70914 397.5 613.5 397.5 L 565.5 397.5 C 563.29086 397.5 561.5 395.70914 561.5 393.5 L 561.5 360.5 C 561.5 358.29086 563.29086 356.5 565.5 356.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(566.5 368.804)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="6.536" y="13">value</tspan>
+        </text>
+      </g>
+      <g id="Line_8">
+        <line x1="311" y1="401.3061" x2="474.65115" y2="381.2672" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_9">
+        <line x1="273.05098" y1="484" x2="475.2137" y2="392.51554" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_10">
+        <path d="M 468.5 132 L 628.5 132 C 629.0523 132 629.5 132.44772 629.5 133 L 629.5 241 C 629.5 241.55228 629.0523 242 628.5 242 L 468.5 242 C 467.9477 242 467.5 241.55228 467.5 241 L 467.5 133 C 467.5 132.44772 467.9477 132 468.5 132 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(472.5 137)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="62" y="15">内存</tspan>
+        </text>
+      </g>
+      <g id="Graphic_11">
+        <path d="M 485.5 166.5 L 533.5 166.5 C 535.70914 166.5 537.5 168.29086 537.5 170.5 L 537.5 203.5 C 537.5 205.70914 535.70914 207.5 533.5 207.5 L 485.5 207.5 C 483.29086 207.5 481.5 205.70914 481.5 203.5 L 481.5 170.5 C 481.5 168.29086 483.29086 166.5 485.5 166.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(486.5 178.804)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="6.536" y="13">value</tspan>
+        </text>
+      </g>
+      <g id="Line_12">
+        <line x1="580.8684" y1="356.5" x2="520.8092" y2="213.85928" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_13">
+        <rect x="366.54552" y="378.87198" width="43" height="26" fill="white"/>
+        <text transform="translate(371.5455 383.87198)" fill="black">
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="12">强引用</tspan>
+        </text>
+      </g>
+      <g id="Graphic_14">
+        <rect x="355.5799" y="423.9239" width="43" height="26" fill="white"/>
+        <text transform="translate(360.5799 428.9239)" fill="black">
+          <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="12">弱引用</tspan>
+        </text>
+      </g>
+      <g id="Line_15">
+        <line x1="285.91373" y1="484" x2="554.9924" y2="389.16233" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_17">
+        <rect x="424.5425" y="417.11944" width="37" height="23" fill="white"/>
+        <text transform="translate(429.5425 422.11944)" fill="black">
+          <tspan font-family="PingFang SC" font-size="9" font-weight="400" fill="black" x="0" y="10">强引用</tspan>
+        </text>
+      </g>
+      <g id="Graphic_18">
+        <text transform="translate(388 484)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="0" y="15">key是threadlocal变量，通过WeakRefrence包装后，封装成弱引用</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#cc7831" x="0" y="33">static class </tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#a9b7c7" y="33">Entry </tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#cc7831" y="33">extends </tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#a9b7c7" y="33">WeakReference&lt;ThreadLocal&lt;?&gt;&gt; {</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#a9b7c7" x="0" y="49">    </tspan>
+          <tspan font-family="Courier" font-size="13" font-style="italic" font-weight="400" fill="#629754" y="49">/** The value associated with this ThreadLocal. */</tspan>
+          <tspan font-family="Courier" font-size="13" font-style="italic" font-weight="400" fill="#629754" x="0" y="65">    </tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#a9b7c7" y="65">Object </tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#9876ab" y="65">value</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#cc7831" y="65">;</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#cc7831" x="0" y="97">    </tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#ffc76d" y="97">Entry</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#a9b7c7" y="97">(ThreadLocal&lt;?&gt; k</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#cc7831" y="97">, </tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#a9b7c7" y="97">Object v) {</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#a9b7c7" x="0" y="113">        </tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#cc7831" y="113">super</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#a9b7c7" y="113">(k)</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#cc7831" y="113">;</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#cc7831" x="0" y="129">        </tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#9876ab" y="129">value </tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#a9b7c7" y="129">= v</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#cc7831" y="129">;</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#cc7831" x="0" y="145">    </tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#a9b7c7" y="145">}</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#a9b7c7" x="0" y="161">}</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#cc7831" x="0" y="193">public </tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#ffc76d" y="193">WeakReference</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#a9b7c7" y="193">(</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#507874" y="193">T </tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#a9b7c7" y="193">referent) {</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#a9b7c7" x="0" y="209">    </tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#cc7831" y="209">super</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#a9b7c7" y="209">(referent)</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#cc7831" y="209">;</tspan>
+          <tspan font-family="Courier" font-size="13" font-weight="400" fill="#a9b7c7" x="0" y="225">}</tspan>
+        </text>
+      </g>
+      <g id="Line_19">
+        <line x1="395.3145" y1="449.9239" x2="428.03737" y2="473.253" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Graphic_20">
+        <text transform="translate(126 243)" fill="black">
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="0" y="13">自己定义的变量通过new生成，为强引用</tspan>
+          <tspan font-family="PingFang SC" font-size="12" font-weight="400" fill="black" x="0" y="30">ThreadLocal threadLocal = new ThreadLocal();</tspan>
+        </text>
+      </g>
+      <g id="Line_22">
+        <line x1="375.07" y1="378.87198" x2="285.3743" y2="289.00695" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Graphic_23">
+        <path d="M 161.25 484 L 294.25 484 C 294.8023 484 295.25 484.4477 295.25 485 L 295.25 524 C 295.25 524.5523 294.8023 525 294.25 525 L 161.25 525 C 160.69772 525 160.25 524.5523 160.25 524 L 160.25 485 C 160.25 484.4477 160.69772 484 161.25 484 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(165.25 489.304)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="47.072" y="13">table</tspan>
+          <tspan font-family="Helvetica Neue" font-size="10" font-weight="400" fill="black" x="17.495" y="27.391998">Map</tspan>
+          <tspan font-family="PingFang SC" font-size="10" font-weight="400" fill="black" y="27.391998">的数据存储结构</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>
