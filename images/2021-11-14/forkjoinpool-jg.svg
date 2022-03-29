@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-899.7958 3956.5 2331.7958 515.5" width="2331.7958" height="515.5">
+  <defs>
+    <font-face font-family="PingFang SC" font-size="20" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="18" panose-1="2 11 8 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="80" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="600">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Semibold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="26" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="19" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="PingFang SC" font-size="21" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="16" panose-1="2 11 8 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="80" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="600">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Semibold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="22" panose-1="2 11 8 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="80" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="600">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Semibold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="20" panose-1="2 11 8 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="80" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="600">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Semibold"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="SharpArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-4 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 5 0 L -3 -3 L 0 0 L 0 0 L -3 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="PingFang SC" font-size="16" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.19.1\n2021-11-14 14:52:42 +0000</metadata>
+  <g id="版面__" stroke-dasharray="none" fill="none" stroke-opacity="1" fill-opacity="1" stroke="none">
+    <title>线程池</title>
+    <rect fill="white" x="-899.7958" y="3956.5" width="2331.7958" height="515.5"/>
+    <g id="版面___FJP">
+      <title>FJP</title>
+      <g id="Graphic_94">
+        <rect x="-301" y="4131" width="223" height="77.20755" fill="#3a8eed"/>
+        <rect x="-301" y="4131" width="223" height="77.20755" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"/>
+        <text transform="translate(-296 4143.104)" fill="white">
+          <tspan font-family="PingFang SC" font-size="20" font-weight="400" fill="white" x="66.5" y="21">任务队列</tspan>
+          <tspan font-family="PingFang SC" font-size="18" font-weight="600" fill="white" x="52.5" y="47">工作窃取队列</tspan>
+        </text>
+      </g>
+      <g id="Graphic_95">
+        <rect x="-301" y="4208.2075" width="223" height="263.79245" fill="#00bfc0"/>
+        <rect x="-301" y="4208.2075" width="223" height="263.79245" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"/>
+        <text transform="translate(-296 4321.604)" fill="white">
+          <tspan font-family="PingFang SC" font-size="26" font-weight="400" fill="white" x="80.5" y="28">线程</tspan>
+        </text>
+      </g>
+      <g id="Graphic_96">
+        <rect x="-40.204225" y="4131" width="223" height="77.20755" fill="#3a8eed"/>
+        <rect x="-40.204225" y="4131" width="223" height="77.20755" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"/>
+        <text transform="translate(-35.204225 4143.104)" fill="white">
+          <tspan font-family="PingFang SC" font-size="20" font-weight="400" fill="white" x="66.5" y="21">任务队列</tspan>
+          <tspan font-family="PingFang SC" font-size="18" font-weight="600" fill="white" x="52.5" y="47">工作窃取队列</tspan>
+        </text>
+      </g>
+      <g id="Graphic_97">
+        <rect x="-40.204225" y="4208.2075" width="223" height="263.79245" fill="#00bfc0"/>
+        <rect x="-40.204225" y="4208.2075" width="223" height="263.79245" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"/>
+        <text transform="translate(-35.204225 4321.604)" fill="white">
+          <tspan font-family="PingFang SC" font-size="26" font-weight="400" fill="white" x="80.5" y="28">线程</tspan>
+        </text>
+      </g>
+      <g id="Graphic_98">
+        <rect x="220.59155" y="4131" width="223" height="77.20755" fill="#3a8eed"/>
+        <rect x="220.59155" y="4131" width="223" height="77.20755" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"/>
+        <text transform="translate(225.59155 4143.104)" fill="white">
+          <tspan font-family="PingFang SC" font-size="20" font-weight="400" fill="white" x="66.5" y="21">任务队列</tspan>
+          <tspan font-family="PingFang SC" font-size="18" font-weight="600" fill="white" x="52.5" y="47">工作窃取队列</tspan>
+        </text>
+      </g>
+      <g id="Graphic_99">
+        <rect x="220.59155" y="4208.2075" width="223" height="263.79245" fill="#00bfc0"/>
+        <rect x="220.59155" y="4208.2075" width="223" height="263.79245" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"/>
+        <text transform="translate(225.59155 4321.604)" fill="white">
+          <tspan font-family="PingFang SC" font-size="26" font-weight="400" fill="white" x="80.5" y="28">线程</tspan>
+        </text>
+      </g>
+      <g id="Graphic_100">
+        <rect x="-301" y="4032" width="223" height="77.20755" fill="#6b7ca5"/>
+        <rect x="-301" y="4032" width="223" height="77.20755" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"/>
+        <text transform="translate(-296 4056.604)" fill="white">
+          <tspan font-family="PingFang SC" font-size="20" font-weight="400" fill="white" x="46.5" y="21">外部提交队列</tspan>
+        </text>
+      </g>
+      <g id="Graphic_101">
+        <rect x="-39" y="4034" width="223" height="77.20755" fill="#6b7ca5"/>
+        <rect x="-39" y="4034" width="223" height="77.20755" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"/>
+        <text transform="translate(-34 4058.604)" fill="white">
+          <tspan font-family="PingFang SC" font-size="20" font-weight="400" fill="white" x="46.5" y="21">外部提交队列</tspan>
+        </text>
+      </g>
+      <g id="Graphic_102">
+        <rect x="220.59155" y="4034" width="223" height="77.20755" fill="#6b7ca5"/>
+        <rect x="220.59155" y="4034" width="223" height="77.20755" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"/>
+        <text transform="translate(225.59155 4058.604)" fill="white">
+          <tspan font-family="PingFang SC" font-size="20" font-weight="400" fill="white" x="46.5" y="21">外部提交队列</tspan>
+        </text>
+      </g>
+      <g id="Graphic_103">
+        <text transform="translate(-894.7958 4143.604)" fill="black">
+          <tspan font-family="PingFang SC" font-size="19" font-weight="400" fill="black" x="0" y="20">双端队列，为了优化性能，避免多个线程发生获取任务的的竞争，</tspan>
+          <tspan font-family="PingFang SC" font-size="19" font-weight="400" fill="black" x="0" y="46">那么采取双端队列，top头部放入，base尾部偷取</tspan>
+        </text>
+      </g>
+      <g id="Line_104">
+        <line x1="-301" y1="4169.604" x2="-328.89577" y2="4169.604" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_105">
+        <path d="M -186 3957 L 333 3957 C 335.20914 3957 337 3958.791 337 3961 L 337 4004 C 337 4006.209 335.20914 4008 333 4008 L -186 4008 C -188.20914 4008 -190 4006.209 -190 4004 L -190 3961 C -190 3958.791 -188.20914 3957 -186 3957 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-185 3968)" fill="black">
+          <tspan font-family="PingFang SC" font-size="21" font-weight="400" fill="black" x="147.053" y="22">负载均衡（Hashcode）</tspan>
+        </text>
+      </g>
+      <g id="Graphic_106">
+        <path d="M -620 4091.763 L -620 4068.652 L -372.9904 4068.652 L -372.9904 4049.2075 L -332 4080.2075 L -372.9904 4111.2075 L -372.9904 4091.763 Z" fill="#dead26"/>
+        <path d="M -620 4091.763 L -620 4068.652 L -372.9904 4068.652 L -372.9904 4049.2075 L -332 4080.2075 L -372.9904 4111.2075 L -372.9904 4091.763 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_107">
+        <text transform="translate(-539 4045)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="600" fill="black" x="0" y="17">外部线程放任务</tspan>
+        </text>
+      </g>
+      <g id="Graphic_109">
+        <rect x="742.1831" y="4203" width="234" height="113" fill="#f26077"/>
+        <rect x="742.1831" y="4203" width="234" height="113" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(747.1831 4246.5)" fill="white">
+          <tspan font-family="PingFang SC" font-size="19" font-weight="400" fill="white" x="55" y="20">外部提交队列</tspan>
+        </text>
+      </g>
+      <g id="Graphic_110">
+        <rect x="976.1831" y="4203" width="234" height="113" fill="#ff914d"/>
+        <rect x="976.1831" y="4203" width="234" height="113" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(981.1831 4246.5)" fill="white">
+          <tspan font-family="PingFang SC" font-size="19" font-weight="400" fill="white" x="55" y="20">内部提交队列</tspan>
+        </text>
+      </g>
+      <g id="Graphic_113">
+        <text transform="translate(745 4114)" fill="#b1001c">
+          <tspan font-family="PingFang SC" font-size="22" font-weight="600" fill="#b1001c" x="0" y="23">使用数组来保存这两个队列：</tspan>
+          <tspan font-family="PingFang SC" font-size="22" font-weight="600" fill="#b1001c" x="0" y="53">用奇偶性来区分两个队列，且数组拥有空间局部性，能够使用缓存加速</tspan>
+        </text>
+      </g>
+      <g id="Graphic_114">
+        <text transform="translate(747.1831 4359)" fill="#b1001c">
+          <tspan font-family="PingFang SC" font-size="22" font-weight="600" fill="#b1001c" x="0" y="23">从奇数index和偶数index区分外部提交队列、内部队里。</tspan>
+          <tspan font-family="PingFang SC" font-size="22" font-weight="600" fill="#b1001c" x="0" y="53">奇数位为内部提交队列，</tspan>
+          <tspan font-family="PingFang SC" font-size="22" font-weight="600" fill="#b1001c" x="0" y="83">偶数位为外部提交队列</tspan>
+        </text>
+      </g>
+      <g id="Graphic_115">
+        <path d="M 502 4284.88 L 502 4234.12 L 648.6543 4234.12 L 648.6543 4211.5 L 676 4259.5 L 648.6543 4307.5 L 648.6543 4284.88 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(507 4245.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="20" font-weight="600" fill="black" x="42" y="21">数据结构</tspan>
+        </text>
+      </g>
+      <g id="Line_116">
+        <path d="M -40.204225 4340.104 L -57.455366 4340.104 L -57.455366 4169.604 L -71.1 4169.604" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_117">
+        <text transform="translate(-89.45537 4245.2436)" fill="#b1001c">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="#b1001c" x="0" y="17">窃取任务</tspan>
+        </text>
+      </g>
+      <g id="Line_118">
+        <path d="M -40.204225 4340.104 L -57.05128 4340.104 L -57.05128 4073.718 L -71.1 4073.718" marker-end="url(#SharpArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>

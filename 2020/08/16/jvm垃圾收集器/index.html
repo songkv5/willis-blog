@@ -10,11 +10,16 @@
 <li>所有被同步锁持有的对象</li>
 <li>反应jvm内部情况的jmxbean，jvmti中注册的回调、本地代码缓存等</li>
 </ul>
-<h2 id="垃圾收集器介绍"><a href="#垃圾收集器介绍" class="headerlink" title="垃圾收集器介绍"></a>垃圾收集器介绍</h2><p>使用如下命令可以查看jvm默认使用哪种gc回收器</p>
+<h2 id="垃圾收集器介绍"><a href="#垃圾收集器介绍" class="headerlink" title="垃圾收集器介绍"></a>垃圾收集器介绍</h2><p><img src="../images/2020-08-16/gc-collectors.png" alt="常见垃圾收集器"></p>
+<p>使用如下命令可以查看jvm默认使用哪种gc回收器</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -XX:+PrintCommandLineFlags</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java -XX:+PrintCommandLineFlags -version</span><br><span class="line">-XX:InitialHeapSize=268435456 -XX:MaxHeapSize=4294967296 -XX:+PrintCommandLineFlags -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseParallelGC</span><br><span class="line">java version &quot;1.8.0_281&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_281-b09)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.281-b09, mixed mode)</span><br></pre></td></tr></table></figure>
-<p>上述命令说明，JDK1.8中，默认使用UseParallelGC收集器。是ps+po组合c</p>
+<p>上述命令说明，JDK1.8中，默认使用UseParallelGC收集器。是ps+po组合</p>
+<h2 id="java命令帮助"><a href="#java命令帮助" class="headerlink" title="java命令帮助"></a>java命令帮助</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看全部-XX jvm配置参数</span></span><br><span class="line">java -XX:+PrintFlagsFinal</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看-X开头的jvm配置参数</span></span><br><span class="line">java -X</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">基本配置，GC.具体参考上面去查看可配置参数</span></span><br><span class="line">-Xloggc:/logpath/xxx-xxx-gc-%t.log -XX:+UseGCLogFileRotation -XX:NumberOfGcLogFiles=5 -XX:GCLogFileSize=20M -XX:+PrintGCDetailss -XX:+PrintGDateStamps -XX:+PrintGCCause</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看启动的虚拟机信息</span></span><br><span class="line">jinfo pid</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="Serial收集器"><a href="#Serial收集器" class="headerlink" title="Serial收集器"></a>Serial收集器</h3><p><strong>1. 特点</strong></p>
 <ul>
 <li>单线程，在进行垃圾收集时，必须暂停其他所有工作线程，直到收集结束【stw】</li>
@@ -69,7 +74,8 @@
 <li>多线程并发收集，基于标记-整理算法</li>
 <li>JDK6开始提供。在之前，除了Serial Old，没有可以与Parallel Scanvenge配合的老年代收集器，没有真正保证“吞吐量优先”的垃圾收集器组合</li>
 </ul>
-<h3 id="CMS收集器（Concurrent-Mark-Sweep）"><a href="#CMS收集器（Concurrent-Mark-Sweep）" class="headerlink" title="CMS收集器（Concurrent Mark Sweep）"></a>CMS收集器（Concurrent Mark Sweep）</h3><p>CMS收集器是一种以获取最短回收停顿时间为目标的收集器。</p>
+<h3 id="CMS收集器（Concurrent-Mark-Sweep）"><a href="#CMS收集器（Concurrent-Mark-Sweep）" class="headerlink" title="CMS收集器（Concurrent Mark Sweep）"></a>CMS收集器（Concurrent Mark Sweep）</h3><p><strong>支持上线大概20G左右。</strong></p>
+<p>CMS收集器是一种以获取最短回收停顿时间为目标的收集器。</p>
 <p><strong>1. 使用场景</strong></p>
 <ul>
 <li>互联网网站或基于浏览器的B/S系统的服务端上，这类应用通常会较为关注服务的响应速度，希望系统停顿时间尽可能短，以给用户带来更好的交互体验</li>
@@ -107,14 +113,15 @@
 <p><strong>4. 局限性</strong></p>
 <ul>
 <li>CPU敏感。在并发阶段，虽然不会导致用户线程挺短，但是却会因为占用了一部分线程（处理器的计算能力）而导致应用程序变慢，降低吞吐量。由于默认启动垃圾回收线程数是（处理器核心数量+3）/4，也就是说，如果处理器核心数量在4个或4个以上，并发，并发收集的垃圾收集线程占用不超过25%（核心数趋于正无穷，也才25%），随着核心数增加，这个比例也是整体下降的趋势，最多占用25%的资源。但是如果，处理器核心数不足4个，cms对用户程序影响就可能变得很大（垃圾收集的资源占比高了，导致用户线程可用资源数减少）</li>
-<li>浮动垃圾。并发标记和并发清理阶段，用户线程产生的垃圾。也是应为有浮动垃圾，就需要cms收集器不能像其他收集器那样，等老年代完全填满了再进行收集，必须预留一部分空间供并发收集时的程序运作使用。在JDK1.5中，CMS收集器当老年代使用了68%的空间后就会被激活，这个一个保守的设计，如果在十几种老年代增长不是很快，可以适当调高比例，通过参数「-XX:CMSInitialOccupancyFraction」，降低回收频率。JDK6中，默认已经提升到了92%。<br>  <strong>风险：</strong>当CMS运行期间，预留的内存无法满足程序分配新对象的需要，就会出现一次Concurrent Mode Failure，这时虚拟机不得不启动后被预案：冻结用户线程的执行，临时启动Serial Old收集器来重新进行老年的垃圾收集，这样停顿时间就很长了。所以参数「-XX:CMSInitialOccupancyFraction」设置太高容易产生Concurrent Mode Failure错误，性能反而降低，配置时需要根据实际情况进行权衡</li>
+<li>浮动垃圾。并发标记和并发清理阶段，用户线程产生的垃圾。也是应为有浮动垃圾，就需要cms收集器不能像其他收集器那样，等老年代完全填满了再进行收集，必须预留一部分空间供并发收集时的程序运作使用。在JDK1.5中，CMS收集器当老年代使用了68%的空间后就会被激活，这个一个保守的设计，如果在十几种老年代增长不是很快，可以适当调高比例，通过参数「-XX:CMSInitialOccupancyFraction」，降低回收频率。JDK6中，默认已经提升到了92%。<br>  <strong>风险：</strong>当CMS运行期间，预留的内存无法满足程序分配新对象的需要，就会出现一次Concurrent Mode Failure，这时虚拟机不得不启动后被预案：冻结用户线程的执行，临时启动Serial Old收集器来重新进行老年的垃圾收集，这样<strong>停顿时间就很长了</strong>。所以参数「-XX:CMSInitialOccupancyFraction」设置太高容易产生Concurrent Mode Failure错误，性能反而降低，配置时需要根据实际情况进行权衡</li>
 <li>基于标记-清除算法，意味着会产生大量的空间碎片。碎片过多，会导致大对象分配的困难，一旦没有空间分配给大对象，及时空间剩余很多，也会产生一次Full GC。<ul>
 <li>为了解决这个问题，CMS提供了一个参数「-XX:+UseCMSCompactAtFullCollection, JDK9废弃了」，用于在CMS收集器不得不进行Full GC时开启内存碎片的合并整理过程，由于内存整理必须移动存活对象，（shenandoah和ZGC出现前）是无法并发的。</li>
 <li>这样空间碎片问题解决了，但是停顿时间边长了，因此虚拟机提供了另一个参数「-XX:CMSFullGcsBeforeCompaction,JDK9开始废弃」，这个参数的作用要求CMS收集器在执行过若干次（参数值）不整理空间的Full GC后下一次进入Full GC前会先进性碎片整理。默认值是0，即每次进入Full GC时都会进行碎片整理</li>
 </ul>
 </li>
 </ul>
-<h3 id="Garbage-First收集器"><a href="#Garbage-First收集器" class="headerlink" title="Garbage First收集器"></a>Garbage First收集器</h3><p><strong>1. 特点</strong></p>
+<h3 id="Garbage-First收集器"><a href="#Garbage-First收集器" class="headerlink" title="Garbage First收集器"></a>Garbage First收集器</h3><p><strong>支持上限4~16TB</strong></p>
+<p><strong>1. 特点</strong></p>
 <ul>
 <li>主要面向服务端</li>
 <li>Mixed GC模式。不再局限于新生代、老年代，没有这些概念了。面向内存块，那块内存垃圾数量最多，回收收益最大。</li>
@@ -191,6 +198,73 @@
 <h3 id="Shenandoah收集器"><a href="#Shenandoah收集器" class="headerlink" title="Shenandoah收集器"></a>Shenandoah收集器</h3><p>** 连接：<a target="_blank" rel="noopener" href="https://shipilev.net/talks/devoxx-Nov2017-shenandoah.pdf">https://shipilev.net/talks/devoxx-Nov2017-shenandoah.pdf</a> **<br>P13</p>
 <p>待补充</p>
 <h3 id="ZGC"><a href="#ZGC" class="headerlink" title="ZGC"></a>ZGC</h3><p>JDK11引入，以实验性质<br>待补充</p>
+<h2 id="常见JVM调优"><a href="#常见JVM调优" class="headerlink" title="常见JVM调优"></a>常见JVM调优</h2><h3 id="HotSpot-jvm参数"><a href="#HotSpot-jvm参数" class="headerlink" title="HotSpot jvm参数"></a>HotSpot jvm参数</h3><ul>
+<li><input disabled="" type="checkbox"> 标准参数 -xx</li>
+<li><input disabled="" type="checkbox"> 非标准参数 -X</li>
+<li><input disabled="" type="checkbox"> 不稳定-XX:</li>
+</ul>
+<h3 id="需要了解的jvm的命令"><a href="#需要了解的jvm的命令" class="headerlink" title="需要了解的jvm的命令"></a>需要了解的jvm的命令</h3><ul>
+<li><p>jmap</p>
+<ul>
+<li><p>查看java进程内存使用情况</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jmap -histo 4655|head -20</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Arthas"><a href="#Arthas" class="headerlink" title="Arthas"></a>Arthas</h3><ol>
+<li>jvm： 查看jvm信息。相当于jinfo</li>
+<li>jad。反编译</li>
+<li>dashboard。 查看系统运行信息</li>
+<li>redefine。热替换</li>
+<li>没有包含jmap的功能</li>
+</ol>
+<h3 id="jvisualvm"><a href="#jvisualvm" class="headerlink" title="jvisualvm"></a>jvisualvm</h3><h3 id="JVM调优案例"><a href="#JVM调优案例" class="headerlink" title="JVM调优案例"></a>JVM调优案例</h3><h3 id="具体案例分析"><a href="#具体案例分析" class="headerlink" title="具体案例分析"></a>具体案例分析</h3><h4 id="1-系统cpu经常100-，如何调优？"><a href="#1-系统cpu经常100-，如何调优？" class="headerlink" title="1. 系统cpu经常100%，如何调优？"></a>1. 系统cpu经常100%，如何调优？</h4><ol>
+<li><p>top命令查看cpu占用最高的是那个一进程</p>
+</li>
+<li><p>top -Hp 查看进程中的线程，哪个线程cpu占用高</p>
+</li>
+<li><p>jstack 导出java运行栈，找到对应的线程ID。jstack中的nid那一列就是线程ID（16进制的）</p>
+<p>具体关注WAITING BLOCKED状态。</p>
+<p>…wating on xxx：表示正在等待某把锁的释放。 就需要从jstack文件中搜索这个waiting on的xxx，看哪个线程正在占用这把锁</p>
+</li>
+</ol>
+<h4 id="2-内存使用经常标高，OOM问题定位"><a href="#2-内存使用经常标高，OOM问题定位" class="headerlink" title="2. 内存使用经常标高，OOM问题定位"></a>2. 内存使用经常标高，OOM问题定位</h4><ol>
+<li><p>不能用远程图形界面，会影响主进程性能。图形界面可以用在上线前，测试使用</p>
+</li>
+<li><p>可以使用arthas命令行</p>
+</li>
+<li><p>生产环境如何处理？</p>
+<ol>
+<li><p>需要一个参数支持**-XX:+HeapDumpOnOutOfMemoryError**, oom的时候会dump内存,自动产生堆转储文件</p>
+<p>堆转储文件分析，可以使用jvisualvm，或者MAT</p>
+</li>
+<li><p>很多服务器备份，停掉这台服务器对其他服务器不影响。<strong>线上不要使用jmap生成堆转储，会让进程卡主</strong>；但是可以使用jmap -histio pid|head -20 ,这个影响较小</p>
+</li>
+<li><p>在线定位 arthas。参考上面的Arthas</p>
+</li>
+</ol>
+</li>
+<li><p>new 大量线程会产生native thread oom（这个场景很low）。应该使用线程池</p>
+</li>
+<li><p>lmbda表达式会差生大量内部类，可能造成metaspace溢出（面试慎重讲）</p>
+</li>
+<li><p>内存经常标高： </p>
+<ol>
+<li>导出堆内存dump文件（需设置**-XX:+HeapDumpOnOutOfMemoryError**，不要用jmap在线上导出）</li>
+<li>分析内存dump，使用jvisualvm，看哪里占用最多</li>
+</ol>
+</li>
+<li><p>某个数据浏览网站进场卡段，内存配置1.5G，增大到16G后，更卡了</p>
+<p>分析原因</p>
+<ol>
+<li>用户浏览数据，很多数据加载到内存，内存不足，频繁GC。STW时间长，响应时间变慢</li>
+<li>16G后，内存越大，FGC时间越长</li>
+<li>优化：换成CMS或者G1收集器</li>
+</ol>
+</li>
+</ol>
 <hr>
 <p>参考文献<br>《深入理解java虚拟机》</p>
-</div><div class="tags"></div><div class="post-nav"><a class="pre" href="/willis-blog/2020/08/22/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Mysql常用查询</a><a class="next" href="/willis-blog/2020/08/07/Redis%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96/">Redis 持久化</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="https://willis-song.gitee.io/willis-blog"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/willis-blog/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/willis-blog/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/willis-blog/tags/elastic/" style="font-size: 15px;">elastic</a> <a href="/willis-blog/tags/Dubbo/" style="font-size: 15px;">Dubbo</a> <a href="/willis-blog/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 15px;">微服务</a> <a href="/willis-blog/tags/Swarm/" style="font-size: 15px;">Swarm</a> <a href="/willis-blog/tags/%E6%B8%B8%E7%8E%A9/" style="font-size: 15px;">游玩</a> <a href="/willis-blog/tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/willis-blog/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 15px;">反向代理</a> <a href="/willis-blog/tags/IO/" style="font-size: 15px;">IO</a> <a href="/willis-blog/tags/%E5%90%8C%E6%AD%A5IO/" style="font-size: 15px;">同步IO</a> <a href="/willis-blog/tags/%E5%BC%82%E6%AD%A5IO/" style="font-size: 15px;">异步IO</a> <a href="/willis-blog/tags/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/" style="font-size: 15px;">多路复用</a> <a href="/willis-blog/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/willis-blog/tags/Java/" style="font-size: 15px;">Java</a> <a href="/willis-blog/tags/%E6%8C%87%E9%92%88%E5%8E%8B%E7%BC%A9/" style="font-size: 15px;">指针压缩</a> <a href="/willis-blog/tags/%E5%90%8C%E6%AD%A5/" style="font-size: 15px;">同步</a> <a href="/willis-blog/tags/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" style="font-size: 15px;">线程安全</a> <a href="/willis-blog/tags/jvm/" style="font-size: 15px;">jvm</a> <a href="/willis-blog/tags/java/" style="font-size: 15px;">java</a> <a href="/willis-blog/tags/InnoDb/" style="font-size: 15px;">InnoDb</a> <a href="/willis-blog/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 15px;">操作系统</a> <a href="/willis-blog/tags/%E7%94%A8%E6%88%B7%E6%80%81/" style="font-size: 15px;">用户态</a> <a href="/willis-blog/tags/%E6%A0%B8%E6%80%81/" style="font-size: 15px;">核态</a> <a href="/willis-blog/tags/%E7%AE%A1%E6%80%81/" style="font-size: 15px;">管态</a> <a href="/willis-blog/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15px;">消息队列</a> <a href="/willis-blog/tags/kafka/" style="font-size: 15px;">kafka</a> <a href="/willis-blog/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/willis-blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 15px;">数据结构</a> <a href="/willis-blog/tags/%E5%8E%8B%E7%BC%A9%E8%A1%A8/" style="font-size: 15px;">压缩表</a> <a href="/willis-blog/tags/%E5%BF%AB%E8%A1%A8/" style="font-size: 15px;">快表</a> <a href="/willis-blog/tags/%E8%B7%B3%E8%A1%A8/" style="font-size: 15px;">跳表</a> <a href="/willis-blog/tags/ThreadPool/" style="font-size: 15px;">ThreadPool</a> <a href="/willis-blog/tags/%E6%BA%90%E7%A0%81/" style="font-size: 15px;">源码</a> <a href="/willis-blog/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 15px;">进程</a> <a href="/willis-blog/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 15px;">线程</a> <a href="/willis-blog/tags/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98/" style="font-size: 15px;">共享内存</a> <a href="/willis-blog/tags/%E5%86%85%E5%AD%98/" style="font-size: 15px;">内存</a> <a href="/willis-blog/tags/netty/" style="font-size: 15px;">netty</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/11/01/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%BA%90%E7%A0%81/">线程池源码</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/10/23/Redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/">Redis数据结构</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/10/22/%E5%85%B3%E4%BA%8EJVM%E6%8C%87%E9%92%88%E5%8E%8B%E7%BC%A9/">关于JVM指针压缩</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/10/22/JVM%E5%90%8C%E6%AD%A5%E6%94%AF%E6%92%91/">JVM的同步支撑</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/10/14/Netty%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">Netty实现原理与源码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/10/10/IO%E7%9A%84%E8%BF%9B%E5%8C%96/">IO的进化过程</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/09/25/Nginx-%E9%85%8D%E7%BD%AE/">Nginx-配置</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/08/04/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97-kafka-1/">消息队列-kafka-1</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/06/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">操作系统-内存管理</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/06/03/Maven%E7%9A%84docker%E6%8F%92%E4%BB%B6/">Maven的Docker插件</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.baidu.com/" title="百度" target="_blank">百度</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/willis-blog/." rel="nofollow">Willis's Note.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/willis-blog/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/willis-blog/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/willis-blog/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/willis-blog/js/smartresize.js?v=1.0.0"></script></div></body></html>
+</div><div class="tags"></div><div class="post-nav"><a class="pre" href="/willis-blog/2020/08/22/Mysql%E5%B8%B8%E7%94%A8%E6%8A%80%E8%83%BD/">Mysql常用查询</a><a class="next" href="/willis-blog/2020/08/07/Redis%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96/">Redis 持久化</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="https://willis-song.gitee.io/willis-blog"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/willis-blog/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/willis-blog/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/willis-blog/tags/elastic/" style="font-size: 15px;">elastic</a> <a href="/willis-blog/tags/Dubbo/" style="font-size: 15px;">Dubbo</a> <a href="/willis-blog/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 15px;">微服务</a> <a href="/willis-blog/tags/Swarm/" style="font-size: 15px;">Swarm</a> <a href="/willis-blog/tags/%E6%B8%B8%E7%8E%A9/" style="font-size: 15px;">游玩</a> <a href="/willis-blog/tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/willis-blog/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 15px;">反向代理</a> <a href="/willis-blog/tags/IO/" style="font-size: 15px;">IO</a> <a href="/willis-blog/tags/%E5%90%8C%E6%AD%A5IO/" style="font-size: 15px;">同步IO</a> <a href="/willis-blog/tags/%E5%BC%82%E6%AD%A5IO/" style="font-size: 15px;">异步IO</a> <a href="/willis-blog/tags/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/" style="font-size: 15px;">多路复用</a> <a href="/willis-blog/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/willis-blog/tags/Java/" style="font-size: 15px;">Java</a> <a href="/willis-blog/tags/%E5%90%8C%E6%AD%A5/" style="font-size: 15px;">同步</a> <a href="/willis-blog/tags/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" style="font-size: 15px;">线程安全</a> <a href="/willis-blog/tags/%E6%8C%87%E9%92%88%E5%8E%8B%E7%BC%A9/" style="font-size: 15px;">指针压缩</a> <a href="/willis-blog/tags/jvm/" style="font-size: 15px;">jvm</a> <a href="/willis-blog/tags/java/" style="font-size: 15px;">java</a> <a href="/willis-blog/tags/InnoDb/" style="font-size: 15px;">InnoDb</a> <a href="/willis-blog/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 15px;">操作系统</a> <a href="/willis-blog/tags/%E7%94%A8%E6%88%B7%E6%80%81/" style="font-size: 15px;">用户态</a> <a href="/willis-blog/tags/%E6%A0%B8%E6%80%81/" style="font-size: 15px;">核态</a> <a href="/willis-blog/tags/%E7%AE%A1%E6%80%81/" style="font-size: 15px;">管态</a> <a href="/willis-blog/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15px;">消息队列</a> <a href="/willis-blog/tags/kafka/" style="font-size: 15px;">kafka</a> <a href="/willis-blog/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/willis-blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 15px;">数据结构</a> <a href="/willis-blog/tags/%E5%8E%8B%E7%BC%A9%E8%A1%A8/" style="font-size: 15px;">压缩表</a> <a href="/willis-blog/tags/%E5%BF%AB%E8%A1%A8/" style="font-size: 15px;">快表</a> <a href="/willis-blog/tags/%E8%B7%B3%E8%A1%A8/" style="font-size: 15px;">跳表</a> <a href="/willis-blog/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 15px;">进程</a> <a href="/willis-blog/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 15px;">线程</a> <a href="/willis-blog/tags/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98/" style="font-size: 15px;">共享内存</a> <a href="/willis-blog/tags/%E5%86%85%E5%AD%98/" style="font-size: 15px;">内存</a> <a href="/willis-blog/tags/netty/" style="font-size: 15px;">netty</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/10/23/Redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/">Redis数据结构</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/10/22/JVM%E5%90%8C%E6%AD%A5%E6%94%AF%E6%92%91/">JVM的同步支撑</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/10/22/%E5%85%B3%E4%BA%8EJVM%E6%8C%87%E9%92%88%E5%8E%8B%E7%BC%A9/">关于JVM指针压缩</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/10/14/Netty%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">Netty实现原理与源码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/10/10/IO%E7%9A%84%E8%BF%9B%E5%8C%96/">IO的进化过程</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/09/25/Nginx-%E9%85%8D%E7%BD%AE/">Nginx-配置</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/08/04/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97-kafka-1/">消息队列-kafka-1</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/06/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">操作系统-内存管理</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/06/03/Maven%E7%9A%84docker%E6%8F%92%E4%BB%B6/">Maven的Docker插件</a></li><li class="post-list-item"><a class="post-list-link" href="/willis-blog/2021/05/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B&%E7%BA%BF%E7%A8%8B/">操作系统-进程/线程</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.baidu.com/" title="百度" target="_blank">百度</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/willis-blog/." rel="nofollow">Willis's Note.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/willis-blog/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/willis-blog/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/willis-blog/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/willis-blog/js/smartresize.js?v=1.0.0"></script></div></body></html>

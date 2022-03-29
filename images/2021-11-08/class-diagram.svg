@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:xl="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="-293 2284.5 1053.9151 680.5" width="1053.9151" height="680.5">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-293 2284 1054 681" width="1054" height="681">
   <defs>
     <font-face font-family="Avenir" font-size="13" panose-1="2 11 5 3 2 2 3 2 2 4" units-per-em="1000" underline-position="-75" underline-thickness="50" slope="0" x-height="468" cap-height="708" ascent="1e3" descent="-365.9973" font-weight="400">
       <font-face-src>
@@ -52,11 +52,6 @@
         <font-face-name name="PingFangSC-Regular"/>
       </font-face-src>
     </font-face>
-    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="UMLInheritance_Marker_2" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -8 14 16" markerWidth="14" markerHeight="16" color="black">
-      <g>
-        <path d="M 12 0 L 0 -7 L 0 7 Z" fill="none" stroke="currentColor" stroke-width="1"/>
-      </g>
-    </marker>
     <font-face font-family="PingFang SC" font-size="14" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
       <font-face-src>
         <font-face-name name="PingFangSC-Regular"/>
@@ -68,10 +63,10 @@
       </g>
     </marker>
   </defs>
-  <metadata> Produced by OmniGraffle 7.19.1\n2021-11-08 15:14:57 +0000</metadata>
-  <g id="版面__" stroke-opacity="1" fill="none" fill-opacity="1" stroke-dasharray="none" stroke="none">
+  <metadata> Produced by OmniGraffle 7.19.1\n2021-11-14 11:25:24 +0000</metadata>
+  <g id="版面__" stroke-dasharray="none" fill="none" stroke-opacity="1" fill-opacity="1" stroke="none">
     <title>线程池</title>
-    <rect fill="white" x="-293" y="2284.5" width="1053.9151" height="680.5"/>
+    <rect fill="white" x="-293" y="2284" width="1054" height="681"/>
     <g id="版面___ThreadPool类图">
       <title>ThreadPool类图</title>
       <g id="Group_2">
@@ -247,12 +242,16 @@
         <g id="Graphic_41">
           <title>Attributes</title>
           <rect x="189.75" y="2800.0187" width="180.5" height="38.48135" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(195.75 2806.0187)" fill="black">
+            <tspan font-family="Helvetica" font-size="13" font-weight="400" fill="black" x="0" y="13">-ctl</tspan>
+            <tspan font-family="Helvetica" font-size="13" font-weight="400" fill="black" x="0" y="29">+execute</tspan>
+          </text>
         </g>
         <g id="Graphic_40">
           <title>Class Name</title>
           <rect x="189.75" y="2775.5" width="180.5" height="24.518652" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-          <text transform="translate(195.75 2778.7593)" fill="#b1001c">
-            <tspan font-family="Avenir" font-size="13" font-weight="800" fill="#b1001c" x="22.3895" y="13">ThreadPoolExecutor</tspan>
+          <text transform="translate(195.75 2778.7593)" fill="black">
+            <tspan font-family="Avenir" font-size="13" font-weight="800" fill="black" x="22.3895" y="13">ThreadPoolExecutor</tspan>
           </text>
         </g>
       </g>
@@ -280,24 +279,29 @@
         </g>
       </g>
       <g id="Line_72">
-        <line x1="280" y1="2900" x2="280" y2="2853" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <line x1="280" y1="2900" x2="280" y2="2853" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
       </g>
       <g id="Group_73">
         <title>Class with Attributes</title>
         <g id="Graphic_75">
           <title>Attributes</title>
-          <rect x="407" y="2800.0187" width="142" height="38.48135" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <rect x="407" y="2806" width="145" height="69" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(413 2812)" fill="black">
+            <tspan font-family="Helvetica" font-size="13" font-weight="400" fill="black" x="0" y="13">-workQueues</tspan>
+            <tspan font-family="Helvetica" font-size="13" font-weight="400" fill="black" x="0" y="29">-runState</tspan>
+            <tspan font-family="Helvetica" font-size="13" font-weight="400" fill="black" x="0" y="45">+externalSubmit</tspan>
+          </text>
         </g>
         <g id="Graphic_74">
           <title>Class Name</title>
-          <rect x="407" y="2775.5" width="142" height="24.518652" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-          <text transform="translate(413 2778.7593)" fill="#515556">
-            <tspan font-family="Avenir" font-size="13" font-weight="800" fill="#515556" x="25.0575" y="13">ForkJoinPool</tspan>
+          <rect x="407" y="2775.5" width="145" height="30.5" stroke="#b9c0c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(413 2781.75)" fill="black">
+            <tspan font-family="Avenir" font-size="13" font-weight="800" fill="black" x="26.5575" y="13">ForkJoinPool</tspan>
           </text>
         </g>
       </g>
       <g id="Line_76">
-        <path d="M 478 2774.5 L 478 2655.2812 L 478.95383 2655.2812 L 388.75 2655.2593 L 384.75 2655.2593" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <path d="M 479.5 2774.5 L 479.5 2655.2812 L 478.95383 2655.2812 L 388.75 2655.2593 L 384.75 2655.2593" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
       </g>
       <g id="Graphic_77">
         <rect x="264" y="2861.952" width="32" height="26" fill="white"/>
@@ -306,8 +310,8 @@
         </text>
       </g>
       <g id="Graphic_78">
-        <rect x="462" y="2713.8945" width="32" height="26" fill="white"/>
-        <text transform="translate(467 2718.8945)" fill="black">
+        <rect x="463.5" y="2713.9797" width="32" height="26" fill="white"/>
+        <text transform="translate(468.5 2718.9797)" fill="black">
           <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="12">继承</tspan>
         </text>
       </g>
@@ -315,18 +319,21 @@
         <title>Class with Attributes</title>
         <g id="Graphic_81">
           <title>Attributes</title>
-          <rect x="579.4151" y="2560.5187" width="180.5" height="38.48135" stroke="#310067" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <rect x="579.4151" y="2562" width="180.5" height="30" stroke="#310067" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(585.4151 2568)" fill="#515556">
+            <tspan font-family="Avenir" font-size="13" font-weight="400" fill="#515556" x="0" y="13">+schedule</tspan>
+          </text>
         </g>
         <g id="Graphic_80">
           <title>Class Name</title>
-          <rect x="579.4151" y="2536" width="180.5" height="24.518652" stroke="#310067" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-          <text transform="translate(585.4151 2539.2593)" fill="#515556">
+          <rect x="579.4151" y="2536" width="180.5" height="26" stroke="#310067" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <text transform="translate(585.4151 2540)" fill="#515556">
             <tspan font-family="Avenir" font-size="13" font-weight="800" fill="#515556" x="3.585" y="13">ScheduledExecutorService</tspan>
           </text>
         </g>
       </g>
       <g id="Line_82">
-        <path d="M 669.6651 2535 L 669.6651 2441.0727 L 560.21974 2441.0727 L 363.5 2441.5 L 359.5 2441.5" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <path d="M 669.6651 2535 L 669.6651 2441.0727 L 560.21974 2441.0727 L 363.5 2441.5 L 359.5 2441.5" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
       </g>
       <g id="Graphic_83">
         <rect x="653.6651" y="2452.5992" width="32" height="26" fill="white"/>
@@ -335,11 +342,11 @@
         </text>
       </g>
       <g id="Line_84">
-        <path d="M 384.125 2913.2593 L 393.125 2913.2593 L 573.9685 2912.9545 L 669.6651 2912.9545 L 669.6651 2613.5" marker-end="url(#UMLInheritance_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <path d="M 384.125 2913.2593 L 393.125 2913.2593 L 573.9685 2912.9545 L 669.6651 2912.9545 L 669.6651 2606.5" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
       </g>
       <g id="Graphic_85">
-        <rect x="631.7312" y="2899.9545" width="32" height="26" fill="white"/>
-        <text transform="translate(636.7312 2904.9545)" fill="black">
+        <rect x="634.8143" y="2899.9545" width="32" height="26" fill="white"/>
+        <text transform="translate(639.8143 2904.9545)" fill="black">
           <tspan font-family="PingFang SC" font-size="11" font-weight="400" fill="black" x="0" y="12">实现</tspan>
         </text>
       </g>

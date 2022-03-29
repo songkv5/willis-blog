@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-75.25 2575.5 1206.75 458.625" width="1206.75" height="458.625">
+  <defs>
+    <font-face font-family="Helvetica Neue" font-size="19" panose-1="2 0 8 3 0 0 0 9 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="975.0061" descent="-216.99524" font-weight="700">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue-Bold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica Neue" font-size="21" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica Neue" font-size="23" panose-1="2 0 8 3 0 0 0 9 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="975.0061" descent="-216.99524" font-weight="700">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue-Bold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="14" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="16" panose-1="2 11 8 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="80" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="600">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Semibold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="22" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="16" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.19.1\n2021-11-14 16:40:45 +0000</metadata>
+  <g id="Canvas_1" stroke-dasharray="none" fill="none" stroke-opacity="1" fill-opacity="1" stroke="none">
+    <title>Canvas 1</title>
+    <rect fill="white" x="-75.25" y="2575.5" width="1206.75" height="458.625"/>
+    <g id="Canvas_1_三级缓存">
+      <title>三级缓存</title>
+      <g id="Graphic_99">
+        <rect x="218" y="2576" width="390" height="297" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(223 2581)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="19" font-weight="700" fill="black" x="164.3025" y="19">CPU1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_100">
+        <rect x="461" y="2585" width="139" height="70" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(466 2607.706)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="21" font-weight="400" fill="black" x="36.276" y="20">Buffer</tspan>
+        </text>
+      </g>
+      <g id="Graphic_101">
+        <rect x="218" y="2791" width="390" height="82" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(223 2818.1664)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="23" font-weight="700" fill="black" x="156.7765" y="22">cache</tspan>
+        </text>
+      </g>
+      <g id="Graphic_102">
+        <path d="M 530.5 2776 L 499.5 2758.3478 L 517.4443 2758.3478 L 517.4443 2691.6522 L 499.5 2691.6522 L 530.5 2674 L 561.5 2691.6522 L 543.5557 2691.6522 L 543.5557 2758.3478 L 561.5 2758.3478 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(520.5 2771) rotate(-90)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="25" y="15">批量写</tspan>
+        </text>
+      </g>
+      <g id="Graphic_103">
+        <rect x="741" y="2576" width="390" height="297" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(746 2581)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="19" font-weight="700" fill="black" x="164.3025" y="19">CPU2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_104">
+        <rect x="984" y="2585" width="139" height="70" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(989 2607.706)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="21" font-weight="400" fill="black" x="36.276" y="20">Buffer</tspan>
+        </text>
+      </g>
+      <g id="Graphic_105">
+        <rect x="741" y="2791" width="390" height="82" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(746 2818.1664)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="23" font-weight="700" fill="black" x="156.7765" y="22">cache</tspan>
+        </text>
+      </g>
+      <g id="Graphic_106">
+        <path d="M 1053.5 2776 L 1022.5 2758.3478 L 1040.4443 2758.3478 L 1040.4443 2691.6522 L 1022.5 2691.6522 L 1053.5 2674 L 1084.5 2691.6522 L 1066.5557 2691.6522 L 1066.5557 2758.3478 L 1084.5 2758.3478 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_107">
+        <path d="M 627 2843 L 640.04705 2813 L 640.04705 2832.0917 L 706.95295 2832.0917 L 706.95295 2813 L 720 2843 L 706.95295 2873 L 706.95295 2853.9083 L 640.04705 2853.9083 L 640.04705 2873 Z" fill="#3a8eed"/>
+        <path d="M 627 2843 L 640.04705 2813 L 640.04705 2832.0917 L 706.95295 2832.0917 L 706.95295 2813 L 720 2843 L 706.95295 2873 L 706.95295 2853.9083 L 640.04705 2853.9083 L 640.04705 2873 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_108">
+        <text transform="translate(655.396 2811)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="600" fill="black" x="0" y="17">MESI</tspan>
+        </text>
+      </g>
+      <g id="Graphic_109">
+        <path d="M 222 2904 L 1127 2904 C 1129.2091 2904 1131 2905.791 1131 2908 L 1131 3030 C 1131 3032.209 1129.2091 3034 1127 3034 L 222 3034 C 219.79086 3034 218 3032.209 218 3030 L 218 2908 C 218 2905.791 219.79086 2904 222 2904 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.0,1.0" stroke-width=".25"/>
+        <text transform="translate(223 2909)" fill="black">
+          <tspan font-family="PingFang SC" font-size="22" font-weight="400" fill="black" x="0" y="23">在X86里面只有store load重排序。store buffer很小。</tspan>
+          <tspan font-family="PingFang SC" font-size="22" font-weight="400" fill="black" x="0" y="53">volatile：可见性并不是它的主要作用，因为storebuffer非常小，最终由于cpu不断执行指</tspan>
+          <tspan font-family="PingFang SC" font-size="22" font-weight="400" fill="black" x="0" y="83">令，它将最终的值刷入缓存，这时MESI生效，别的cpu能看到。java中的volatile最大作用就</tspan>
+          <tspan font-family="PingFang SC" font-size="22" font-weight="400" fill="black" x="0" y="113">是禁止JIT优化且指令屏障</tspan>
+        </text>
+      </g>
+      <g id="Graphic_110">
+        <path d="M -71 2576 L 204 2576 C 206.20914 2576 208 2577.791 208 2580 L 208 2692 C 208 2694.209 206.20914 2696 204 2696 L -71 2696 C -73.20914 2696 -75 2694.209 -75 2692 L -75 2580 C -75 2577.791 -73.20914 2576 -71 2576 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2.0,2.0" stroke-width=".5"/>
+        <text transform="translate(-70 2581)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">由于从CPU中将数据写入到cache中，</tspan>
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="39">开发人员觉得慢，所以将数据先暂时</tspan>
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="61">存放到cpu内部的一个buffer中，这个</tspan>
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="83">buffer叫做storebuffer，然后批量写入</tspan>
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="105">cache，增加性能。</tspan>
+        </text>
+      </g>
+      <g id="Graphic_111">
+        <path d="M -71 2731 L 204 2731 C 206.20914 2731 208 2732.791 208 2735 L 208 2869 C 208 2871.209 206.20914 2873 204 2873 L -71 2873 C -73.20914 2873 -75 2871.209 -75 2869 L -75 2735 C -75 2732.791 -73.20914 2731 -71 2731 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2.0,2.0" stroke-width=".5"/>
+        <text transform="translate(-70 2736)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">所以：</tspan>
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="39">U.putOrderedObject(a, j, task);</tspan>
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="61">U.putOrderedInt(q, QTOP, s + 1);</tspan>
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="83">就是保证s被其他线程看到的时候，</tspan>
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="105">task也一定能被看到，也就是qtop不会</tspan>
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="127">发生写写storestore重排序</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>

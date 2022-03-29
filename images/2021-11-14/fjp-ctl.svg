@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" xmlns:xl="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="-921.5 5097.5 1001.2958 371" width="1001.2958" height="371">
+  <defs>
+    <font-face font-family="Helvetica Neue" font-size="22" panose-1="2 0 8 3 0 0 0 9 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="975.0061" descent="-216.99524" font-weight="700">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue-Bold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="22" panose-1="2 11 8 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="80" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="600">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Semibold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica Neue" font-size="25" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="25" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="16" panose-1="2 11 8 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="80" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="600">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Semibold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="23" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="19" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.19.1\n2021-11-16 15:24:48 +0000</metadata>
+  <g id="版面__" stroke="none" stroke-opacity="1" stroke-dasharray="none" fill-opacity="1" fill="none">
+    <title>线程池</title>
+    <rect fill="white" x="-921.5" y="5097.5" width="1001.2958" height="371"/>
+    <g id="版面___FJP">
+      <title>FJP</title>
+      <g id="Graphic_140">
+        <path d="M -921 5098 L 79.29577 5098 L 79.29577 5468 L -921 5468 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <text transform="translate(-916 5103)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="22" font-weight="700" fill="black" x="319.3239" y="23">ctl</tspan>
+          <tspan font-family="PingFang SC" font-size="22" font-weight="600" fill="black" y="23">控制位（共64位：3个数据单元）</tspan>
+        </text>
+      </g>
+      <g id="Graphic_130">
+        <rect x="-797" y="5185" width="178.25937" height="77.20755" fill="#6b7ca5"/>
+        <rect x="-797" y="5185" width="178.25937" height="77.20755" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-792 5205.604)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="25" font-weight="400" fill="black" x="57.729684" y="27">16</tspan>
+          <tspan font-family="PingFang SC" font-size="25" font-weight="400" fill="black" y="27">位</tspan>
+        </text>
+      </g>
+      <g id="Graphic_131">
+        <rect x="-618.7406" y="5185" width="178.25937" height="77.20755" fill="#3a8eed"/>
+        <rect x="-618.7406" y="5185" width="178.25937" height="77.20755" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-613.7406 5205.604)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="25" font-weight="400" fill="black" x="57.729684" y="27">16</tspan>
+          <tspan font-family="PingFang SC" font-size="25" font-weight="400" fill="black" y="27">位</tspan>
+        </text>
+      </g>
+      <g id="Graphic_132">
+        <rect x="-441.51874" y="5185" width="178.25937" height="77.20755" fill="#00bfc0"/>
+        <rect x="-441.51874" y="5185" width="178.25937" height="77.20755" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-436.51874 5205.604)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="25" font-weight="400" fill="black" x="57.729684" y="27">16</tspan>
+          <tspan font-family="PingFang SC" font-size="25" font-weight="400" fill="black" y="27">位</tspan>
+        </text>
+      </g>
+      <g id="Graphic_133">
+        <rect x="-263.25937" y="5185" width="178.25937" height="77.20755" fill="#00bfc0"/>
+        <rect x="-263.25937" y="5185" width="178.25937" height="77.20755" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-258.25937 5205.604)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="25" font-weight="400" fill="black" x="57.729684" y="27">16</tspan>
+          <tspan font-family="PingFang SC" font-size="25" font-weight="400" fill="black" y="27">位</tspan>
+        </text>
+      </g>
+      <g id="Graphic_135">
+        <path d="M -727.0609 5277 L -688.6798 5277 L -688.6798 5345.27 L -662.4566 5345.27 L -707.8703 5361 L -753.284 5345.27 L -727.0609 5345.27 Z" fill="#dead26"/>
+        <path d="M -727.0609 5277 L -688.6798 5277 L -688.6798 5345.27 L -662.4566 5345.27 L -707.8703 5361 L -753.284 5345.27 L -727.0609 5345.27 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-718.8703 5356) rotate(-90)" fill="white">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="600" fill="white" x="20.64" y="17">TOP</tspan>
+        </text>
+      </g>
+      <g id="Graphic_136">
+        <path d="M -548.8015 5277 L -510.4204 5277 L -510.4204 5345.27 L -484.19724 5345.27 L -529.61094 5361 L -575.02464 5345.27 L -548.8015 5345.27 Z" fill="#dead26"/>
+        <path d="M -548.8015 5277 L -510.4204 5277 L -510.4204 5345.27 L -484.19724 5345.27 L -529.61094 5361 L -575.02464 5345.27 L -548.8015 5345.27 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-540.61094 5356) rotate(-90)" fill="white">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="600" fill="white" x="20.64" y="17">TOP</tspan>
+        </text>
+      </g>
+      <g id="Graphic_137">
+        <path d="M -781.2858 5384 L -634.4548 5384 C -632.2457 5384 -630.4548 5385.791 -630.4548 5388 L -630.4548 5422 C -630.4548 5424.209 -632.2457 5426 -634.4548 5426 L -781.2858 5426 C -783.49495 5426 -785.2858 5424.209 -785.2858 5422 L -785.2858 5388 C -785.2858 5385.791 -783.49495 5384 -781.2858 5384 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2.0,2.0" stroke-width=".5"/>
+        <text transform="translate(-780.2858 5389)" fill="black">
+          <tspan font-family="PingFang SC" font-size="23" font-weight="400" fill="black" x="0" y="24">Active counts</tspan>
+        </text>
+      </g>
+      <g id="Graphic_138">
+        <path d="M -597.29944 5384 L -461.92244 5384 C -459.7133 5384 -457.92244 5385.791 -457.92244 5388 L -457.92244 5422 C -457.92244 5424.209 -459.7133 5426 -461.92244 5426 L -597.29944 5426 C -599.5086 5426 -601.29944 5424.209 -601.29944 5422 L -601.29944 5388 C -601.29944 5385.791 -599.5086 5384 -597.29944 5384 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2.0,2.0" stroke-width=".5"/>
+        <text transform="translate(-596.29944 5389)" fill="black">
+          <tspan font-family="PingFang SC" font-size="23" font-weight="400" fill="black" x="0" y="24">Total counts</tspan>
+        </text>
+      </g>
+      <g id="Graphic_142">
+        <path d="M -346.6827 5410 L -182.78571 5410 C -180.57658 5410 -178.78571 5411.791 -178.78571 5414 L -178.78571 5448 C -178.78571 5450.209 -180.57658 5452 -182.78571 5452 L -346.6827 5452 C -348.89185 5452 -350.6827 5450.209 -350.6827 5448 L -350.6827 5414 C -350.6827 5411.791 -348.89185 5410 -346.6827 5410 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2.0,2.0" stroke-width=".5"/>
+        <text transform="translate(-345.6827 5415)" fill="black">
+          <tspan font-family="PingFang SC" font-size="23" font-weight="400" fill="black" x="0" y="24">用sp_mask来取</tspan>
+        </text>
+      </g>
+      <g id="Line_143">
+        <line x1="-180.84295" y1="5410.5026" x2="-85" y2="5262.2075" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Line_144">
+        <line x1="-348.6255" y1="5410.5026" x2="-441.51874" y2="5262.2075" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Graphic_145">
+        <path d="M -390 5303 L -319 5303 C -316.79086 5303 -315 5304.791 -315 5307 L -315 5341 C -315 5343.209 -316.79086 5345 -319 5345 L -390 5345 C -392.20914 5345 -394 5343.209 -394 5341 L -394 5307 C -394 5304.791 -392.20914 5303 -390 5303 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2.0,2.0" stroke-width=".5"/>
+        <text transform="translate(-389 5308)" fill="black">
+          <tspan font-family="PingFang SC" font-size="23" font-weight="400" fill="black" x="0" y="24">版本号</tspan>
+        </text>
+      </g>
+      <g id="Graphic_146">
+        <path d="M -234 5303 L -136.031 5303 C -133.82186 5303 -132.031 5304.791 -132.031 5307 L -132.031 5361 C -132.031 5363.209 -133.82186 5365 -136.031 5365 L -234 5365 C -236.20914 5365 -238 5363.209 -238 5361 L -238 5307 C -238 5304.791 -236.20914 5303 -234 5303 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2.0,2.0" stroke-width=".5"/>
+        <text transform="translate(-233 5308)" fill="black">
+          <tspan font-family="PingFang SC" font-size="19" font-weight="400" fill="black" x="0" y="20">workqueue</tspan>
+          <tspan font-family="PingFang SC" font-size="19" font-weight="400" fill="black" x="0" y="46">的数组下标</tspan>
+        </text>
+      </g>
+      <g id="Line_149">
+        <line x1="-392.4394" y1="5303.83" x2="-441.51874" y2="5262.2075" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_150">
+        <line x1="-316.5606" y1="5303.83" x2="-263.25937" y2="5262.2075" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_151">
+        <line x1="-236.50022" y1="5303.8775" x2="-263.25937" y2="5262.2075" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_154">
+        <line x1="-133.53078" y1="5303.8775" x2="-85" y2="5262.2075" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>
