@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="121.875 200 1294.125 694.2399" width="1294.125" height="694.2399">
+  <defs>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="StickArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 0 M 0 -3 L 8 0 L 0 3" fill="none" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+  </defs>
+  <g id="版面____1" stroke-dasharray="none" fill-opacity="1" stroke-opacity="1" stroke="none" fill="none">
+    <title>改造方案1</title>
+    <rect fill="white" x="121.875" y="200" width="1294.125" height="694.2399"/>
+    <g id="版面____1_图层_2">
+      <title>图层 2</title>
+      <g id="Graphic_13">
+        <rect x="128" y="311" width="462" height="516.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <text transform="translate(133 316)" fill="black">
+          <tspan font-family="PingFang SC" font-weight="bold" font-size="14" fill="black" x="0" y="15">机房</tspan>
+          <tspan font-family="Helvetica Neue" font-weight="bold" font-size="14" fill="black" y="15">1</tspan>
+          <tspan font-family="PingFang SC" font-weight="bold" font-size="14" fill="black" y="15">（城市1）-生产环境</tspan>
+        </text>
+      </g>
+      <g id="Graphic_15">
+        <path d="M 141 562.5 L 577 562.5 L 577 804.5 L 141 804.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <text transform="translate(146 567.5)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" fill="black" x="0" y="15">K8s</tspan>
+          <tspan font-family="PingFang SC" font-size="14" fill="black" y="15">集群</tspan>
+        </text>
+      </g>
+      <g id="Graphic_18">
+        <text transform="translate(292.25 205)" fill="black">
+          <tspan font-family="PingFang SC" font-size="10" fill="black" x="0" y="11">通过生产域名访问： https://domain-prod， 该域名解析至F5 的vip</tspan>
+        </text>
+      </g>
+      <g id="Graphic_19">
+        <rect x="1002" y="467" width="413" height="360.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <text transform="translate(1007 472)" fill="black">
+          <tspan font-family="PingFang SC" font-weight="bold" font-size="14" fill="black" x="0" y="15">机房</tspan>
+          <tspan font-family="Helvetica Neue" font-weight="bold" font-size="14" fill="black" y="15">2</tspan>
+          <tspan font-family="PingFang SC" font-weight="bold" font-size="14" fill="black" y="15">（城市2）-双活环境</tspan>
+        </text>
+      </g>
+      <g id="Graphic_20">
+        <path d="M 1015 562.5 L 1392 562.5 L 1392 804.5 L 1015 804.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <text transform="translate(1020 567.5)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" fill="black" x="0" y="15">K8s</tspan>
+          <tspan font-family="PingFang SC" font-size="14" fill="black" y="15">集群</tspan>
+        </text>
+      </g>
+      <g id="Line_24">
+        <line x1="1264.5" y1="612.5" x2="1264.5" y2="628.1" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_71">
+        <text transform="translate(691 207.125)" fill="black">
+          <tspan font-family="PingFang SC" font-size="10" fill="black" x="0" y="11">双活业务申请新的域名，访问： https://new-domain-prod， 该域名解析至F5 的vip</tspan>
+        </text>
+      </g>
+      <g id="Graphic_87">
+        <path d="M 492.05815 410.2858 C 543.08604 429.3335 543.08604 460.2159 492.05815 479.2636 C 441.03053 498.3114 358.29847 498.3114 307.27085 479.2636 C 256.24296 460.2159 256.24296 429.3335 307.27085 410.2858 C 358.29847 391.23803 441.03053 391.23803 492.05815 410.2858" stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Graphic_88">
+        <text transform="translate(126.875 845.2399)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" fill="black" x="0" y="17">非双活部分，转发保持不变，需要双活的部分，使用单独的域名，分离出来。</tspan>
+          <tspan font-family="PingFang SC" font-size="16" fill="black" x="0" y="39">当时只有一个业务需要双活，所以单独申请一个域名</tspan>
+        </text>
+      </g>
+    </g>
+    <g id="版面____1_Layer_1">
+      <title>Layer 1</title>
+      <g id="Line_3">
+        <line x1="133" y1="274.5" x2="1199.3827" y2="274.5" stroke="black" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_4">
+        <rect x="154" y="228.5" width="110.5" height="32.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(159 236.554)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" fill="black" x="26.653" y="13">intranet</tspan>
+        </text>
+      </g>
+      <g id="Graphic_6">
+        <rect x="359" y="228.5" width="110.5" height="32.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(364 236.554)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" fill="black" x="26.653" y="13">intranet</tspan>
+        </text>
+      </g>
+      <g id="Graphic_7">
+        <rect x="733.75" y="234.0625" width="110.5" height="32.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(738.75 242.1165)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" fill="black" x="26.653" y="13">intranet</tspan>
+        </text>
+      </g>
+      <g id="Graphic_8">
+        <circle cx="414.25" cy="513" r="19.5000311590869" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(403.65 504.804)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" fill="black" x="2.6900004" y="13">F5</tspan>
+        </text>
+      </g>
+      <g id="Graphic_11">
+        <rect x="326.75" y="580" width="175" height="32.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(331.75 586.25)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" fill="black" x="18.989" y="15">NGINX</tspan>
+          <tspan font-family="PingFang SC" font-size="14" fill="black" y="15">（入口网关）</tspan>
+        </text>
+      </g>
+      <g id="Line_12">
+        <line x1="414.25" y1="533" x2="414.25" y2="569.6" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_16">
+        <rect x="326.75" y="638.5" width="175" height="32.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(331.75 646.554)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" fill="black" x="16.651" y="13">springcloud-gateway</tspan>
+        </text>
+      </g>
+      <g id="Line_17">
+        <line x1="414.25" y1="613" x2="414.25" y2="628.1" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_22">
+        <rect x="1177" y="638.5" width="175" height="32.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1182 646.554)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" fill="black" x="16.651" y="13">springcloud-gateway</tspan>
+        </text>
+      </g>
+      <g id="Graphic_23">
+        <rect x="1177" y="580" width="175" height="32.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1182 586.25)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" fill="black" x="18.989" y="15">NGINX</tspan>
+          <tspan font-family="PingFang SC" font-size="14" fill="black" y="15">（入口网关）</tspan>
+        </text>
+      </g>
+      <g id="Graphic_32">
+        <rect x="420.66047" y="713.4128" width="123.75" height="55.07555" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(425.66047 720.95055)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" fill="black" x="28.875" y="15">需双活的</tspan>
+          <tspan font-family="PingFang SC" font-size="14" fill="black" x="28.875" y="35">业务服务</tspan>
+        </text>
+      </g>
+      <g id="Graphic_31">
+        <rect x="287.25" y="713.4128" width="119.75" height="55.07555" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(292.25 720.95055)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" fill="black" x="19.875" y="15">无需双活的</tspan>
+          <tspan font-family="PingFang SC" font-size="14" fill="black" x="26.875" y="35">业务服务</tspan>
+        </text>
+      </g>
+      <g id="Graphic_30">
+        <rect x="149" y="655.5" width="122" height="39" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(154 655)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" fill="black" x="14" y="15">前端静态资源</tspan>
+          <tspan font-family="PingFang SC" font-size="14" fill="black" x="41.272" y="35">NGX</tspan>
+        </text>
+      </g>
+      <g id="Line_33">
+        <line x1="427.43323" y1="671.3919" x2="454.26305" y2="705.2607" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_34">
+        <line x1="401.2888" y1="671.3945" x2="374.9586" y2="705.2072" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_35">
+        <path d="M 326.75 592.1667 L 210 592.1667 L 210 645.1" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_36">
+        <rect x="1173.5" y="708.5" width="182" height="81" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1178.5 739)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" fill="black" x="44" y="15">需双活的服务</tspan>
+        </text>
+      </g>
+      <g id="Line_37">
+        <line x1="1264.5" y1="671.5" x2="1264.5" y2="698.1" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_38">
+        <rect x="1021" y="655.5" width="122" height="39" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1026 655)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" fill="black" x="14" y="15">前端静态资源</tspan>
+          <tspan font-family="PingFang SC" font-size="14" fill="black" x="41.272" y="35">NGX</tspan>
+        </text>
+      </g>
+      <g id="Line_39">
+        <path d="M 1177 596.25 L 1082 596.25 L 1082 645.1" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_40">
+        <path d="M 695 425.55997 L 977 425.55997 L 977 467.56503 L 695 467.56503 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <text transform="translate(700 436.5625)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" fill="black" x="48.22" y="15">双活域名：</tspan>
+          <tspan font-family="Helvetica Neue" font-size="14" fill="black" y="15"> aa-domain-prod</tspan>
+        </text>
+      </g>
+      <g id="Graphic_41">
+        <rect x="326.75" y="418.50507" width="175" height="32.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(331.75 424.75507)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" fill="black" x="18.989" y="15">NGINX</tspan>
+          <tspan font-family="PingFang SC" font-size="14" fill="black" y="15">（入口网关）</tspan>
+        </text>
+      </g>
+      <g id="Graphic_42">
+        <circle cx="414.25" cy="358.75" r="19.500031159087" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(403.65 350.554)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" fill="black" x="2.6900004" y="13">F5</tspan>
+        </text>
+      </g>
+      <g id="Line_43">
+        <line x1="414.25" y1="261.5" x2="414.25" y2="328.85" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_44">
+        <line x1="414.25" y1="378.75" x2="414.25" y2="408.10507" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_46">
+        <path d="M 789 467.56503 L 789 513 L 444.15 513" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_47">
+        <text transform="translate(420 384.25)" fill="black">
+          <tspan font-family="PingFang SC" font-size="13" fill="black" x="0" y="14">配置规则： 旧的双活服务规则判断移除</tspan>
+        </text>
+      </g>
+      <g id="Line_48">
+        <line x1="414.25" y1="451.50507" x2="414.25" y2="483.1" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_49">
+        <circle cx="1264.5" cy="513" r="19.5000311590869" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1253.9 504.804)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" fill="black" x="2.6900004" y="13">F5</tspan>
+        </text>
+      </g>
+      <g id="Line_50">
+        <line x1="1264.5" y1="533" x2="1264.5" y2="569.6" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_51">
+        <path d="M 883 467.56503 L 883 513 L 1234.6 513" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_53">
+        <text transform="translate(347 456.00507)" fill="black">
+          <tspan font-family="PingFang SC" font-size="11" fill="black" x="0" y="12">非双活流量</tspan>
+        </text>
+      </g>
+      <g id="Graphic_55">
+        <path d="M 720.75 720.525 L 720.75 658.725 C 720.75 654.4608 745.502 651 776 651 C 806.498 651 831.25 654.4608 831.25 658.725 L 831.25 720.525 C 831.25 724.7892 806.498 728.25 776 728.25 C 745.502 728.25 720.75 724.7892 720.75 720.525 M 720.75 658.725 C 720.75 662.9892 745.502 666.45 776 666.45 C 806.498 666.45 831.25 662.9892 831.25 658.725" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(725.75 683.4875)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="14" fill="black" x="26.527" y="15">DB</tspan>
+          <tspan font-family="PingFang SC" font-size="14" fill="black" y="15">公用</tspan>
+        </text>
+      </g>
+      <g id="Graphic_57">
+        <path d="M 621.875 691.625 L 632.875 667 L 632.875 679.3125 L 664.875 679.3125 L 664.875 667 L 675.875 691.625 L 664.875 716.25 L 664.875 703.9375 L 632.875 703.9375 L 632.875 716.25 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_58">
+        <path d="M 889.625 691.625 L 900.625 667 L 900.625 679.3125 L 932.625 679.3125 L 932.625 667 L 943.625 691.625 L 932.625 716.25 L 932.625 703.9375 L 900.625 703.9375 L 900.625 716.25 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_59">
+        <rect x="153.83953" y="700.45055" width="110.66047" height="97.54945" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(158.83953 705.45055)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" fill="black" x="8.330235" y="15">各类基础组件</tspan>
+        </text>
+      </g>
+      <g id="Graphic_61">
+        <rect x="166.75" y="727.6667" width="85" height="24" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(171.75 729.6667)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" fill="black" x="9.5" y="15">注册中心</tspan>
+        </text>
+      </g>
+      <g id="Graphic_62">
+        <rect x="166.75" y="754.1667" width="85" height="24" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(171.75 756.1667)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" fill="black" x="9.5" y="15">配置中心</tspan>
+        </text>
+      </g>
+      <g id="Graphic_63">
+        <text transform="translate(171.75 771)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" fill="black" x="0" y="17">…</tspan>
+        </text>
+      </g>
+      <g id="Graphic_64">
+        <rect x="1026.6698" y="700.45055" width="110.66047" height="97.54945" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1031.6698 705.45055)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" fill="black" x="8.330235" y="15">各类基础组件</tspan>
+        </text>
+      </g>
+      <g id="Graphic_65">
+        <rect x="1039.5802" y="727.6667" width="85" height="24" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1044.5802 729.6667)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" fill="black" x="9.5" y="15">注册中心</tspan>
+        </text>
+      </g>
+      <g id="Graphic_66">
+        <rect x="1039.5802" y="754.1667" width="85" height="24" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1044.5802 756.1667)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" fill="black" x="9.5" y="15">配置中心</tspan>
+        </text>
+      </g>
+      <g id="Graphic_67">
+        <text transform="translate(1044.5802 771)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" fill="black" x="0" y="17">…</tspan>
+        </text>
+      </g>
+      <g id="Graphic_68">
+        <text transform="translate(433 347.75)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" fill="black" x="0" y="17">vip： 192.168.10.1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_69">
+        <text transform="translate(260.902 499.76014)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" fill="black" x="0" y="17">vip： 192.168.10.2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_70">
+        <text transform="translate(1284 502)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" fill="black" x="0" y="17">vip： 192.168.11.1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_72">
+        <path d="M 695 342.75 L 977 342.75 L 977 384.75507 L 695 384.75507 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <text transform="translate(700 352.75253)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" fill="black" x="45.277" y="17">新域名：</tspan>
+          <tspan font-family="Helvetica Neue" font-size="18" fill="black" y="17"> </tspan>
+          <tspan font-family="PingFang SC" font-size="14" fill="black" y="17">new-domain-prod</tspan>
+        </text>
+      </g>
+      <g id="Line_73">
+        <line x1="789" y1="267.0625" x2="789" y2="332.85" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_74">
+        <line x1="883" y1="385.25507" x2="883" y2="415.65997" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_75">
+        <text transform="translate(948.5802 352.75253)" fill="#b1001c">
+          <tspan font-family="PingFang SC" font-size="16" fill="#b1001c" x="0" y="17">该域名绑定到双活域名的转发</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>
